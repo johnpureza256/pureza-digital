@@ -1,30 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "Working with Pureza Digital was completely different to any agency we'd tried before. We got direct access to the person building our site — and the result speaks for itself. Enquiries went up immediately.",
-    author: "Sarah M.",
-    role: "Dental Clinic Owner, Canterbury",
-    initials: "SM",
-  },
-  {
-    quote:
-      "The AI automation workflow John built for us saves around 8 hours a week. Our leads are pre-qualified before we even speak to them. The ROI was evident within the first month.",
-    author: "Chris T.",
-    role: "Director, Trade Company",
-    initials: "CT",
-  },
-  {
-    quote:
-      "I expected a website. I got a business asset. The AI chatbot handles enquiries around the clock and the design is something our competitors can't match. Couldn't recommend more highly.",
-    author: "Lena P.",
-    role: "Property Developer, Auckland",
-    initials: "LP",
-  },
-];
+type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+  initials: string;
+};
+
+// Real client testimonials will be added here as they come in.
+const TESTIMONIALS: Testimonial[] = [];
 
 export default function Testimonials() {
   return (
@@ -69,6 +56,88 @@ export default function Testimonials() {
           <span className="text-[#C9A96E]">Actually Say</span>
         </motion.h2>
 
+        {TESTIMONIALS.length === 0 ? (
+          <div className="relative">
+            {/* Featured editorial statement */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-w-3xl mx-auto text-center"
+            >
+              <div
+                className="text-[7rem] lg:text-[9rem] text-[#C9A96E]/12 font-serif leading-none mb-2 select-none"
+                aria-hidden
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                &ldquo;
+              </div>
+              <p
+                className="text-2xl lg:text-4xl text-white leading-[1.3] -mt-8 lg:-mt-12 mb-8"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Every great partnership starts with a first client.
+                <br className="hidden lg:block" />{" "}
+                <span className="text-[#C9A96E]">Yours could be the first story told here.</span>
+              </p>
+              <p
+                className="text-[#8A8A8A] text-sm lg:text-base leading-relaxed max-w-xl mx-auto mb-10"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Pureza Digital is taking on a small number of foundation clients —
+                businesses we&rsquo;ll work with closely to deliver results worth
+                talking about.
+              </p>
+              <button
+                onClick={() =>
+                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06] transition-all duration-300 cursor-pointer"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <span>Become a Foundation Client</span>
+                <ArrowUpRight
+                  size={14}
+                  className="group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform duration-200"
+                />
+              </button>
+            </motion.div>
+
+            {/* Ghost placeholder cards — where future stories will live */}
+            <div className="grid lg:grid-cols-3 gap-6 mt-20" aria-hidden>
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.7, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  className="p-8 border border-dashed border-white/[0.07] bg-white/[0.012]"
+                >
+                  <div
+                    className="text-5xl text-[#C9A96E]/10 font-serif leading-none mb-6 select-none"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    &ldquo;
+                  </div>
+                  <div className="space-y-2.5 mb-8">
+                    <div className="h-2 rounded-full bg-white/[0.05] w-full" />
+                    <div className="h-2 rounded-full bg-white/[0.05] w-[92%]" />
+                    <div className="h-2 rounded-full bg-white/[0.05] w-[78%]" />
+                  </div>
+                  <div className="flex items-center gap-4 pt-6 border-t border-white/[0.05]">
+                    <div className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.06]" />
+                    <div className="space-y-2">
+                      <div className="h-2 rounded-full bg-white/[0.06] w-24" />
+                      <div className="h-2 rounded-full bg-white/[0.04] w-16" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : (
         <div className="grid lg:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
@@ -122,6 +191,7 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

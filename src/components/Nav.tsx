@@ -8,17 +8,41 @@ const links = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
+  { label: "Process", href: "#how-it-works" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the nav link for the section currently in view
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.querySelector(l.href))
+      .filter((el): el is Element => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target.id) {
+          setActiveSection(`#${visible[0].target.id}`);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const handleLinkClick = (href: string) => {
@@ -63,18 +87,50 @@ export default function Nav() {
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-10">
-            {links.map((link) => (
-              <li key={link.label}>
-                <button
-                  onClick={() => handleLinkClick(link.href)}
-                  className="text-[#A0A0A0] hover:text-white text-sm tracking-[0.12em] uppercase transition-colors duration-200 cursor-pointer"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
+          <ul className="hidden md:flex items-center gap-9">
+            {links.map((link, i) => {
+              const isActive = activeSection === link.href;
+              return (
+                <li key={link.label}>
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    aria-current={isActive ? "true" : undefined}
+                    className="group relative flex items-baseline gap-1.5 text-sm tracking-[0.12em] uppercase cursor-pointer"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {/* Editorial index */}
+                    <span
+                      className={`text-[10px] tabular-nums transition-colors duration-300 ${
+                        isActive
+                          ? "text-[#C9A96E]"
+                          : "text-[#5A5A5A] group-hover:text-[#C9A96E]/70"
+                      }`}
+                    >
+                      0{i + 1}
+                    </span>
+                    {/* Label + animated underline */}
+                    <span className="relative">
+                      <span
+                        className={`transition-colors duration-200 ${
+                          isActive
+                            ? "text-white"
+                            : "text-[#A0A0A0] group-hover:text-white"
+                        }`}
+                      >
+                        {link.label}
+                      </span>
+                      <span
+                        className={`absolute -bottom-1.5 left-0 h-px w-full bg-[#C9A96E] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                          isActive
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
           </ul>
 
           {/* CTA */}
@@ -110,19 +166,31 @@ export default function Nav() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 bg-[#0A0A0A]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-10"
           >
-            {links.map((link, i) => (
-              <motion.button
-                key={link.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-                onClick={() => handleLinkClick(link.href)}
-                className="text-3xl font-light tracking-[0.15em] uppercase text-white/80 hover:text-[#C9A96E] transition-colors cursor-pointer"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                {link.label}
-              </motion.button>
-            ))}
+            {links.map((link, i) => {
+              const isActive = activeSection === link.href;
+              return (
+                <motion.button
+                  key={link.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  onClick={() => handleLinkClick(link.href)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`flex items-baseline gap-3 text-3xl font-light tracking-[0.15em] uppercase transition-colors cursor-pointer ${
+                    isActive ? "text-[#C9A96E]" : "text-white/80 hover:text-[#C9A96E]"
+                  }`}
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  <span
+                    className="text-sm tabular-nums text-[#C9A96E]/60"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  {link.label}
+                </motion.button>
+              );
+            })}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
