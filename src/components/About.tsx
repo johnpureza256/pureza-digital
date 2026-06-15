@@ -83,9 +83,7 @@ export default function About() {
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <p>
-                Pureza Digital is a boutique web design and AI automation studio
-                run by a single creative — me. That means every project gets my
-                full attention, from our first conversation to launch day and beyond.
+                
               </p>
               <p>
                 I combine sharp visual design with a deep understanding of how
