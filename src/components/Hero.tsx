@@ -116,13 +116,11 @@ export default function Hero() {
         >
           Websites That{" "}
           <em className="not-italic animate-shimmer glow-gold-text">
-            Convert.
+            Grow
           </em>
           <br />
-          <span className="text-white/90">Automations That</span>
-          <br />
           <span className="text-white/90">
-            Scale
+            Businesess
             <em className="not-italic text-[#C9A96E]">.</em>
           </span>
         </motion.h1>
@@ -135,8 +133,7 @@ export default function Hero() {
           className="text-[#A0A0A0] text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Premium web design, AI automation, and intelligent digital solutions
-          for ambitious businesses — from Ashburton to the world.
+          Professional websites, AI automation, and digital systems designed to help businesses attract more customers, save time, and grow online. — Based in Ashburton. Built for businesses across New Zealand.
         </motion.p>
 
         {/* CTAs */}

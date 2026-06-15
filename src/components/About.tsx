@@ -7,18 +7,18 @@ import { Sparkles, Globe, Zap } from "lucide-react";
 const VALUES = [
   {
     icon: Sparkles,
-    title: "Crafted, Not Templated",
-    body: "Every pixel is intentional. No page builders, no cookie-cutter themes — just bespoke design built around your goals.",
+    title: "Crafted For Your Business",
+    body: "Every website is built around your business, goals, and customers. No generic templates. No unnecessary complexity.",
   },
   {
     icon: Globe,
-    title: "Local Roots, Global Reach",
-    body: "Based in Ashburton, New Zealand — built to serve clients from Auckland to Amsterdam.",
+    title: "Local Knowledge, Modern Technology",
+    body: "Based in Ashburton and focused on helping New Zealand businesses compete online with modern websites and AI-powered systems.",
   },
   {
     icon: Zap,
-    title: "Results-Driven",
-    body: "Beautiful design is only half the equation. Everything I build is optimised to convert, perform, and grow.",
+    title: "Built To Deliver Results",
+    body: "A great website should do more than look good. Every project is designed to build trust, generate enquiries, and support business growth.",
   },
 ];
 
@@ -69,9 +69,9 @@ export default function About() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              The Studio
+              Meet
               <br />
-              <span className="text-[#C9A96E]">Behind the Work</span>
+              <span className="text-[#C9A96E]">The Founder</span>
             </motion.h2>
 
             <motion.div
@@ -86,14 +86,16 @@ export default function About() {
                 
               </p>
               <p>
-                I combine sharp visual design with a deep understanding of how
-                people actually use the web. The result: websites that don&apos;t
-                just look expensive — they perform.
+                I&apos;m John Pureza, founder of Pureza Digital.
               </p>
               <p>
-                I&apos;m proud to be building from New Zealand while serving clients
-                across the globe. If you want a partner who genuinely cares about
-                your results, let&apos;s talk.
+                I help businesses build modern websites and digital systems that create trust, attract customers, and support long-term growth.
+              </p>
+              <p>
+                As a student and aspiring software engineer based in Ashburton, New Zealand, I combine web development, AI tools, and business-focused design to create solutions that are both beautiful and practical.
+              </p>
+              <p>
+                Whether you're a local café, tradie, contractor, or growing company, my goal is simple:
               </p>
             </motion.div>
 
@@ -105,8 +107,8 @@ export default function About() {
               className="mt-10 pt-10 border-t border-white/8 flex gap-12"
             >
               {[
-                { n: "5+", label: "Projects" },
-                { n: "NZ", label: "Based" },
+                { n: "10+", label: "Projects Built" },
+                { n: "100%", label: "NZ Based" },
                 { n: "∞", label: "Ambition" },
               ].map((s) => (
                 <div key={s.label}>
