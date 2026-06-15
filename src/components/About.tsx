@@ -97,6 +97,9 @@ export default function About() {
               <p>
                 Whether you're a local café, tradie, contractor, or growing company, my goal is simple:
               </p>
+              <p>
+                <b>Build digital assets that help your business succeed.</b>
+              </p>
             </motion.div>
 
             <motion.div

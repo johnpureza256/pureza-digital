@@ -8,9 +8,9 @@ const PROJECTS = [
   {
     number: "01",
     title: "Triangle Espresso",
-    category: "Web Design & Development",
+    category: "Concept Project",
     description:
-      "A boutique specialty coffee house in Ashburton, Mid Canterbury. Built with a warm editorial aesthetic — Playfair serif headers, hand-crafted animations, and a menu experience that mirrors the care put into every cup.",
+      "A modern café website designed to showcase quality coffee, local hospitality, and a welcoming customer experience. Featuring custom branding, responsive design, and an elegant menu experience inspired by the craftsmanship behind every cup.",
     tags: ["HTML / CSS / JS", "Brand Design", "Editorial"],
     accent: "#C99A4E",
     bg: "from-[#1A0E06] to-[#0A0A0A]",
@@ -20,9 +20,9 @@ const PROJECTS = [
   {
     number: "02",
     title: "Rotary Club of Ashburton",
-    category: "Web Design & Development",
+    category: "Concept Project",
     description:
-      "A modern digital home for one of Mid Canterbury's longest-serving community organisations. Clean, trustworthy, and fully responsive — with dedicated pages for projects, history, and membership.",
+      "A modern digital presence for one of Mid Canterbury's most established community organisations. Designed to improve accessibility, communicate community impact, and make it easier for members and visitors to engage with the club.",
     tags: ["React", "Tailwind CSS", "Multi-page"],
     accent: "#17458F",
     bg: "from-[#040D1A] to-[#0A0A0A]",
@@ -148,9 +148,9 @@ export default function Portfolio() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Projects We&apos;re
+              Recent Projects
               <br />
-              <span className="text-[#C9A96E]">Proud Of</span>
+              <span className="text-[#C9A96E]">We&apos;re Proud Of</span>
             </motion.h2>
 
             <motion.p
@@ -161,7 +161,7 @@ export default function Portfolio() {
               className="text-[#6B6B6B] text-sm max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Real work, built from scratch for real clients in Ashburton and Mid Canterbury.
+              A selection of websites and digital experiences I've designed and developed for businesses and organisations in Mid Canterbury.
             </motion.p>
           </div>
 
