@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#241813" />
+  <title>Triangle Espresso · Specialty Coffee on the Canterbury Plains · Ashburton, NZ</title>
+  <meta name="description" content="Triangle Espresso is a specialty coffee house in Ashburton, Mid Canterbury. Single-origin coffee roasted in Canterbury, all-day brunch, and house-baked cabinet food. Three sides, one obsession — the perfect cup." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Triangle Espresso · Ashburton, NZ" />
+  <meta property="og:description" content="Specialty coffee, all-day brunch, and house-baked treats on the Canterbury plains." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_NZ" />
+
+  <!-- Fonts: preconnect + display=swap for fast, flash-free loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Inline SVG favicon: triangle monogram -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241813'/%3E%3Cpath d='M16 7 L25 24 H7 Z' fill='none' stroke='%23C99A4E' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <!-- Local Business structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Triangle Espresso",
+    "description": "Specialty coffee house, all-day brunch and house-baked cabinet food in Ashburton, Mid Canterbury.",
+    "servesCuisine": ["Coffee", "Brunch", "Cafe"],
+    "priceRange": "$$",
+    "telephone": "+64 3 308 4412",
+    "email": "hello@triangleespresso.co.nz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "211 East Street",
+      "addressLocality": "Ashburton",
+      "addressRegion": "Canterbury",
+      "postalCode": "7700",
+      "addressCountry": "NZ"
+    },
+    "openingHours": ["Mo-Fr 07:00-15:30", "Sa-Su 08:00-14:00"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#menu">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav" data-reveal-instant>
+    <div class="nav__inner container">
+      <a class="brand" href="#top" aria-label="Triangle Espresso — home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="34" height="34">
+            <path d="M20 6 L33 31 H7 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="20" cy="24" r="2.4" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Triangle</span>
+          <span class="brand__sub">Espresso · Ashburton</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#story">Our Coffee</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <a class="btn btn--ghost nav__cta" href="#visit">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 1 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <span>Find us</span>
+      </a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mmenu" id="mobileMenu" aria-hidden="true">
+    <nav class="mmenu__panel" aria-label="Mobile">
+      <a href="#story">Our Coffee</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn--solid" href="#visit">Find us</a>
+      <div class="mmenu__meta">
+        <p>211 East Street, Ashburton</p>
+        <p>Open today · 7:00 – 3:30</p>
+      </div>
+    </nav>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Welcome">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="steam steam--1"></span>
+        <span class="steam steam--2"></span>
+        <span class="steam steam--3"></span>
+      </div>
+      <div class="hero__grain" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--light" data-reveal>
+            <span class="eyebrow__tri" aria-hidden="true"></span>
+            Specialty coffee · Mid Canterbury
+          </p>
+          <h1 class="hero__title" data-reveal>
+            Three sides.<br />
+            <em>One</em> obsession.
+          </h1>
+          <p class="hero__lead" data-reveal>
+            A fixed point on the Canterbury plains for single-origin coffee,
+            unhurried brunch and cabinet food still warm from the oven —
+            poured by hand on East Street, Ashburton.
+          </p>
+          <div class="hero__cta" data-reveal>
+            <a class="btn btn--solid" href="#menu">
+              View the menu
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--line" href="#visit">Plan a visit</a>
+          </div>
+          <dl class="hero__facts" data-reveal>
+            <div><dt>Open</dt><dd>7 days · from 7am</dd></div>
+            <div><dt>Roasted</dt><dd>In Canterbury</dd></div>
+            <div><dt>Since</dt><dd>2017</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__art" data-reveal>
+          <figure class="hero__photo hero__photo--main img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=72&auto=format&fit=crop"
+              srcset="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=72&auto=format&fit=crop 500w, https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=72&auto=format&fit=crop 900w"
+              sizes="(max-width: 900px) 80vw, 380px"
+              width="900" height="1100" alt="A flat white with fern latte art on a wooden table" loading="eager" decoding="async" />
+          </figure>
+          <figure class="hero__photo hero__photo--sub img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=72&auto=format&fit=crop"
+              width="600" height="600" alt="Espresso being pulled from a polished machine" loading="eager" decoding="async" />
+          </figure>
+          <span class="hero__badge" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="92" height="92">
+              <defs><path id="circlePath" d="M32 32 m -22 0 a 22 22 0 1 1 44 0 a 22 22 0 1 1 -44 0"/></defs>
+              <text font-size="6.6" letter-spacing="2.1" fill="currentColor">
+                <textPath href="#circlePath">· HAND POURED · CANTERBURY ROASTED · EST 2017 </textPath>
+              </text>
+              <path d="M32 24 L40 39 H24 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#marquee" aria-label="Scroll to explore">
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+        Scroll
+      </a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Single Origin</span><span class="dot">▲</span>
+        <span>Hand Poured</span><span class="dot">▲</span>
+        <span>Canterbury Roasted</span><span class="dot">▲</span>
+        <span>All-Day Brunch</span><span class="dot">▲</span>
+        <span>House Baked</span><span class="dot">▲</span>
+        <span>Single Origin</span><span class="dot">▲</span>
+        <span>Hand Poured</span><span class="dot">▲</span>
+        <span>Canterbury Roasted</span><span class="dot">▲</span>
+        <span>All-Day Brunch</span><span class="dot">▲</span>
+        <span>House Baked</span><span class="dot">▲</span>
+      </div>
+    </div>
+
+    <!-- ============ STORY ============ -->
+    <section class="story section" id="story">
+      <div class="container story__grid">
+        <div class="story__media" data-reveal>
+          <figure class="img-frame story__img">
+            <img
+              src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1000&q=72&auto=format&fit=crop"
+              srcset="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=72&auto=format&fit=crop 600w, https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1000&q=72&auto=format&fit=crop 1000w"
+              sizes="(max-width: 880px) 90vw, 460px"
+              width="1000" height="1200" alt="A barista gently pouring milk to finish a coffee" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="img-frame story__img story__img--float">
+            <img
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=560&q=72&auto=format&fit=crop"
+              width="560" height="560" alt="The warm interior of the cafe with timber and soft light" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+
+        <div class="story__copy" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__tri" aria-hidden="true"></span>Our coffee</p>
+          <h2 class="h2">A small corner of East Street,<br />dialled in every morning.</h2>
+          <p>
+            Triangle Espresso started with a three-group machine, a borrowed grinder and
+            a stubborn belief that a country town deserves city coffee. Years on,
+            that hasn't changed — just the queue out the door.
+          </p>
+          <p>
+            We pull shots of seasonal, single-origin beans roasted just up the road,
+            and we taste-test every batch before it touches your cup. Slow mornings,
+            good company, and a brew worth the drive across the plains.
+          </p>
+          <a class="link-arrow" href="#menu">See what's on
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Three points of difference -->
+      <div class="container points">
+        <article class="point" data-reveal>
+          <span class="point__num">01</span>
+          <span class="point__tri" aria-hidden="true"></span>
+          <h3>Single-origin &amp; seasonal</h3>
+          <p>Beans chosen at their peak and rotated through the year, so the cup tastes of right now — never last season.</p>
+        </article>
+        <article class="point" data-reveal>
+          <span class="point__num">02</span>
+          <span class="point__tri" aria-hidden="true"></span>
+          <h3>Roasted in Canterbury</h3>
+          <p>Small-batch and local. From roaster to grinder is a short trip, and never more than a week in between.</p>
+        </article>
+        <article class="point" data-reveal>
+          <span class="point__num">03</span>
+          <span class="point__tri" aria-hidden="true"></span>
+          <h3>Poured with care</h3>
+          <p>Dialled in at open, adjusted through the day, and finished by hand. Three points, one obsession.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="menu section section--dark" id="menu">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__tri" aria-hidden="true"></span>The menu</p>
+          <h2 class="h2 h2--light">Made fresh, priced fair</h2>
+          <p class="section__sub">All-day brunch served until 2pm. Cabinet refreshed daily. Prices in NZD.</p>
+        </header>
+
+        <div class="menu__tabs" role="tablist" aria-label="Menu sections">
+          <button class="menu__tab is-active" role="tab" aria-selected="true" aria-controls="panel-coffee" id="tab-coffee">Coffee</button>
+          <button class="menu__tab" role="tab" aria-selected="false" aria-controls="panel-brunch" id="tab-brunch">Brunch</button>
+          <button class="menu__tab" role="tab" aria-selected="false" aria-controls="panel-cabinet" id="tab-cabinet">Cabinet</button>
+        </div>
+
+        <!-- Coffee -->
+        <div class="menu__panel is-active" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee">
+          <ul class="menu__list">
+            <li class="menu__item"><span class="menu__name">Flat White</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Latte</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Cappuccino</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Long Black</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.0</span></li>
+            <li class="menu__item"><span class="menu__name">Short Black / Espresso</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">4.5</span></li>
+            <li class="menu__item"><span class="menu__name">Mochaccino</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.0</span></li>
+            <li class="menu__item"><span class="menu__name">Chai Latte <em>spiced, house blend</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.0</span></li>
+            <li class="menu__item"><span class="menu__name">Hot Chocolate</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Batch Brew <em>today's filter</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.0</span></li>
+            <li class="menu__item"><span class="menu__name">Cold Brew <em>18-hour steep</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.5</span></li>
+            <li class="menu__item"><span class="menu__name">Single-Origin Pour Over <em>V60</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">7.5</span></li>
+          </ul>
+          <p class="menu__note">Oat, almond or soy +0.80 · Extra shot +0.80 · Large +0.70</p>
+        </div>
+
+        <!-- Brunch -->
+        <div class="menu__panel" role="tabpanel" id="panel-brunch" aria-labelledby="tab-brunch" hidden>
+          <ul class="menu__list">
+            <li class="menu__item"><span class="menu__name">Triangle Big Breakfast <em>two eggs, bacon, pork sausage, roast tomato, mushrooms, hash, sourdough</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">26.0</span></li>
+            <li class="menu__item"><span class="menu__name">Eggs Benedict <em>free-range poached eggs, hollandaise, toasted ciabatta</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">21.0</span></li>
+            <li class="menu__item"><span class="menu__name">Smashed Avocado <em>whipped feta, dukkah, poached egg, sourdough</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">19.5</span></li>
+            <li class="menu__item"><span class="menu__name">Mince on Toast <em>slow-cooked beef, two eggs, ciabatta</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">18.0</span></li>
+            <li class="menu__item"><span class="menu__name">Buttermilk Pancakes <em>maple, seasonal fruit, mascarpone</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">19.0</span></li>
+            <li class="menu__item"><span class="menu__name">Brioche French Toast <em>berry compote, vanilla cream</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">18.5</span></li>
+            <li class="menu__item"><span class="menu__name">Granola Bowl <em>toasted oats, yoghurt, poached fruit, honey</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">15.0</span></li>
+          </ul>
+          <p class="menu__note">Add to your Benny — bacon, wilted spinach or hot-smoked salmon +5.0 · GF bread available</p>
+        </div>
+
+        <!-- Cabinet -->
+        <div class="menu__panel" role="tabpanel" id="panel-cabinet" aria-labelledby="tab-cabinet" hidden>
+          <ul class="menu__list">
+            <li class="menu__item"><span class="menu__name">Butter Croissant</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.0</span></li>
+            <li class="menu__item"><span class="menu__name">Date Scone <em>with whipped butter</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Ginger Crunch</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.0</span></li>
+            <li class="menu__item"><span class="menu__name">Afghan Biscuit</span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.0</span></li>
+            <li class="menu__item"><span class="menu__name">Lamington <em>raspberry &amp; coconut</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">5.5</span></li>
+            <li class="menu__item"><span class="menu__name">Brookie <em>brownie meets cookie</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.5</span></li>
+            <li class="menu__item"><span class="menu__name">Seasonal Friand <em>gluten free</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">6.0</span></li>
+            <li class="menu__item"><span class="menu__name">Pork &amp; Fennel Sausage Roll <em>house relish</em></span><span class="menu__lead-dots" aria-hidden="true"></span><span class="menu__price">8.5</span></li>
+          </ul>
+          <p class="menu__note">Baked in-house each morning — when it's gone, it's gone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow"><span class="eyebrow__tri" aria-hidden="true"></span>The room &amp; the cup</p>
+          <h2 class="h2">A look around</h2>
+        </header>
+      </div>
+
+      <div class="container gallery__grid">
+        <figure class="g-item g-item--tall img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="1000" alt="An overhead flat white with delicate latte art" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="600" alt="A brunch plate of poached eggs and greens" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="600" alt="Fresh-baked croissants and pastries in the cabinet" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item g-item--wide img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1000&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=70&auto=format&fit=crop 600w, https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1000&q=70&auto=format&fit=crop 1000w" sizes="(max-width:700px) 100vw, 60vw" width="1000" height="640" alt="A sunlit cafe table set for two with coffee" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="600" alt="A slow pour-over brewing into a glass carafe" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="600" alt="Freshly roasted coffee beans, close up" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item g-item--tall img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="1000" alt="Smashed avocado on toast topped with a poached egg" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="g-item img-frame" data-reveal data-lightbox>
+          <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&q=70&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=70&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&q=70&auto=format&fit=crop 800w" sizes="(max-width:700px) 50vw, 30vw" width="800" height="600" alt="A latte with thick, glossy microfoam" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ VISIT ============ -->
+    <section class="visit section section--dark" id="visit">
+      <div class="container visit__grid">
+        <div class="visit__info" data-reveal>
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__tri" aria-hidden="true"></span>Find the triangle</p>
+          <h2 class="h2 h2--light">Come say kia ora</h2>
+          <p class="visit__intro">You'll find us on the corner of East Street — look for the timber frontage and the queue that knows it's worth the wait.</p>
+
+          <ul class="visit__details">
+            <li>
+              <span class="visit__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 1 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+              <div><h3>Where</h3><p>211 East Street<br />Ashburton 7700, Mid Canterbury</p></div>
+            </li>
+            <li>
+              <span class="visit__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><h3>Hours</h3>
+                <table class="hours">
+                  <tr><th scope="row">Mon – Fri</th><td>7:00 – 3:30</td></tr>
+                  <tr><th scope="row">Sat – Sun</th><td>8:00 – 2:00</td></tr>
+                  <tr><th scope="row">Public hols</th><td>8:00 – 1:00</td></tr>
+                </table>
+              </div>
+            </li>
+            <li>
+              <span class="visit__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span>
+              <div><h3>Say hello</h3>
+                <p><a href="tel:+6433084412">(03) 308 4412</a><br /><a href="mailto:hello@triangleespresso.co.nz">hello@triangleespresso.co.nz</a></p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="visit__social" aria-label="Social links">
+            <a href="#" aria-label="Triangle Espresso on Instagram" class="social">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Triangle Espresso on Facebook" class="social">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2V5h-2c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.2l.8-3H14V8.5c0-.3.2-.5.5-.5Z" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="visit__map img-frame" data-reveal>
+          <iframe
+            title="Map showing Triangle Espresso in Ashburton, New Zealand"
+            src="https://maps.google.com/maps?q=East%20Street%2C%20Ashburton%2C%20New%20Zealand&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map__pill" href="https://www.google.com/maps/search/?api=1&query=East+Street+Ashburton+New+Zealand" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 1 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="30" height="30"><path d="M20 6 L33 31 H7 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="20" cy="24" r="2.4" fill="currentColor"/></svg>
+        </span>
+        <p class="footer__tagline">Three sides, one obsession — the perfect cup. Brewed on the Canterbury plains since 2017.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#story">Our Coffee</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="footer__meta">
+        <p>211 East Street, Ashburton 7700</p>
+        <p><a href="tel:+6433084412">(03) 308 4412</a></p>
+        <p>Open 7 days · from 7am</p>
+      </div>
+    </div>
+    <div class="container footer__base">
+      <p>© <span id="year">2026</span> Triangle Espresso. All rights reserved.</p>
+      <p>Made with care on the Canterbury plains.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox__close" aria-label="Close image">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <img class="lightbox__img" alt="" />
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
