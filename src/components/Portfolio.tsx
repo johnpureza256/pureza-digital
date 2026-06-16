@@ -29,6 +29,18 @@ const PROJECTS = [
     demo: "/rotary-ashburton/index.html",
     palette: "#17458F",
   },
+  {
+    number: "03",
+    title: "Pals Plumbing",
+    category: "Concept Project",
+    description:
+      "A premium single-page website for a local Ashburton plumbing business, built to turn visitors into phone calls. Featuring smooth scroll-triggered animations, a trust-focused design system, and a mobile-first tap-to-call experience optimised to load fast on any device.",
+    tags: ["HTML / CSS / JS", "Animation", "Local Business"],
+    accent: "#3B82F6",
+    bg: "from-[#040A1A] to-[#0A0A0A]",
+    demo: "/pals-plumbing/index.html",
+    palette: "#1E40AF",
+  },
 ];
 
 function DemoModal({ project, onClose }: { project: typeof PROJECTS[0]; onClose: () => void }) {
