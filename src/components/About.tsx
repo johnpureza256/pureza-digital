@@ -1,8 +1,22 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Sparkles, Globe, Zap } from "lucide-react";
+
+const TEAM = [
+  {
+    name: "John Pureza",
+    role: "Founder",
+    photo: "/team/john-pureza.jpg",
+  },
+  {
+    name: "Hamish Ramsay",
+    role: "Founding Partner",
+    photo: "/team/hamish-ramsay.jpg",
+  },
+];
 
 const VALUES = [
   {
@@ -71,7 +85,7 @@ export default function About() {
             >
               Meet
               <br />
-              <span className="text-[#C9A96E]">The Founder</span>
+              <span className="text-[#C9A96E]">The Team</span>
             </motion.h2>
 
             <motion.div
@@ -86,20 +100,58 @@ export default function About() {
                 
               </p>
               <p>
-                I&apos;m John Pureza, founder of Pureza Digital.
+                We're John Pureza and Hamish Ramsay, the founding team behind Pureza Digital.
               </p>
               <p>
-                I help businesses build modern websites and digital systems that create trust, attract customers, and support long-term growth.
+                Pureza Digital helps businesses create modern websites that build trust, attract customers, and support long-term growth.
               </p>
               <p>
-                As a student and aspiring software engineer based in Ashburton, New Zealand, I combine web development, AI tools, and business-focused design to create solutions that are both beautiful and practical.
+                Founded in Ashburton, New Zealand, we're a small team passionate about helping local businesses compete online with professional design, strong branding, and practical digital solutions.
               </p>
               <p>
-                Whether you're a local café, tradie, contractor, or growing company, my goal is simple:
+                We work closely with each client to create websites that not only look great, but help achieve real business goals.
               </p>
               <p>
-                <b>Build digital assets that help your business succeed.</b>
+                Whether you're a café, tradie, contractor, retailer, or service business, we're here to <b>help you build a stronger online presence and stand out from the competition.</b>
               </p>
+
+            </motion.div>
+
+            {/* Founder photos */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="mt-12 flex gap-8 sm:gap-12"
+            >
+              {TEAM.map((member) => (
+                <div key={member.name} className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-[#C9A96E]/30 flex-shrink-0">
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div
+                      className="text-white font-semibold text-sm"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {member.name}
+                    </div>
+                    <div
+                      className="text-[#C9A96E] text-xs tracking-[0.15em] uppercase mt-0.5"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {member.role}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </motion.div>
 
             <motion.div
