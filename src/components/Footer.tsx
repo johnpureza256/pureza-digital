@@ -1,14 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const YEAR = new Date().getFullYear();
 
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <footer className="relative border-t border-white/6 bg-[#080808] py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -55,19 +52,19 @@ export default function Footer() {
             className="flex flex-wrap gap-8"
           >
             {[
-              ["About", "#about"],
-              ["Services", "#services"],
-              ["Work", "#work"],
-              ["Contact", "#contact"],
+              ["About", "/#about"],
+              ["Services", "/#services"],
+              ["Work", "/#work"],
+              ["Contact", "/#contact"],
             ].map(([label, href]) => (
-              <button
+              <Link
                 key={label}
-                onClick={() => scrollTo(href)}
+                href={href}
                 className="text-[#3A3A3A] hover:text-[#C9A96E] text-xs tracking-[0.2em] uppercase transition-colors duration-200 cursor-pointer"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {label}
-              </button>
+              </Link>
             ))}
           </motion.nav>
         </div>
@@ -86,13 +83,29 @@ export default function Footer() {
           >
             &copy; {YEAR} Pureza Digital. All rights reserved.
           </p>
-          <p
-            className="text-[#2A2A2A] text-xs"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            Designed & built by{" "}
-            <span className="text-[#C9A96E]/60">Pureza Digital</span>
-          </p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              href="/privacy"
+              className="text-[#3A3A3A] hover:text-[#C9A96E] text-xs tracking-[0.15em] uppercase transition-colors duration-200"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-[#3A3A3A] hover:text-[#C9A96E] text-xs tracking-[0.15em] uppercase transition-colors duration-200"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Terms of Service
+            </Link>
+            <p
+              className="text-[#2A2A2A] text-xs"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Designed &amp; built by{" "}
+              <span className="text-[#C9A96E]/60">Pureza Digital</span>
+            </p>
+          </div>
         </motion.div>
       </div>
     </footer>
