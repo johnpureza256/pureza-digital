@@ -10,8 +10,10 @@ export default function Contact() {
     email: "",
     budget: "",
     message: "",
+    company: "", // honeypot — hidden from real users
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -22,8 +24,24 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+      setStatus("sent");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    }
   };
 
   const inputClass =
@@ -180,6 +198,20 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot: hidden from humans, bots tend to fill it */}
+                <div className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="company">Company (leave blank)</label>
+                  <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.company}
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label
@@ -269,6 +301,16 @@ export default function Contact() {
                     style={{ fontFamily: "var(--font-inter)" }}
                   />
                 </div>
+
+                {status === "error" && (
+                  <div
+                    role="alert"
+                    className="border border-red-500/30 bg-red-500/10 text-red-300 text-sm px-5 py-4"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {errorMsg}
+                  </div>
+                )}
 
                 <button
                   type="submit"
