@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+  <rect x="0" y="0" width="72" height="72" fill="#000000"/>
   <rect x="1" y="1" width="70" height="70" stroke="#C9A96E" stroke-width="1.5"/>
   <text x="36" y="36" fill="#C9A96E" font-family="'Playfair Display', Georgia, serif" font-size="22" font-weight="700" letter-spacing="3" text-anchor="middle" dominant-baseline="central">PD</text>
 </svg>

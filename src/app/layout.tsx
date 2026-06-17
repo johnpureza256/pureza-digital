@@ -51,6 +51,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
       { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
       { url: "/pureza-logo-mark.svg", type: "image/svg+xml" },
@@ -90,9 +92,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Pureza Digital",
+    url: SITE_URL,
+    logo: `${SITE_URL}/pureza-logo-mark.png`,
+    image: `${SITE_URL}/pureza-logo-mark.png`,
+    description: DESCRIPTION,
+  };
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="grain-overlay antialiased">{children}</body>
+      <body className="grain-overlay antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
