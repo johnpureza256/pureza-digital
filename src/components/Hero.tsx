@@ -90,6 +90,11 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center max-w-6xl mx-auto w-full">
+        {/* SEO H1 (visually hidden, read by search engines & screen readers) */}
+        <h1 className="sr-only">
+          Pureza Digital — Web Design &amp; Development in Ashburton, NZ
+        </h1>
+
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,13 +111,14 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
+        {/* Headline (decorative — primary H1 is the visually-hidden one above) */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.05] tracking-tight mb-8"
           style={{ fontFamily: "var(--font-playfair)" }}
+          aria-hidden="true"
         >
           Websites That{" "}
           <em className="not-italic animate-shimmer glow-gold-text">
@@ -120,10 +126,10 @@ export default function Hero() {
           </em>
           <br />
           <span className="text-white/90">
-            Businesess
+            Businesses
             <em className="not-italic text-[#C9A96E]">.</em>
           </span>
-        </motion.h1>
+        </motion.div>
 
         {/* Subheading */}
         <motion.p

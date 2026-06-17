@@ -37,9 +37,10 @@ export default function Footer() {
               className="text-[#3A3A3A] text-xs leading-relaxed max-w-xs"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Boutique web design & AI automation studio.
+              Website design, development, hosting & maintenance for local
+              businesses.
               <br />
-              Ashburton, New Zealand · Available Worldwide.
+              Ashburton, Canterbury, New Zealand · Available Worldwide.
             </p>
           </motion.div>
 

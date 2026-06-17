@@ -16,23 +16,63 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const SITE_URL = "https://purezadigital.com";
+const TITLE = "Pureza Digital | Web Design & Development in Ashburton NZ";
+const DESCRIPTION =
+  "Pureza Digital helps local businesses in Ashburton, New Zealand build modern websites, landing pages, hosting, maintenance, and digital solutions that create trust and attract customers.";
+
 export const metadata: Metadata = {
-  title: "Pureza Digital — Premium Web Design & AI Automation",
-  description:
-    "Boutique web design studio based in Ashburton, New Zealand. Custom websites, AI automations, and intelligent digital solutions for ambitious businesses worldwide.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s | Pureza Digital",
+  },
+  description: DESCRIPTION,
   keywords: [
-    "web design New Zealand",
+    "Pureza Digital",
+    "website design",
+    "website development",
     "web design Ashburton",
-    "AI automation",
-    "premium website design",
-    "digital agency NZ",
+    "web development Ashburton",
+    "web design Canterbury",
+    "web design New Zealand",
+    "landing pages",
+    "website hosting",
+    "website maintenance",
+    "websites for local businesses",
+    "digital solutions Ashburton",
   ],
+  authors: [{ name: "Pureza Digital", url: SITE_URL }],
+  creator: "Pureza Digital",
+  publisher: "Pureza Digital",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "Pureza Digital — Premium Web Design & AI Automation",
-    description:
-      "Boutique web design studio. Custom websites, AI automations, and intelligent digital solutions.",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Pureza Digital",
+    locale: "en_NZ",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "Web Design & Development",
 };
 
 export default function RootLayout({

@@ -8,15 +8,15 @@ const SERVICES = [
   {
     number: "01",
     icon: Code2,
-    title: "Web Design & Development",
+    title: "Website Design & Development",
     description:
-      "Custom-designed, hand-coded websites that reflect your brand, load fast, and convert visitors into clients. No templates. No shortcuts.",
+      "Custom-designed, hand-coded websites and landing pages that reflect your brand, load fast, and convert visitors into clients — plus reliable website hosting and maintenance. No templates. No shortcuts.",
     features: [
-      "Custom UI/UX Design",
+      "Custom Website Design",
       "Responsive & Mobile-First",
-      "Performance Optimised",
+      "Landing Pages",
+      "Website Hosting & Maintenance",
       "SEO-Ready Architecture",
-      "CMS Integration",
     ],
   },
   {
