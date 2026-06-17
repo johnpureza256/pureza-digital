@@ -120,7 +120,7 @@ export default function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "hello@purezadigital.com",
+                  value: "purezadigitalnz@gmail.com",
                   href: "mailto:hello@purezadigital.com",
                 },
                 {
