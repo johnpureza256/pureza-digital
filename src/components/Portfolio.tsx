@@ -173,7 +173,7 @@ export default function Portfolio() {
               className="text-[#6B6B6B] text-sm max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              A selection of websites and digital experiences I've designed and developed for businesses and organisations in Mid Canterbury.
+              A selection of websites and digital experiences I&apos;ve designed and developed for businesses and organisations in Mid Canterbury.
             </motion.p>
           </div>
 

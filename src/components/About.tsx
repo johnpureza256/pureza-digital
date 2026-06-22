@@ -100,19 +100,19 @@ export default function About() {
                 
               </p>
               <p>
-                We're John Pureza and Hamish Ramsay, the founding team behind Pureza Digital.
+                We&apos;re John Pureza and Hamish Ramsay, the founding team behind Pureza Digital.
               </p>
               <p>
                 Pureza Digital helps businesses create modern websites that build trust, attract customers, and support long-term growth.
               </p>
               <p>
-                Founded in Ashburton, New Zealand, we're a small team passionate about helping local businesses compete online with professional design, strong branding, and practical digital solutions.
+                Founded in Ashburton, New Zealand, we&apos;re a small team passionate about helping local businesses compete online with professional design, strong branding, and practical digital solutions.
               </p>
               <p>
                 We work closely with each client to create websites that not only look great, but help achieve real business goals.
               </p>
               <p>
-                Whether you're a café, tradie, contractor, retailer, or service business, we're here to <b>help you build a stronger online presence and stand out from the competition.</b>
+                Whether you&apos;re a café, tradie, contractor, retailer, or service business, we&apos;re here to <b>help you build a stronger online presence and stand out from the competition.</b>
               </p>
 
             </motion.div>

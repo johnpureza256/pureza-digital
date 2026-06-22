@@ -9,42 +9,51 @@ const SERVICES = [
     number: "01",
     icon: Code2,
     title: "Website Design & Development",
+    tagline:
+      "Modern websites built to help businesses look professional, build trust, and generate more enquiries.",
     description:
-      "Custom-designed, hand-coded websites and landing pages that reflect your brand, load fast, and convert visitors into clients — plus reliable website hosting and maintenance. No templates. No shortcuts.",
+      "We design and develop fast, mobile-friendly websites that are tailored to your business and built with performance, usability, and long-term growth in mind. From simple landing pages to complete business websites, we focus on creating digital assets that help your business stand out online.",
     features: [
       "Custom Website Design",
-      "Responsive & Mobile-First",
+      "Website Development",
+      "Responsive & Mobile-First Design",
       "Landing Pages",
       "Website Hosting & Maintenance",
-      "SEO-Ready Architecture",
+      "SEO-Ready Foundations",
     ],
   },
   {
     number: "02",
     icon: BrainCircuit,
-    title: "AI Automations",
+    title: "Custom Web Applications",
+    tagline:
+      "Powerful web-based tools designed to streamline operations, improve efficiency, and solve business problems.",
     description:
-      "Intelligent workflows that eliminate repetitive tasks, reduce human error, and free you to focus on what matters most — growing your business.",
+      "We build custom web applications tailored to your business requirements. Whether you need a client portal, booking system, internal dashboard, inventory tracker, or business management platform, we create solutions that save time and support growth.",
     features: [
-      "Workflow Automation",
-      "Lead Nurture Sequences",
-      "Data Processing Pipelines",
-      "API Integrations",
-      "Custom AI Agents",
+      "Client Portals",
+      "Booking & Scheduling Systems",
+      "Business Dashboards",
+      "Inventory Management Systems",
+      "Internal Business Tools",
+      "Custom Database Applications",
     ],
   },
   {
     number: "03",
     icon: Bot,
-    title: "AI Widgets & Integration",
+    title: "Digital Solutions & Business Automation",
+    tagline:
+      "Practical automation solutions that reduce manual work, improve consistency, and support business growth.",
     description:
-      "Smart, branded AI tools embedded directly into your website — from intelligent chatbots to dynamic content systems that delight your visitors.",
+      "As Pureza Digital continues to grow, we're expanding into business automation and AI-powered solutions that help businesses save time and operate more efficiently.",
     features: [
-      "AI Chat Assistants",
-      "Smart Search & Recommendations",
-      "Dynamic Content Generation",
-      "Booking & Qualification Bots",
-      "Custom AI Components",
+      "Business Process Automation",
+      "Lead Capture & Enquiry Systems",
+      "Workflow Automation",
+      "AI Automation Solutions",
+      "Custom Digital Workflows",
+      "Future AI-Powered Systems",
     ],
   },
 ];
@@ -120,10 +129,10 @@ export default function Services() {
               className="group relative bg-[#0A0A0A] p-10 hover:bg-[#111111] transition-colors duration-400 overflow-hidden"
             >
               {/* Hover border effect */}
-              <div className="absolute inset-0 border border-[#C9A96E]/0 group-hover:border-[#C9A96E]/20 transition-all duration-500" />
+              <div className="absolute inset-0 border border-[#C9A96E]/0 group-hover:border-[#C9A96E]/20 transition-all duration-500 pointer-events-none" />
 
               {/* Gold line top */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A96E]/0 to-transparent group-hover:via-[#C9A96E]/50 transition-all duration-500" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A96E]/0 to-transparent group-hover:via-[#C9A96E]/50 transition-all duration-500 pointer-events-none" />
 
               {/* Number */}
               <span
@@ -145,6 +154,12 @@ export default function Services() {
               >
                 {service.title}
               </h3>
+              <p
+                className="text-[#9A9A9A] text-sm leading-relaxed mb-4"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {service.tagline}
+              </p>
               <p
                 className="text-[#6B6B6B] text-sm leading-relaxed mb-8"
                 style={{ fontFamily: "var(--font-inter)" }}
