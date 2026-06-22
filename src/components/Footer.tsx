@@ -8,7 +8,7 @@ const YEAR = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/6 bg-[#080808] py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
           {/* Brand */}
           <motion.div

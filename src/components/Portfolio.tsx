@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, ExternalLink } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 const PROJECTS = [
   {
@@ -132,8 +133,9 @@ export default function Portfolio() {
 
   return (
     <>
-      <section id="work" className="relative bg-[#0A0A0A] py-32 lg:py-40">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section id="work" className="relative bg-[#0A0A0A] py-32 lg:py-40 overflow-hidden">
+        <SectionGlow position="right" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           {/* Section label */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -284,7 +286,7 @@ export default function Portfolio() {
             </p>
             <a
               href="#contact"
-              className="group relative inline-block px-10 py-4 border border-[#C9A96E]/40 text-[#C9A96E] text-sm tracking-[0.15em] uppercase overflow-hidden hover:border-[#C9A96E] transition-colors duration-300"
+              className="btn-cta btn-cta--outline group relative inline-block px-10 py-4 border border-[#C9A96E]/40 text-[#C9A96E] text-sm tracking-[0.15em] uppercase overflow-hidden hover:border-[#C9A96E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E]/5 translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" />

@@ -117,6 +117,40 @@ body {
   animation: grain 8s steps(10) infinite;
 }
 
+/* ── CTA buttons: smooth edges, hover lift, gold glow (consistent site-wide) ── */
+.btn-cta {
+  border-radius: 10px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+.btn-cta:hover {
+  transform: translateY(-3px);
+}
+.btn-cta:active {
+  transform: translateY(-1px);
+}
+
+/* Solid gold CTA — strong, warm glow */
+.btn-cta--gold {
+  box-shadow: 0 10px 28px -8px rgba(201, 169, 110, 0.5);
+}
+.btn-cta--gold:hover {
+  box-shadow:
+    0 12px 32px -12px rgba(232, 201, 138, 0.4),
+    0 0 20px rgba(201, 169, 110, 0.2);
+}
+
+/* Outlined CTA — glow blooms on hover */
+.btn-cta--outline:hover {
+  box-shadow:
+    0 12px 36px -12px rgba(201, 169, 110, 0.45),
+    0 0 24px rgba(201, 169, 110, 0.18);
+}
+
 /* Glow effects */
 .glow-gold {
   box-shadow: 0 0 30px rgba(201, 169, 110, 0.15), 0 0 60px rgba(201, 169, 110, 0.05);

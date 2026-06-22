@@ -4,17 +4,22 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Sparkles, Globe, Zap } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 const TEAM = [
   {
     name: "John Pureza",
     role: "Founder",
     photo: "/team/john-pureza.jpg",
+    // Crop focal point within the source image (object-position)
+    objectPosition: "center",
   },
   {
     name: "Hamish Ramsay",
     role: "Founding Partner",
     photo: "/team/hamish-ramsay.jpg",
+    // Tall portrait — anchor higher up the photo so the head sits lower/centered in the circle
+    objectPosition: "center 8%",
   },
 ];
 
@@ -51,10 +56,11 @@ export default function About() {
 
   return (
     <section id="about" className="relative bg-[#0A0A0A] py-32 lg:py-40 overflow-hidden">
+      <SectionGlow position="right" />
       {/* Decorative line */}
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-[#C9A96E]/20 to-transparent hidden lg:block" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -134,6 +140,7 @@ export default function About() {
                       fill
                       sizes="80px"
                       className="object-cover"
+                      style={{ objectPosition: member.objectPosition }}
                     />
                   </div>
                   <div>

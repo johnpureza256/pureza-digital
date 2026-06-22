@@ -68,19 +68,12 @@ export default function Nav() {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="group cursor-pointer flex items-center"
+            aria-label="Pureza Digital — back to top"
           >
-            <div className="w-9 h-9 border border-[#C9A96E] flex items-center justify-center group-hover:bg-[#C9A96E]/10 transition-colors duration-300">
-              <span
-                className="text-[#C9A96E] font-bold text-sm tracking-widest"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                PD
-              </span>
-            </div>
             <span
-              className="text-white font-medium text-sm tracking-[0.2em] uppercase hidden sm:block"
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-white/95 text-[15px] tracking-[0.34em] uppercase transition-colors duration-300 group-hover:text-[#E8C98A]"
+              style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
             >
               Pureza Digital
             </span>
@@ -108,24 +101,15 @@ export default function Nav() {
                     >
                       0{i + 1}
                     </span>
-                    {/* Label + animated underline */}
-                    <span className="relative">
-                      <span
-                        className={`transition-colors duration-200 ${
-                          isActive
-                            ? "text-white"
-                            : "text-[#A0A0A0] group-hover:text-white"
-                        }`}
-                      >
-                        {link.label}
-                      </span>
-                      <span
-                        className={`absolute -bottom-1.5 left-0 h-px w-full bg-[#C9A96E] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          isActive
-                            ? "scale-x-100"
-                            : "scale-x-0 group-hover:scale-x-100"
-                        }`}
-                      />
+                    {/* Label — color shift only, no underline (minimal) */}
+                    <span
+                      className={`transition-colors duration-200 ${
+                        isActive
+                          ? "text-white"
+                          : "text-[#A0A0A0] group-hover:text-white"
+                      }`}
+                    >
+                      {link.label}
                     </span>
                   </button>
                 </li>
@@ -137,7 +121,7 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => handleLinkClick("#contact")}
-              className="group relative px-6 py-2.5 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.12em] uppercase overflow-hidden transition-colors duration-300 hover:text-[#0A0A0A] cursor-pointer"
+              className="btn-cta btn-cta--outline group relative px-6 py-2.5 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.12em] uppercase overflow-hidden hover:text-[#0A0A0A] cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
@@ -196,7 +180,7 @@ export default function Nav() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.4 }}
               onClick={() => handleLinkClick("#contact")}
-              className="mt-4 px-10 py-4 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.2em] uppercase cursor-pointer"
+              className="btn-cta btn-cta--outline mt-4 px-10 py-4 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.2em] uppercase cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Start a Project

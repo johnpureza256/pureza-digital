@@ -27,7 +27,8 @@ export default function Hero() {
       if (!orbRef.current) return;
       const x = (e.clientX / window.innerWidth - 0.5) * 40;
       const y = (e.clientY / window.innerHeight - 0.5) * 40;
-      orbRef.current.style.transform = `translate(${x}px, ${y}px)`;
+      // Preserve the -50% horizontal centering while adding parallax offset
+      orbRef.current.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -35,25 +36,54 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-dvh flex flex-col overflow-hidden bg-[#0A0A0A]">
-      {/* Background orb */}
-      <div
-        ref={orbRef}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none transition-transform duration-700 ease-out"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.03) 40%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
+      {/* ── Halo: a warm light source blooming from the top-center ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Top-edge bloom — the brightest point of the halo */}
+        <div
+          className="absolute inset-x-0 top-0 h-[55%]"
+          style={{
+            background:
+              "radial-gradient(62% 100% at 50% -8%, rgba(232,201,138,0.20) 0%, rgba(201,169,110,0.10) 32%, transparent 72%)",
+          }}
+        />
+        {/* Wide ambient wash that wraps the headline */}
+        <div
+          className="absolute left-1/2 top-[-22%] -translate-x-1/2 w-[150%] h-[115%]"
+          style={{
+            background:
+              "radial-gradient(46% 46% at 50% 42%, rgba(201,169,110,0.13) 0%, rgba(201,169,110,0.04) 38%, transparent 68%)",
+          }}
+        />
+        {/* Focused, parallax core glow */}
+        <div
+          ref={orbRef}
+          className="absolute left-1/2 top-[14%] -translate-x-1/2 w-[840px] h-[520px] transition-transform duration-700 ease-out"
+          style={{
+            background:
+              "radial-gradient(50% 50% at 50% 50%, rgba(232,201,138,0.22) 0%, rgba(201,169,110,0.09) 42%, transparent 72%)",
+            filter: "blur(56px)",
+          }}
+        />
+      </div>
 
-      {/* Grid overlay */}
+      {/* Grid overlay — masked so it fades into the halo */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(201,169,110,1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,169,110,1) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
+          maskImage:
+            "radial-gradient(75% 65% at 50% 30%, #000 30%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(75% 65% at 50% 30%, #000 30%, transparent 80%)",
         }}
+      />
+
+      {/* Bottom vignette — settles the halo back into pure black */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%]"
+        style={{ background: "linear-gradient(to bottom, transparent, #0A0A0A 88%)" }}
       />
 
       {/* Floating accent shapes */}
@@ -141,7 +171,7 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(201,169,110,0.35)]"
+            className="btn-cta btn-cta--gold group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
@@ -153,7 +183,7 @@ export default function Hero() {
 
           <a
             href="#work"
-            className="group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white transition-all duration-300"
+            className="btn-cta btn-cta--outline group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             View Our Work

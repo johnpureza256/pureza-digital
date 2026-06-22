@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Clock } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -52,6 +53,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative bg-[#0A0A0A] py-32 lg:py-40 overflow-hidden">
+      <SectionGlow position="center" intensity="soft" />
       {/* Background */}
       <div
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
@@ -62,7 +64,7 @@ export default function Contact() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -315,7 +317,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="group relative w-full py-5 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.2em] uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,169,110,0.25)] disabled:opacity-60 cursor-pointer"
+                  className="btn-cta btn-cta--gold group relative w-full py-5 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.2em] uppercase overflow-hidden disabled:opacity-60 cursor-pointer"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" />

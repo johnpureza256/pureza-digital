@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Code2, BrainCircuit, Bot, ArrowUpRight } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 const SERVICES = [
   {
@@ -64,16 +65,9 @@ export default function Services() {
 
   return (
     <section id="services" className="relative bg-[#0A0A0A] py-32 lg:py-40 overflow-hidden">
-      {/* Subtle bg accent */}
-      <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-[0.04] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, #C9A96E 0%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
-      />
+      <SectionGlow position="left" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

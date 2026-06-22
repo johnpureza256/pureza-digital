@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 type Testimonial = {
   quote: string;
@@ -16,16 +17,9 @@ const TESTIMONIALS: Testimonial[] = [];
 export default function Testimonials() {
   return (
     <section className="relative bg-[#080808] py-32 lg:py-40 overflow-hidden">
-      {/* Decorative */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] pointer-events-none opacity-[0.03]"
-        style={{
-          background: "radial-gradient(ellipse, #C9A96E 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
+      <SectionGlow position="center" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -91,7 +85,7 @@ export default function Testimonials() {
               </p>
               <a
                 href="#contact"
-                className="group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06] transition-all duration-300"
+                className="btn-cta btn-cta--outline group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span>Become a Foundation Client</span>

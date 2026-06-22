@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Search, PenTool, Code2, Rocket, LifeBuoy, ArrowUpRight } from "lucide-react";
+import SectionGlow from "./SectionGlow";
 
 const STEPS = [
   {
@@ -51,21 +52,8 @@ export default function HowItWorks() {
       id="how-it-works"
       className="relative bg-[#080808] py-32 lg:py-40 overflow-hidden"
     >
-      {/* Ambient glows for depth */}
-      <div
-        className="absolute -left-40 top-20 w-[600px] h-[600px] pointer-events-none opacity-[0.05]"
-        style={{
-          background: "radial-gradient(circle, #C9A96E 0%, transparent 70%)",
-          filter: "blur(90px)",
-        }}
-      />
-      <div
-        className="absolute -right-40 bottom-0 w-[500px] h-[500px] pointer-events-none opacity-[0.035]"
-        style={{
-          background: "radial-gradient(circle, #C9A96E 0%, transparent 70%)",
-          filter: "blur(90px)",
-        }}
-      />
+      {/* Ambient glow for depth */}
+      <SectionGlow position="left" />
       {/* Fine grid texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
@@ -80,7 +68,7 @@ export default function HowItWorks() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
