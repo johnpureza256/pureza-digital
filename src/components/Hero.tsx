@@ -33,16 +33,6 @@ export default function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const scrollToAbout = () => {
-    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
-  };
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-  const scrollToWork = () => {
-    document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className="relative min-h-dvh flex flex-col overflow-hidden bg-[#0A0A0A]">
       {/* Background orb */}
@@ -149,9 +139,9 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-4 items-center"
         >
-          <button
-            onClick={scrollToContact}
-            className="group relative px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(201,169,110,0.35)] cursor-pointer"
+          <a
+            href="#contact"
+            className="group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(201,169,110,0.35)]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
@@ -159,16 +149,16 @@ export default function Hero() {
               Start a Project
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
             </span>
-          </button>
+          </a>
 
-          <button
-            onClick={scrollToWork}
-            className="group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white transition-all duration-300 cursor-pointer"
+          <a
+            href="#work"
+            className="group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white transition-all duration-300"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             View Our Work
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200 opacity-60" />
-          </button>
+          </a>
         </motion.div>
 
         {/* Stats row */}
@@ -202,11 +192,12 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.button
+      <motion.a
+        href="#about"
+        aria-label="Scroll to About section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.3 }}
-        onClick={scrollToAbout}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#6B6B6B] hover:text-[#C9A96E] transition-colors cursor-pointer"
       >
         <span className="text-xs tracking-[0.2em] uppercase" style={{ fontFamily: "var(--font-inter)" }}>
@@ -218,7 +209,7 @@ export default function Hero() {
         >
           <ChevronDown size={18} />
         </motion.div>
-      </motion.button>
+      </motion.a>
 
       {/* Marquee strip */}
       <div className="relative z-10 border-t border-white/5 py-5 overflow-hidden">

@@ -53,7 +53,7 @@ const SERVICES = [
       "Workflow Automation",
       "AI Automation Solutions",
       "Custom Digital Workflows",
-      "Future AI-Powered Systems",
+      { label: "Future AI-Powered Systems", tag: "Coming soon" },
     ],
   },
 ];
@@ -169,22 +169,31 @@ export default function Services() {
 
               {/* Feature list */}
               <ul className="space-y-2.5 mb-10">
-                {service.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-3 text-[#5A5A5A] text-xs tracking-wide"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    <span className="w-3 h-px bg-[#C9A96E]/50" />
-                    {f}
-                  </li>
-                ))}
+                {service.features.map((f) => {
+                  const label = typeof f === "string" ? f : f.label;
+                  const tag = typeof f === "string" ? null : f.tag;
+                  return (
+                    <li
+                      key={label}
+                      className="flex items-center gap-3 text-[#5A5A5A] text-xs tracking-wide"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
+                      {label}
+                      {tag && (
+                        <span className="ml-1 px-1.5 py-0.5 text-[0.6rem] tracking-[0.1em] uppercase text-[#C9A96E] border border-[#C9A96E]/30 rounded-sm leading-none">
+                          {tag}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* CTA */}
-              <button
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/btn cursor-pointer"
+              <a
+                href="#contact"
+                className="flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/btn w-fit"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span className="group-hover/btn:underline underline-offset-4">Enquire</span>
@@ -192,7 +201,7 @@ export default function Services() {
                   size={13}
                   className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200"
                 />
-              </button>
+              </a>
             </motion.div>
           ))}
         </div>

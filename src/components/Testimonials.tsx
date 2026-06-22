@@ -89,11 +89,9 @@ export default function Testimonials() {
                 businesses we&rsquo;ll work with closely to deliver results worth
                 talking about.
               </p>
-              <button
-                onClick={() =>
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06] transition-all duration-300 cursor-pointer"
+              <a
+                href="#contact"
+                className="group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06] transition-all duration-300"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span>Become a Foundation Client</span>
@@ -101,7 +99,7 @@ export default function Testimonials() {
                   size={14}
                   className="group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform duration-200"
                 />
-              </button>
+              </a>
             </motion.div>
 
             {/* Ghost placeholder cards — where future stories will live */}

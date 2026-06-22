@@ -282,9 +282,9 @@ export default function Portfolio() {
             >
               Your project could be next.
             </p>
-            <button
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="group relative px-10 py-4 border border-[#C9A96E]/40 text-[#C9A96E] text-sm tracking-[0.15em] uppercase overflow-hidden hover:border-[#C9A96E] transition-colors duration-300 cursor-pointer"
+            <a
+              href="#contact"
+              className="group relative inline-block px-10 py-4 border border-[#C9A96E]/40 text-[#C9A96E] text-sm tracking-[0.15em] uppercase overflow-hidden hover:border-[#C9A96E] transition-colors duration-300"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E]/5 translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" />
@@ -292,7 +292,7 @@ export default function Portfolio() {
                 Start Your Project
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </span>
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>

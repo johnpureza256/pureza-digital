@@ -218,11 +218,9 @@ export default function HowItWorks() {
           >
             Ready to begin? It all starts with a conversation.
           </p>
-          <button
-            onClick={() =>
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="group/cta inline-flex items-center gap-2 self-start sm:self-auto text-[#C9A96E] text-xs tracking-[0.15em] uppercase cursor-pointer"
+          <a
+            href="#contact"
+            className="group/cta inline-flex items-center gap-2 self-start sm:self-auto text-[#C9A96E] text-xs tracking-[0.15em] uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span className="group-hover/cta:underline underline-offset-4">
@@ -232,7 +230,7 @@ export default function HowItWorks() {
               size={14}
               className="group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform duration-200"
             />
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
