@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const YEAR = new Date().getFullYear();
 
@@ -18,14 +19,13 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 border border-[#C9A96E] flex items-center justify-center">
-                <span
-                  className="text-[#C9A96E] font-bold text-sm tracking-widest"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  PD
-                </span>
-              </div>
+              <Image
+                src="/pureza-logo-mark.png"
+                alt="Pureza Digital logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 rounded-[8px]"
+              />
               <span
                 className="text-white font-medium text-sm tracking-[0.2em] uppercase"
                 style={{ fontFamily: "var(--font-inter)" }}

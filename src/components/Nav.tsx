@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -68,9 +69,17 @@ export default function Nav() {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="group cursor-pointer flex items-center"
+            className="group cursor-pointer flex items-center gap-3"
             aria-label="Pureza Digital — back to top"
           >
+            <Image
+              src="/pureza-logo-mark.png"
+              alt="Pureza Digital logo"
+              width={38}
+              height={38}
+              priority
+              className="w-9 h-9 rounded-[8px] transition-transform duration-300 group-hover:scale-105"
+            />
             <span
               className="text-white/95 text-[15px] tracking-[0.34em] uppercase transition-colors duration-300 group-hover:text-[#E8C98A]"
               style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
