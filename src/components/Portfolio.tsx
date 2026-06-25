@@ -42,6 +42,18 @@ const PROJECTS = [
     demo: "/pals-plumbing/index.html",
     palette: "#1E40AF",
   },
+  {
+    number: "04",
+    title: "Monster Chicken",
+    category: "Concept Project",
+    description:
+      "A bold, appetite-first landing page for a Korean fried chicken spot in Ashburton. Built to make mouths water and drive orders — featuring a rich gold-on-charcoal palette, a flavour-led menu showcase, and a fast, mobile-first layout designed to turn cravings into walk-ins.",
+    tags: ["HTML / CSS / JS", "Brand Design", "Food & Hospitality"],
+    accent: "#CBA15A",
+    bg: "from-[#14100E] to-[#0A0A0A]",
+    demo: "/monster-chicken/index.html",
+    palette: "#9A7B3A",
+  },
 ];
 
 function DemoModal({ project, onClose }: { project: typeof PROJECTS[0]; onClose: () => void }) {

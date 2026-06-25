@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monster Chicken — Korean Fried Chicken · Ashburton</title>
+<meta name="description" content="Authentic Korean fried chicken in Ashburton. Brined, hand-coated and twice-fried for an outrageous crunch, then tossed in house glazes. Trading since 2013. Order on Bopple or Uber Eats." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          obsidian: '#0B0908', char: '#14100E', ember: '#1E1813', smoke: '#2A211A',
+          gold: '#CBA15A', 'gold-bright': '#EAD198', 'gold-deep': '#9A7B3A',
+          cream: '#ECE3D2', ash: '#8B7F6E',
+        },
+        fontFamily: { display: ['Fraunces', 'serif'], sans: ['Manrope', 'system-ui', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --obsidian:#0B0908; --char:#14100E; --ember:#1E1813;
+    --gold:#CBA15A; --gold-bright:#EAD198; --gold-deep:#9A7B3A;
+    --cream:#ECE3D2; --ash:#8B7F6E; --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  * { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  html { scroll-behavior: smooth; }
+  body { background-color: var(--obsidian); color: var(--cream); font-family:'Manrope',sans-serif; overflow-x:hidden; }
+  ::selection { background: var(--gold); color:#120D08; }
+
+  /* Ambient atmosphere */
+  .atmosphere { position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(48rem 40rem at 78% 8%, rgba(203,161,90,0.16), transparent 60%),
+      radial-gradient(40rem 38rem at 12% 88%, rgba(154,123,58,0.13), transparent 62%),
+      radial-gradient(60rem 50rem at 50% 50%, rgba(30,24,19,0.55), transparent 70%); }
+  .smoke { position:fixed; inset:-20%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(28rem 22rem at 30% 30%, rgba(203,161,90,0.10), transparent 60%),
+      radial-gradient(24rem 20rem at 70% 60%, rgba(234,209,152,0.07), transparent 60%);
+    filter: blur(8px); animation: drift 26s ease-in-out infinite alternate; }
+  @keyframes drift { 0%{transform:translate3d(-3%,-2%,0) scale(1.05);} 50%{transform:translate3d(4%,3%,0) scale(1.12);} 100%{transform:translate3d(-2%,4%,0) scale(1.06);} }
+
+  .grain::after { content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .eyebrow { font-family:'Manrope',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); }
+  .display { font-family:'Fraunces',serif; line-height:0.96; letter-spacing:-0.02em; }
+
+  .goldtext { background:linear-gradient(92deg,#9A7B3A 0%,#EAD198 26%,#FBF1D6 42%,#CBA15A 60%,#EAD198 80%,#9A7B3A 100%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:sheen 7s linear infinite; }
+  @keyframes sheen { to { background-position:220% center; } }
+
+  .hair { height:1px; background:linear-gradient(90deg,transparent,rgba(203,161,90,0.55),transparent); }
+
+  /* Brand logo mark — cleaned from the storefront sign, flattened to brand cream */
+  .mc-mark { filter: drop-shadow(0 1px 1px rgba(0,0,0,0.45)); }
+  .nav-mark { opacity:0.95; transition: opacity .35s var(--ease), transform .5s var(--ease); }
+  .nav-mark:hover { opacity:1; transform: translateY(-1px); }
+
+  /* Corner-bracket frame */
+  .frame { position:relative; }
+  .frame::before, .frame::after { content:""; position:absolute; width:26px; height:26px; border:1px solid rgba(203,161,90,0.6); pointer-events:none; transition:all 0.5s var(--ease); z-index:3; }
+  .frame::before { top:12px; left:12px; border-right:0; border-bottom:0; }
+  .frame::after { bottom:12px; right:12px; border-left:0; border-top:0; }
+  .frame:hover::before, .frame:hover::after { width:40px; height:40px; border-color:var(--gold-bright); }
+
+  /* Buttons */
+  .btn { position:relative; display:inline-flex; align-items:center; gap:0.6rem; font-weight:600; font-size:0.9rem; letter-spacing:0.01em; padding:0.92rem 1.6rem; border-radius:2px; overflow:hidden; transition:transform 0.4s var(--ease), box-shadow 0.4s var(--ease), color 0.4s var(--ease); cursor:pointer; isolation:isolate; }
+  .btn:focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; }
+  .btn svg { transition:transform 0.4s var(--ease); }
+  .btn:hover svg { transform:translateX(4px); }
+  .btn-gold { color:#1A1206; background:linear-gradient(100deg,var(--gold-deep),var(--gold) 45%,var(--gold-bright)); box-shadow:0 1px 0 rgba(255,255,255,0.25) inset, 0 14px 30px -14px rgba(203,161,90,0.65); }
+  .btn-gold::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(100deg,#F6E7BE,#FFF7E0); transform:translateY(101%); transition:transform 0.45s var(--ease); }
+  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 1px 0 rgba(255,255,255,0.4) inset, 0 22px 44px -16px rgba(203,161,90,0.8); }
+  .btn-gold:hover::before { transform:translateY(0); }
+  .btn-gold:active { transform:translateY(0); }
+  .btn-ghost { color:var(--cream); border:1px solid rgba(203,161,90,0.4); background:rgba(203,161,90,0.04); }
+  .btn-ghost::before { content:""; position:absolute; inset:0; z-index:-1; background:rgba(203,161,90,0.14); transform:scaleX(0); transform-origin:left; transition:transform 0.45s var(--ease); }
+  .btn-ghost:hover { color:var(--gold-bright); border-color:var(--gold); transform:translateY(-2px); }
+  .btn-ghost:hover::before { transform:scaleX(1); }
+  .btn-ghost:active { transform:translateY(0); }
+
+  /* Nav */
+  .nav { transition:background 0.5s var(--ease), border-color 0.5s var(--ease), backdrop-filter 0.5s var(--ease); border-bottom:1px solid transparent; }
+  .nav.scrolled { background:rgba(11,9,8,0.72); backdrop-filter:blur(14px) saturate(140%); border-bottom:1px solid rgba(203,161,90,0.18); }
+  .navlink { position:relative; color:var(--ash); transition:color 0.35s var(--ease); }
+  .navlink::after { content:""; position:absolute; left:0; bottom:-4px; height:1px; width:100%; background:var(--gold); transform:scaleX(0); transform-origin:right; transition:transform 0.4s var(--ease); }
+  .navlink:hover { color:var(--cream); }
+  .navlink:hover::after { transform:scaleX(1); transform-origin:left; }
+
+  /* Marquee */
+  .marquee { overflow:hidden; white-space:nowrap; }
+  .marquee__track { display:inline-flex; gap:3.5rem; padding-right:3.5rem; animation:marquee 30s linear infinite; }
+  @keyframes marquee { to { transform:translateX(-50%); } }
+  .marquee:hover .marquee__track { animation-play-state:paused; }
+  .marquee__item { font-family:'Fraunces',serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.7rem); color:rgba(236,227,210,0.55); display:inline-flex; align-items:center; gap:3.5rem; }
+
+  /* Dish cards */
+  .dish { position:relative; overflow:hidden; border:1px solid rgba(203,161,90,0.14); border-radius:4px; background:var(--char); transition:transform 0.6s var(--ease), border-color 0.6s var(--ease), box-shadow 0.6s var(--ease); }
+  .dish__img { position:relative; overflow:hidden; }
+  .dish__img img { transition:transform 1.1s var(--ease); width:100%; height:100%; object-fit:cover; display:block; }
+  .dish__img::after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(7,5,4,0.78) 2%, rgba(7,5,4,0.05) 42%, transparent 68%); }
+  .dish__tone { position:absolute; inset:0; z-index:1; background:linear-gradient(160deg, rgba(203,161,90,0.26), rgba(120,70,30,0.16)); mix-blend-mode:multiply; opacity:0; transition:opacity 0.6s var(--ease); }
+  .dish:hover { border-color:rgba(203,161,90,0.5); transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(0,0,0,0.9), 0 0 0 1px rgba(203,161,90,0.1); }
+  .dish:hover .dish__img img { transform:scale(1.07); }
+  .dish:hover .dish__tone { opacity:1; }
+  .tag { font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold-bright); border:1px solid rgba(203,161,90,0.5); padding:0.28rem 0.6rem; border-radius:999px; backdrop-filter:blur(4px); background:rgba(11,9,8,0.4); }
+
+  /* Reveal */
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity:1; transform:none; }
+  .reveal[data-delay="1"]{transition-delay:.08s} .reveal[data-delay="2"]{transition-delay:.16s} .reveal[data-delay="3"]{transition-delay:.24s} .reveal[data-delay="4"]{transition-delay:.32s} .reveal[data-delay="5"]{transition-delay:.40s}
+
+  .rise { opacity:0; transform:translateY(28px); animation:rise 1s var(--ease) forwards; }
+  @keyframes rise { to { opacity:1; transform:none; } }
+  .d1{animation-delay:.15s}.d2{animation-delay:.30s}.d3{animation-delay:.45s}.d4{animation-delay:.60s}.d5{animation-delay:.78s}.d6{animation-delay:.95s}
+
+  .hero-img-wrap { animation:floaty 8s ease-in-out infinite; }
+  @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+  .scrollcue span { display:block; width:1px; height:46px; background:linear-gradient(var(--gold),transparent); animation:cue 2.2s ease-in-out infinite; transform-origin:top; }
+  @keyframes cue { 0%,100%{transform:scaleY(.3);opacity:.4} 50%{transform:scaleY(1);opacity:1} }
+
+  .star { color:var(--gold); }
+  .ring-soft { box-shadow:0 0 0 1px rgba(203,161,90,0.14), 0 40px 80px -40px rgba(0,0,0,0.85); }
+  .map-frame { filter:grayscale(0.4) contrast(1.05) brightness(0.85); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .smoke,.goldtext,.marquee__track,.hero-img-wrap,.scrollcue span { animation:none !important; }
+    .reveal,.rise { opacity:1 !important; transform:none !important; animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+
+<body class="grain">
+  <div class="atmosphere"></div>
+  <div class="smoke"></div>
+
+  <!-- ================= NAV ================= -->
+  <header id="nav" class="nav fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
+      <a href="#top" class="flex items-center" aria-label="Monster Chicken — Korean fried chicken, Ashburton (home)">
+        <img src="assets/logo_mark.png" alt="Monster Chicken" class="mc-mark nav-mark h-11 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium">
+        <a href="#menu" class="navlink">Flavours</a>
+        <a href="#story" class="navlink">Story</a>
+        <a href="#visit" class="navlink">Visit</a>
+        <a href="#reviews" class="navlink">Reviews</a>
+      </nav>
+      <a href="#order" class="btn btn-gold !py-2.5 !px-5 text-sm">
+        Order now
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section id="top" class="relative z-10 min-h-[100svh] flex items-center pt-28 pb-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-center w-full">
+
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <p class="eyebrow rise d1 mb-6 flex items-center gap-4">
+          <span class="inline-block w-8 h-px bg-gold/60"></span>
+          Ashburton · Korean Fried Chicken
+        </p>
+
+        <h1 class="display text-[clamp(2.7rem,7vw,5.5rem)] font-semibold text-cream">
+          <span class="block rise d2">Double-fried.</span>
+          <span class="block goldtext rise d3 italic font-medium">Big flavour.</span>
+          <span class="block rise d4">No regrets.</span>
+        </h1>
+
+        <p class="rise d4 mt-8 max-w-xl text-[1.06rem] leading-[1.75] text-ash">
+          Ashburton's home of crispy Korean fried chicken. Loaded with flavour, tossed in
+          signature sauces, and cooked fresh to order. Whether you're grabbing lunch, feeding
+          the family, or satisfying a late-night craving — Monster Chicken delivers the crunch.
+        </p>
+
+        <div class="rise d5 mt-9 flex flex-wrap items-center gap-4">
+          <a href="https://bopple.app/monster-chicken-ashburton/menu" target="_blank" rel="noopener noreferrer" class="btn btn-gold" aria-label="Order on Bopple (opens in new tab)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M12 6a6 6 0 100 12 6 6 0 000-12zm0 9.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z"/></svg>
+            Order on Bopple
+          </a>
+          <a href="https://www.ubereats.com/nz/store/monster-chicken-ashburton/pJcsUxC5R3ucofv-6m_g2A" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" aria-label="Order on Uber Eats (opens in new tab)">
+            Order on Uber&nbsp;Eats
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+
+        <div class="rise d6 mt-12 flex flex-wrap items-center gap-x-10 gap-y-5">
+          <div><p class="font-display text-2xl text-gold-bright">2013</p><p class="text-xs uppercase tracking-[0.22em] text-ash mt-1">Trading since</p></div>
+          <span class="hidden sm:block w-px h-9 bg-gold/20"></span>
+          <div><p class="font-display text-2xl text-gold-bright">Twice</p><p class="text-xs uppercase tracking-[0.22em] text-ash mt-1">Fried</p></div>
+          <span class="hidden sm:block w-px h-9 bg-gold/20"></span>
+          <div><p class="font-display text-2xl text-gold-bright">6</p><p class="text-xs uppercase tracking-[0.22em] text-ash mt-1">Signature glazes</p></div>
+        </div>
+      </div>
+
+      <div id="heroParallax" class="lg:col-span-5 order-1 lg:order-2 rise d3">
+        <div class="hero-img-wrap frame ring-soft relative rounded-sm overflow-hidden">
+          <img src="assets/store_front.webp" alt="Monster Chicken storefront lit up at night on Victoria Street, Ashburton" class="w-full h-full object-cover aspect-[4/5]" style="object-position:center 35%" />
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(160deg,rgba(203,161,90,0.16),rgba(90,50,20,0.20));mix-blend-mode:multiply;"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,5,4,0.78),transparent 55%);"></div>
+          <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+            <p class="font-display italic text-cream text-lg drop-shadow">Victoria Street, Ashburton</p>
+            <span class="text-xs uppercase tracking-[0.22em] text-gold-bright">Open Tue–Sun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scrollcue absolute bottom-7 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3">
+      <span></span>
+      <span class="!h-auto text-[0.65rem] uppercase tracking-[0.3em] text-ash">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="relative z-10 border-y border-gold/15 py-5 bg-char/40">
+    <div class="marquee">
+      <div class="marquee__track">
+        <span class="marquee__item">Original Crispy<span class="text-gold not-italic">✦</span>Sweet Chili<span class="text-gold not-italic">✦</span>Galbi BBQ<span class="text-gold not-italic">✦</span>Soy Teri<span class="text-gold not-italic">✦</span>Chili Bang<span class="text-gold not-italic">✦</span>Lemonkist<span class="text-gold not-italic">✦</span></span>
+        <span class="marquee__item" aria-hidden="true">Original Crispy<span class="text-gold not-italic">✦</span>Sweet Chili<span class="text-gold not-italic">✦</span>Galbi BBQ<span class="text-gold not-italic">✦</span>Soy Teri<span class="text-gold not-italic">✦</span>Chili Bang<span class="text-gold not-italic">✦</span>Lemonkist<span class="text-gold not-italic">✦</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FLAVOURS ================= -->
+  <section id="menu" class="relative z-10 py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+        <div class="reveal">
+          <p class="eyebrow mb-4">The Glazes</p>
+          <h2 class="display text-[clamp(2.4rem,5.5vw,4rem)] font-semibold text-cream">Signature <span class="goldtext italic font-medium">flavours</span></h2>
+        </div>
+        <p class="reveal max-w-sm text-ash leading-[1.75]" data-delay="1">
+          One method, six finishes. Every piece is twice-fried for the crunch, then tossed to
+          order in a glaze we make in-house. Full menu &amp; pricing live on the apps.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+
+        <article class="dish reveal">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/original_crispy.webp" alt="Original Crispy Korean fried chicken with pickled radish" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Signature</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Original Crispy</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">Twice-fried to a shattering crunch and served plain with house pickled radish. The one that started it all.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="1">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/sweet_chili.webp" alt="Sweet Chili glazed Korean fried chicken with sesame" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Sweet heat</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Sweet Chili</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">A glossy sweet-chili glaze with toasted sesame and seeds. Sticky, moreish, a gentle kick.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="2">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/chili_bang.webp" alt="Chili Bang spicy glazed Korean fried chicken" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Fiery</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Chili Bang</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">Our boldest glaze — deep, dark and seriously spicy. For the brave only.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/galbi_bbq.webp" alt="Galbi BBQ glazed Korean fried chicken with spring onion" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Savoury</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Galbi BBQ</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">Korean BBQ glaze with spring onion and sesame. Rich, sweet-savoury and dangerously addictive.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="1">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/soy_teri.webp" alt="Soy Teri glazed Korean fried chicken with creamy drizzle" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Umami</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Soy Teri</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">Soy-teriyaki glaze finished with a creamy house drizzle. Balanced, savoury, hard to put down.</p>
+          </div>
+        </article>
+
+        <article class="dish reveal" data-delay="2">
+          <div class="dish__img aspect-[4/3]">
+            <img src="assets/lemonkist.webp" alt="Lemonkist citrus glazed Korean fried chicken with fresh lemon" />
+            <div class="dish__tone"></div>
+            <span class="tag absolute top-4 left-4 z-10">Zesty</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-cream">Lemonkist</h3>
+            <p class="mt-2 text-sm text-ash leading-relaxed">A bright citrus glaze with fresh lemon. Light, tangy and refreshing against the crunch.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="reveal mt-12 text-center text-sm text-ash">Boneless or on the bone · solo, share or the Monster platter — <a href="https://bopple.app/monster-chicken-ashburton/menu" target="_blank" rel="noopener noreferrer" class="text-gold-bright underline-offset-4 hover:underline">see the full menu →</a></p>
+    </div>
+  </section>
+
+  <!-- ================= STORY ================= -->
+  <section id="story" class="relative z-10 py-24 lg:py-32 border-t border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <div class="frame ring-soft rounded-sm overflow-hidden relative">
+          <img src="assets/store_inside.webp" alt="Inside the Monster Chicken dining room, Ashburton" class="w-full h-full object-cover aspect-[4/5]" />
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(160deg,rgba(203,161,90,0.16),rgba(90,50,20,0.20));mix-blend-mode:multiply;"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,5,4,0.55),transparent 60%);"></div>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <p class="eyebrow mb-5 reveal">Our Story</p>
+        <h2 class="display text-[clamp(2.2rem,5vw,3.6rem)] font-semibold text-cream reveal" data-delay="1">
+          Bringing the <span class="goldtext italic font-medium">crunch</span> to Ashburton
+        </h2>
+
+        <p class="reveal mt-7 text-ash leading-[1.8] max-w-xl" data-delay="2">Monster Chicken first opened in Christchurch in 2013 with one simple mission:</p>
+
+        <p class="reveal mt-5 pl-6 border-l border-gold/40 font-display italic text-[clamp(1.5rem,3vw,1.9rem)] leading-snug text-cream max-w-xl" data-delay="2">Serve ridiculously good <span class="goldtext">Korean fried chicken.</span></p>
+
+        <div class="mt-7 space-y-5 text-ash leading-[1.8] max-w-xl">
+          <p class="reveal" data-delay="3">Every piece is marinated, coated and double-fried to create the crispy texture we're known for. We then finish it with one of our signature sauces, made to keep you coming back for more.</p>
+          <p class="reveal" data-delay="4">Now we're proud to bring that same flavour, crunch and quality to the Ashburton community. Whether you're dining in, picking up or ordering delivery, we're here to satisfy your chicken cravings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VISIT ================= -->
+  <section id="visit" class="relative z-10 py-24 lg:py-32 border-t border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="mb-14 reveal">
+        <p class="eyebrow mb-4">Visit Us</p>
+        <h2 class="display text-[clamp(2.4rem,5.5vw,4rem)] font-semibold text-cream">Find the <span class="goldtext italic font-medium">crunch</span></h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <div class="reveal grid sm:grid-cols-2 gap-6">
+          <div class="bg-char border border-gold/15 rounded-sm p-7 sm:col-span-2">
+            <p class="text-xs uppercase tracking-[0.24em] text-gold mb-3">Location</p>
+            <p class="font-display text-2xl text-cream leading-snug">104 Victoria Street</p>
+            <p class="text-ash mt-1">Ashburton 7700, Canterbury<br/>Aotearoa New Zealand</p>
+            <div class="hair my-6"></div>
+            <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              <a href="tel:+6433074005" class="navlink !text-cream hover:!text-gold-bright">03 307 4005</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=104+Victoria+Street+Ashburton+7700" target="_blank" rel="noopener noreferrer" class="navlink !text-cream hover:!text-gold-bright">Get directions ↗</a>
+            </div>
+          </div>
+
+          <div class="bg-char border border-gold/15 rounded-sm p-7 sm:col-span-2">
+            <p class="text-xs uppercase tracking-[0.24em] text-gold mb-4">Kitchen Hours</p>
+            <dl class="text-sm">
+              <div class="flex items-center justify-between py-2 border-b border-gold/10"><dt class="text-ash">Tuesday — Sunday</dt><dd class="text-cream tabular-nums">11:00 — 20:30</dd></div>
+              <div class="flex items-center justify-between py-2"><dt class="text-ash">Monday</dt><dd class="text-gold/70">Closed</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="reveal frame ring-soft relative rounded-sm overflow-hidden min-h-[340px]" data-delay="1">
+          <iframe
+            title="Map to Monster Chicken, 104 Victoria Street, Ashburton"
+            class="map-frame absolute inset-0 w-full h-full"
+            style="border:0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=-43.9036581,171.7510449&z=18&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section id="reviews" class="relative z-10 py-24 lg:py-32 border-t border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16 reveal">
+        <p class="eyebrow mb-4 justify-center">Word of Mouth</p>
+        <h2 class="display text-[clamp(2.4rem,5.5vw,4rem)] font-semibold text-cream">Mid-Canterbury <span class="goldtext italic font-medium">approved</span></h2>
+        <div class="mt-5 flex items-center justify-center gap-3">
+          <span class="star text-lg tracking-widest">★★★★★</span>
+          <span class="text-ash text-sm">Real reviews from Monster Chicken diners</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
+        <figure class="reveal bg-char border border-gold/15 rounded-sm p-7">
+          <span class="star tracking-widest">★★★★★</span>
+          <blockquote class="font-display text-lg text-cream leading-snug mt-4">“The crispiest, juiciest fried chicken ever! Run, don't walk — get yourself down there.”</blockquote>
+          <figcaption class="mt-5 text-sm text-ash">Tammy R. · <span class="text-gold/80">Verified review</span></figcaption>
+        </figure>
+        <figure class="reveal bg-char border border-gold/15 rounded-sm p-7" data-delay="1">
+          <span class="star tracking-widest">★★★★★</span>
+          <blockquote class="font-display text-lg text-cream leading-snug mt-4">“Best fried chicken I have ever had. Fun, quick, easy, authentic quality — happy people all around.”</blockquote>
+          <figcaption class="mt-5 text-sm text-ash">Frank T. · <span class="text-gold/80">Verified review</span></figcaption>
+        </figure>
+        <figure class="reveal bg-char border border-gold/15 rounded-sm p-7" data-delay="2">
+          <span class="star tracking-widest">★★★★★</span>
+          <blockquote class="font-display text-lg text-cream leading-snug mt-4">“The juiciest and crunchiest chicken I have had. Hands down the best — generous portions, too.”</blockquote>
+          <figcaption class="mt-5 text-sm text-ash">Ruth G. · <span class="text-gold/80">Verified review</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ORDER CTA ================= -->
+  <section id="order" class="relative z-10 py-24 lg:py-32">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="frame relative rounded-sm overflow-hidden text-center px-6 py-16 lg:py-20 border border-gold/25"
+           style="background:radial-gradient(60rem 40rem at 50% -10%, rgba(203,161,90,0.18), transparent 60%), linear-gradient(180deg,#14100E,#0B0908);">
+        <img src="assets/logo_mark.png" alt="Monster Chicken" class="mc-mark mx-auto h-20 w-auto mb-7" />
+        <p class="eyebrow mb-5 justify-center">Hungry now?</p>
+        <h2 class="display text-[clamp(2.4rem,6vw,4.5rem)] font-semibold text-cream leading-[0.98]">
+          Craving <span class="goldtext italic font-medium">Monster&nbsp;Chicken?</span>
+        </h2>
+        <p class="mt-6 max-w-md mx-auto text-ash leading-[1.75]">Order ahead for pickup on Bopple, or have it delivered with Uber Eats. Either way — get it while the crunch is loud.</p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://bopple.app/monster-chicken-ashburton/menu" target="_blank" rel="noopener noreferrer" class="btn btn-gold w-full sm:w-auto justify-center" aria-label="Order on Bopple (opens in new tab)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M12 6a6 6 0 100 12 6 6 0 000-12zm0 9.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z"/></svg>
+            Order on Bopple
+          </a>
+          <a href="https://www.ubereats.com/nz/store/monster-chicken-ashburton/pJcsUxC5R3ucofv-6m_g2A" target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full sm:w-auto justify-center" aria-label="Order on Uber Eats (opens in new tab)">
+            Order on Uber&nbsp;Eats
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="relative z-10 border-t border-gold/15 py-14">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div>
+          <a href="#top" class="inline-flex" aria-label="Monster Chicken home">
+            <img src="assets/logo_mark.png" alt="Monster Chicken" class="mc-mark h-16 w-auto" />
+          </a>
+          <p class="mt-4 text-sm text-ash max-w-xs leading-relaxed">Korean fried chicken, twice-fried for the crunch. 104 Victoria Street, Ashburton.</p>
+        </div>
+        <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <a href="#menu" class="navlink">Flavours</a>
+          <a href="#story" class="navlink">Story</a>
+          <a href="#visit" class="navlink">Visit</a>
+          <a href="#reviews" class="navlink">Reviews</a>
+          <a href="#order" class="navlink">Order</a>
+        </nav>
+      </div>
+      <div class="hair my-9"></div>
+      <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-ash">
+        <p>© <span id="year"></span> Monster Chicken Ashburton · 104 Victoria Street, Ashburton 7700 · 03 307 4005</p>
+        <p class="tracking-wide">Brined. Twice-fried. Glazed to order.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const heroParallax = document.getElementById('heroParallax');
+    if (heroParallax && !reduce && window.matchMedia('(pointer:fine)').matches) {
+      window.addEventListener('mousemove', (ev) => {
+        const x = (ev.clientX / window.innerWidth - 0.5) * 12;
+        const y = (ev.clientY / window.innerHeight - 0.5) * 12;
+        heroParallax.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+    }
+  </script>
+</body>
+</html>
