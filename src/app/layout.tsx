@@ -99,6 +99,8 @@ export default function RootLayout({
     logo: `${SITE_URL}/pureza-logo-mark.png`,
     image: `${SITE_URL}/pureza-logo-mark.png`,
     description: DESCRIPTION,
+    telephone: "+64-21-284-2008",
+    email: "purezadigitalnz@gmail.com",
   };
 
   return (

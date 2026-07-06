@@ -56,7 +56,7 @@ export default function Footer() {
               ["About", "/#about"],
               ["Services", "/#services"],
               ["Work", "/#work"],
-              ["Pricing", "/#pricing"],
+              ["Packages", "/#pricing"],
               ["Contact", "/#contact"],
             ].map(([label, href]) => (
               <Link

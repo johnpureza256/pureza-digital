@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin, Clock } from "lucide-react";
 import SectionGlow from "./SectionGlow";
 
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    budget: "",
+    interest: "",
     message: "",
     company: "", // honeypot — hidden from real users
   });
@@ -119,6 +119,12 @@ export default function Contact() {
               className="space-y-6"
             >
               {[
+                {
+                  icon: Phone,
+                  label: "Phone",
+                  value: "021 284 2008",
+                  href: "tel:+64212842008",
+                },
                 {
                   icon: Mail,
                   label: "Email",
@@ -261,25 +267,27 @@ export default function Contact() {
 
                 <div>
                   <label
-                    htmlFor="budget"
+                    htmlFor="interest"
                     className={labelClass}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Project Budget
+                    What are you interested in?
                   </label>
                   <select
-                    id="budget"
-                    name="budget"
-                    value={form.budget}
+                    id="interest"
+                    name="interest"
+                    value={form.interest}
                     onChange={handleChange}
                     className={`${inputClass} cursor-pointer`}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    <option value="" disabled>Select a range</option>
-                    <option value="under-2k">Under $2,000</option>
-                    <option value="2k-5k">$2,000 – $5,000</option>
-                    <option value="5k-10k">$5,000 – $10,000</option>
-                    <option value="10k+">$10,000+</option>
+                    <option value="" disabled>Select an option</option>
+                    <option value="free-audit">Free Website Audit</option>
+                    <option value="starter">Starter Website from $497</option>
+                    <option value="local-business">Local Business Website from $997</option>
+                    <option value="growth">Growth Website from $1,997</option>
+                    <option value="hosting">Hosting & Maintenance</option>
+                    <option value="not-sure">Not sure yet</option>
                   </select>
                 </div>
 

@@ -2,59 +2,72 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, BrainCircuit, Bot, ArrowUpRight } from "lucide-react";
+import { Code2, Store, Server, CalendarCheck, ArrowUpRight } from "lucide-react";
 import SectionGlow from "./SectionGlow";
 
 const SERVICES = [
   {
     number: "01",
     icon: Code2,
-    title: "Website Design & Development",
+    title: "Starter Websites",
     tagline:
-      "Modern websites built to help businesses look professional, build trust, and generate more enquiries.",
+      "A simple, professional one-page website that gives your business a real home online.",
     description:
-      "We design and develop fast, mobile-friendly websites that are tailored to your business and built with performance, usability, and long-term growth in mind. From simple landing pages to complete business websites, we focus on creating digital assets that help your business stand out online.",
+      "Built for businesses starting from nothing — or replacing a Facebook page or outdated site. One clear page that explains what you do, shows your services, and makes it easy for customers to call or enquire.",
     features: [
-      "Custom Website Design",
-      "Website Development",
-      "Responsive & Mobile-First Design",
-      "Landing Pages",
-      "Website Hosting & Maintenance",
-      "SEO-Ready Foundations",
+      "One-page custom design",
+      "Business overview & services",
+      "Click-to-call & enquiry form",
+      "Mobile-first & fast-loading",
+      "Basic SEO setup",
     ],
   },
   {
     number: "02",
-    icon: BrainCircuit,
-    title: "Custom Web Applications",
+    icon: Store,
+    title: "Local Business Websites",
     tagline:
-      "Powerful web-based tools designed to streamline operations, improve efficiency, and solve business problems.",
+      "Complete multi-page websites that build trust, explain your services clearly, and make enquiring easy.",
     description:
-      "We build custom web applications tailored to your business requirements. Whether you need a client portal, booking system, internal dashboard, inventory tracker, or business management platform, we create solutions that save time and support growth.",
+      "For businesses ready to stand out locally. A full website with dedicated pages for your services, work, and story — designed around how your customers actually decide who to call.",
     features: [
-      "Client Portals",
-      "Booking & Scheduling Systems",
-      "Business Dashboards",
-      "Inventory Management Systems",
-      "Internal Business Tools",
-      "Custom Database Applications",
+      "Home, about & services pages",
+      "Gallery, work or menu page",
+      "Google Maps & location details",
+      "Contact forms & call buttons",
+      "SEO foundations",
     ],
   },
   {
     number: "03",
-    icon: Bot,
-    title: "Digital Solutions & Business Automation",
+    icon: Server,
+    title: "Hosting & Maintenance",
     tagline:
-      "Practical automation solutions that reduce manual work, improve consistency, and support business growth.",
+      "Keep your website fast, secure, and up to date — without having to think about it.",
     description:
-      "As Pureza Digital continues to grow, we're expanding into business automation and AI-powered solutions that help businesses save time and operate more efficiently.",
+      "Monthly care plans that cover hosting, backups, software updates, minor monthly updates, and support for website-related issues. You run the business; we look after the website.",
     features: [
-      "Business Process Automation",
-      "Lead Capture & Enquiry Systems",
-      "Workflow Automation",
-      "AI Automation Solutions",
-      "Custom Digital Workflows",
-      { label: "Future AI-Powered Systems", tag: "Coming soon" },
+      "Managed hosting & SSL",
+      "Backups & software updates",
+      "Uptime monitoring",
+      "Minor monthly updates",
+      "Support for website-related issues",
+    ],
+  },
+  {
+    number: "04",
+    icon: CalendarCheck,
+    title: "Booking, Forms & Lead Systems",
+    tagline:
+      "Make it easy for customers to book, order, and enquire — and easy for you to follow up.",
+    description:
+      "Practical add-ons that turn website visits into action: booking and scheduling setup, enquiry and quote forms, menu or order pages, and simple lead tracking so nothing slips through the cracks.",
+    features: [
+      "Booking & scheduling setup",
+      "Enquiry & quote forms",
+      "Menu / order pages",
+      "Lead capture & tracking",
+      "Simple follow-up automations",
     ],
   },
 ];
@@ -107,13 +120,13 @@ export default function Services() {
             className="text-[#6B6B6B] max-w-sm leading-relaxed text-sm lg:text-base"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Three core disciplines, one seamless experience. Everything you need
-            to build, automate, and grow online.
+            Everything a local business needs to get online, look professional,
+            and make it easy for customers to take the next step.
           </motion.p>
         </div>
 
         {/* Services grid */}
-        <div ref={ref} className="grid lg:grid-cols-3 gap-px bg-white/5">
+        <div ref={ref} className="grid sm:grid-cols-2 gap-px bg-white/5">
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.number}
@@ -163,25 +176,16 @@ export default function Services() {
 
               {/* Feature list */}
               <ul className="space-y-2.5 mb-10">
-                {service.features.map((f) => {
-                  const label = typeof f === "string" ? f : f.label;
-                  const tag = typeof f === "string" ? null : f.tag;
-                  return (
-                    <li
-                      key={label}
-                      className="flex items-center gap-3 text-[#5A5A5A] text-xs tracking-wide"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
-                      {label}
-                      {tag && (
-                        <span className="ml-1 px-1.5 py-0.5 text-[0.6rem] tracking-[0.1em] uppercase text-[#C9A96E] border border-[#C9A96E]/30 rounded-sm leading-none">
-                          {tag}
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
+                {service.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-3 text-[#5A5A5A] text-xs tracking-wide"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
+                    {f}
+                  </li>
+                ))}
               </ul>
 
               {/* CTA */}
@@ -199,6 +203,22 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* De-emphasised: custom builds still available on request */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-[#6B6B6B] text-xs mt-6"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
+          Need something more custom — a portal, dashboard, or web app?{" "}
+          <a href="#contact" className="text-[#C9A96E] hover:underline underline-offset-4">
+            Get in touch
+          </a>{" "}
+          and we&apos;ll scope it with you.
+        </motion.p>
       </div>
     </section>
   );

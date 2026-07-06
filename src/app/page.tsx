@@ -1,11 +1,13 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import NoWebsiteYet from "@/components/NoWebsiteYet";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
 import HowItWorks from "@/components/HowItWorks";
-import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -14,12 +16,14 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <NoWebsiteYet />
       <About />
       <Services />
+      <Pricing />
       <Portfolio />
       <HowItWorks />
-      <Pricing />
       <Testimonials />
+      <FAQ />
       <Contact />
       <Footer />
     </main>

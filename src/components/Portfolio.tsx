@@ -10,7 +10,7 @@ const PROJECTS = [
   {
     number: "01",
     title: "Triangle Espresso",
-    category: "Concept Project",
+    category: "Local Demo Build",
     description:
       "A modern café website designed to showcase quality coffee, local hospitality, and a welcoming customer experience. Featuring custom branding, responsive design, and an elegant menu experience inspired by the craftsmanship behind every cup.",
     tags: ["HTML / CSS / JS", "Brand Design", "Editorial"],
@@ -23,7 +23,7 @@ const PROJECTS = [
   {
     number: "02",
     title: "Rotary Club of Ashburton",
-    category: "Concept Project",
+    category: "Local Demo Build",
     description:
       "A modern digital presence for one of Mid Canterbury's most established community organisations. Designed to improve accessibility, communicate community impact, and make it easier for members and visitors to engage with the club.",
     tags: ["React", "Tailwind CSS", "Multi-page"],
@@ -36,7 +36,7 @@ const PROJECTS = [
   {
     number: "03",
     title: "Pals Plumbing",
-    category: "Concept Project",
+    category: "Local Demo Build",
     description:
       "A premium single-page website for a local Ashburton plumbing business, built to turn visitors into phone calls. Featuring smooth scroll-triggered animations, a trust-focused design system, and a mobile-first tap-to-call experience optimised to load fast on any device.",
     tags: ["HTML / CSS / JS", "Animation", "Local Business"],
@@ -49,7 +49,7 @@ const PROJECTS = [
   {
     number: "04",
     title: "Monster Chicken",
-    category: "Concept Project",
+    category: "Local Demo Build",
     description:
       "A bold, appetite-first landing page for a Korean fried chicken spot in Ashburton. Built to make mouths water and drive orders — featuring a rich gold-on-charcoal palette, a flavour-led menu showcase, and a fast, mobile-first layout designed to turn cravings into walk-ins.",
     tags: ["HTML / CSS / JS", "Brand Design", "Food & Hospitality"],

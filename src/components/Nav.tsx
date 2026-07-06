@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Packages", href: "#pricing" },
   { label: "Work", href: "#work" },
-  { label: "Process", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -90,7 +90,7 @@ export default function Nav() {
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-9">
+          <ul className="hidden md:flex items-center gap-7">
             {links.map((link, i) => {
               const isActive = activeSection === link.href;
               return (
@@ -128,14 +128,22 @@ export default function Nav() {
           </ul>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-6">
+            <a
+              href="tel:+64212842008"
+              className="hidden lg:flex items-center gap-2 whitespace-nowrap text-[#A0A0A0] hover:text-[#C9A96E] text-sm tracking-wide transition-colors duration-200"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <Phone size={14} className="text-[#C9A96E]" />
+              021 284 2008
+            </a>
             <button
               onClick={() => handleLinkClick("#contact")}
               className="btn-cta btn-cta--outline group relative px-6 py-2.5 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.12em] uppercase overflow-hidden hover:text-[#0A0A0A] cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              <span className="relative">Start a Project</span>
+              <span className="relative whitespace-nowrap">Start a Project</span>
             </button>
           </div>
 
@@ -195,6 +203,17 @@ export default function Nav() {
             >
               Start a Project
             </motion.button>
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42, duration: 0.4 }}
+              href="tel:+64212842008"
+              className="flex items-center gap-2.5 text-[#A0A0A0] hover:text-[#C9A96E] text-base tracking-wide transition-colors"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <Phone size={16} className="text-[#C9A96E]" />
+              021 284 2008
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,18 +5,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 const MARQUEE_ITEMS = [
+  "Starter Websites",
+  "Local Business Websites",
+  "Hosting & Care",
+  "Booking & Lead Systems",
   "Web Design",
-  "AI Automation",
-  "Digital Strategy",
-  "AI Widgets",
-  "Brand Identity",
-  "Custom Dev",
+  "Ashburton · New Zealand",
+  "Starter Websites",
+  "Local Business Websites",
+  "Hosting & Care",
+  "Booking & Lead Systems",
   "Web Design",
-  "AI Automation",
-  "Digital Strategy",
-  "AI Widgets",
-  "Brand Identity",
-  "Custom Dev",
+  "Ashburton · New Zealand",
 ];
 
 export default function Hero() {
@@ -136,17 +136,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.05] tracking-tight mb-8"
+          className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.08] tracking-tight mb-8"
           style={{ fontFamily: "var(--font-playfair)" }}
           aria-hidden="true"
         >
-          Websites That{" "}
+          Professional Websites
+          <br />
+          for{" "}
           <em className="not-italic animate-shimmer glow-gold-text">
-            Grow
+            Local Businesses
           </em>
           <br />
           <span className="text-white/90">
-            Businesses
+            Without a Proper Website
             <em className="not-italic text-[#C9A96E]">.</em>
           </span>
         </motion.div>
@@ -159,7 +161,9 @@ export default function Hero() {
           className="text-[#A0A0A0] text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Professional websites, AI automation, and digital systems designed to help businesses attract more customers, save time, and grow online. — Based in Ashburton. Built for businesses across New Zealand.
+          We help Ashburton and New Zealand businesses create simple, modern
+          websites that make it easier for customers to trust you, understand
+          what you offer, and call, book, order, or enquire.
         </motion.p>
 
         {/* CTAs */}
@@ -176,17 +180,17 @@ export default function Hero() {
           >
             <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <span className="relative flex items-center gap-2">
-              Start a Project
+              Get a Free Website Audit
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
             </span>
           </a>
 
           <a
-            href="#work"
+            href="#pricing"
             className="btn-cta btn-cta--outline group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            View Our Work
+            View Website Packages
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200 opacity-60" />
           </a>
         </motion.div>
@@ -199,9 +203,9 @@ export default function Hero() {
           className="flex items-center gap-10 mt-20 border-t border-white/8 pt-10"
         >
           {[
+            { value: "Foundation", label: "Client Pricing" },
+            { value: "Ashburton", label: "Based & Local" },
             { value: "24h", label: "Response Time" },
-            { value: "2–3 wks", label: "Concept to Launch" },
-            { value: "100%", label: "NZ Owned & Operated" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div
@@ -223,8 +227,8 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#about"
-        aria-label="Scroll to About section"
+        href="#no-website"
+        aria-label="Scroll to next section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.3 }}

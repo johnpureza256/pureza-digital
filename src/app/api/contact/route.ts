@@ -7,17 +7,19 @@ export const runtime = "nodejs";
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "purezadigitalnz@gmail.com";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Pureza Digital <hello@purezadigital.com>";
 
-const BUDGET_LABELS: Record<string, string> = {
-  "under-2k": "Under $2,000",
-  "2k-5k": "$2,000 – $5,000",
-  "5k-10k": "$5,000 – $10,000",
-  "10k+": "$10,000+",
+const INTEREST_LABELS: Record<string, string> = {
+  "free-audit": "Free Website Audit",
+  starter: "Starter Website from $497",
+  "local-business": "Local Business Website from $997",
+  growth: "Growth Website from $1,997",
+  hosting: "Hosting & Maintenance",
+  "not-sure": "Not sure yet",
 };
 
 type Payload = {
   name?: string;
   email?: string;
-  budget?: string;
+  interest?: string;
   message?: string;
   company?: string; // honeypot — real users never fill this
 };
@@ -81,7 +83,7 @@ export async function POST(req: Request) {
     const name = (body.name || "").trim();
     const email = (body.email || "").trim();
     const message = (body.message || "").trim();
-    const budget = (body.budget || "").trim();
+    const interest = (body.interest || "").trim();
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -99,7 +101,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Message is too long." }, { status: 400 });
     }
 
-    const budgetLabel = BUDGET_LABELS[budget] || "Not specified";
+    const interestLabel = INTEREST_LABELS[interest] || "Not specified";
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
@@ -112,14 +114,14 @@ export async function POST(req: Request) {
       subject: `New enquiry from ${name}`,
       text:
         `New contact form submission\n\n` +
-        `Name: ${name}\nEmail: ${email}\nBudget: ${budgetLabel}\n\nMessage:\n${message}\n`,
+        `Name: ${name}\nEmail: ${email}\nInterested in: ${interestLabel}\n\nMessage:\n${message}\n`,
       html: `
         <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#111">
           <h2 style="margin:0 0 16px">New enquiry from your website</h2>
           <table style="width:100%;border-collapse:collapse;font-size:14px">
             <tr><td style="padding:6px 0;color:#666;width:90px">Name</td><td style="padding:6px 0"><strong>${safeName}</strong></td></tr>
             <tr><td style="padding:6px 0;color:#666">Email</td><td style="padding:6px 0"><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
-            <tr><td style="padding:6px 0;color:#666">Budget</td><td style="padding:6px 0">${escapeHtml(budgetLabel)}</td></tr>
+            <tr><td style="padding:6px 0;color:#666">Interested in</td><td style="padding:6px 0">${escapeHtml(interestLabel)}</td></tr>
           </table>
           <div style="margin-top:16px;padding:16px;background:#f6f6f6;border-radius:8px;font-size:14px;line-height:1.6">${safeMessage}</div>
           <p style="margin-top:16px;font-size:12px;color:#999">Reply directly to this email to respond to ${safeName}.</p>

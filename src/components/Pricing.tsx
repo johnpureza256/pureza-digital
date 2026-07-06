@@ -4,54 +4,94 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionGlow from "./SectionGlow";
 
-const TIERS = [
+const PACKAGES = [
   {
-    name: "Landing Page",
-    price: "$1,500",
-    priceNote: "from",
+    name: "Starter Website",
+    price: "$497",
     tagline:
-      "One sharp, fast page that gets your business online and generating enquiries.",
+      "A simple one-page website for businesses that need a professional online presence.",
     features: [
-      "Custom single-page design",
-      "Mobile-first & fast-loading",
-      "Contact / enquiry form",
+      "Mobile-first design",
+      "Business overview",
+      "Services / menu section",
+      "Contact details",
+      "Enquiry form",
+      "Click-to-call button",
       "Basic SEO setup",
-      "Live in 1–2 weeks",
     ],
     featured: false,
   },
   {
-    name: "Business Website",
-    price: "$3,500",
-    priceNote: "from",
+    name: "Local Business Website",
+    price: "$997",
     tagline:
-      "A complete website built to win trust, rank locally, and turn visitors into customers.",
+      "A complete 4–5 page website for businesses that want stronger trust, clearer services, and better enquiry flow.",
     features: [
-      "Multi-page custom design",
-      "Brand-matched look & feel",
-      "SEO-ready structure",
-      "Analytics set up for you",
-      "Hosting & maintenance available",
-      "Live in 2–3 weeks",
+      "Home, about & services pages",
+      "Gallery, work or menu page",
+      "Contact page with Google Maps",
+      "Contact form",
+      "Click-to-call buttons",
+      "Basic SEO foundations",
     ],
     featured: true,
     tag: "Most popular",
   },
   {
-    name: "Web Apps & Automation",
-    price: "Let's talk",
-    priceNote: null,
+    name: "Growth Website",
+    price: "$1,997",
     tagline:
-      "Booking systems, client portals, dashboards, and automation — scoped and quoted per project.",
+      "A higher-value website for businesses that want stronger copy, multiple service pages, lead tracking, and long-term growth foundations.",
     features: [
-      "Booking & scheduling systems",
-      "Client portals & dashboards",
-      "Business process automation",
-      "Fixed quote before work begins",
+      "6–8 custom pages",
+      "Stronger copywriting",
+      "Analytics setup",
+      "Lead capture",
+      "CRM / enquiry tracking",
+      "Post-launch support",
     ],
     featured: false,
   },
 ];
+
+const CARE_PLANS = [
+  {
+    name: "Basic Care",
+    price: "$49",
+    features: [
+      "Fast, secure hosting",
+      "SSL certificate",
+      "Backups & software updates",
+      "Uptime monitoring",
+    ],
+    featured: false,
+  },
+  {
+    name: "Standard Care",
+    price: "$99",
+    features: [
+      "Everything in Basic",
+      "Minor monthly updates",
+      "Support for website-related issues",
+      "Monthly health check",
+    ],
+    featured: true,
+    tag: "Recommended",
+  },
+  {
+    name: "Growth Care",
+    price: "$199",
+    features: [
+      "Everything in Standard",
+      "Larger monthly update allowance",
+      "Priority support",
+      "Quarterly improvement review",
+    ],
+    featured: false,
+  },
+];
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Pricing() {
   return (
@@ -72,7 +112,7 @@ export default function Pricing() {
             className="text-[#C9A96E] text-xs tracking-[0.3em] uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Pricing
+            Packages
           </span>
         </motion.div>
 
@@ -81,13 +121,13 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: EASE }}
             className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            What It
+            Website Packages
             <br />
-            <span className="text-[#C9A96E]">Costs</span>
+            <span className="text-[#C9A96E]">for Local Businesses</span>
           </motion.h2>
 
           <motion.p
@@ -98,25 +138,25 @@ export default function Pricing() {
             className="text-[#6B6B6B] max-w-sm leading-relaxed text-sm lg:text-base"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Honest starting points so you know what to expect. Every project
-            gets a fixed quote before any work begins — no surprises.
+            Foundation client pricing is available for selected Ashburton and
+            Canterbury businesses while Pureza Digital builds its early local
+            client portfolio.
           </motion.p>
         </div>
 
-        {/* Tiers */}
+        {/* Packages */}
         <div className="grid lg:grid-cols-3 gap-px bg-white/5">
-          {TIERS.map((tier, i) => (
+          {PACKAGES.map((tier, i) => (
             <motion.div
               key={tier.name}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: EASE }}
               className={`group relative p-10 transition-colors duration-400 overflow-hidden ${
                 tier.featured ? "bg-[#111009]" : "bg-[#0A0A0A] hover:bg-[#111111]"
               }`}
             >
-              {/* Featured border + top line */}
               <div
                 className={`absolute inset-0 pointer-events-none transition-all duration-500 border ${
                   tier.featured
@@ -148,16 +188,13 @@ export default function Pricing() {
                 {tier.name}
               </h3>
 
-              {/* Price */}
               <div className="flex items-baseline gap-2 mb-6">
-                {tier.priceNote && (
-                  <span
-                    className="text-[#6B6B6B] text-xs tracking-[0.15em] uppercase"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {tier.priceNote}
-                  </span>
-                )}
+                <span
+                  className="text-[#6B6B6B] text-xs tracking-[0.15em] uppercase"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  from
+                </span>
                 <span
                   className="text-4xl font-bold text-[#C9A96E]"
                   style={{ fontFamily: "var(--font-playfair)" }}
@@ -192,7 +229,7 @@ export default function Pricing() {
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span className="group-hover/btn:underline underline-offset-4">
-                  Get a free quote
+                  Get started
                 </span>
                 <ArrowUpRight
                   size={13}
@@ -211,16 +248,103 @@ export default function Pricing() {
           className="text-[#6B6B6B] text-xs mt-6"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          All prices in NZD. Not sure which fits? Send a message and we&apos;ll
-          point you in the right direction — even if that&apos;s not us.
+          All prices in NZD. Every project gets a fixed quote before any work
+          begins — no surprises.
         </motion.p>
 
-        {/* Foundation client offer */}
+        {/* Hosting & Website Care */}
+        <div className="mt-24">
+          <motion.h3
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="text-2xl lg:text-3xl font-bold text-white mb-4"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Hosting &amp; Website Care
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[#6B6B6B] text-sm leading-relaxed max-w-xl mb-12"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Keep your website fast, secure, and up to date after launch. Care
+            plans cover hosting, minor monthly updates, and support for
+            website-related issues.
+          </motion.p>
+
+          <div className="grid sm:grid-cols-3 gap-px bg-white/5">
+            {CARE_PLANS.map((plan, i) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+                className={`relative p-8 overflow-hidden ${
+                  plan.featured ? "bg-[#111009]" : "bg-[#0A0A0A]"
+                }`}
+              >
+                <div
+                  className={`absolute inset-0 pointer-events-none border ${
+                    plan.featured ? "border-[#C9A96E]/35" : "border-transparent"
+                  }`}
+                />
+                {plan.tag && (
+                  <span
+                    className="absolute top-5 right-5 px-2.5 py-1 text-[0.6rem] tracking-[0.2em] uppercase text-[#0A0A0A] bg-[#C9A96E] leading-none"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {plan.tag}
+                  </span>
+                )}
+                <h4
+                  className="text-lg font-bold text-white mb-4"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {plan.name}
+                </h4>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span
+                    className="text-3xl font-bold text-[#C9A96E]"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {plan.price}
+                  </span>
+                  <span
+                    className="text-[#6B6B6B] text-xs tracking-wide"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    /month
+                  </span>
+                </div>
+                <ul className="space-y-2.5">
+                  {plan.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-center gap-3 text-[#5A5A5A] text-xs tracking-wide"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Free audit offer */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: EASE }}
           className="relative mt-16 border border-[#C9A96E]/30 bg-[#C9A96E]/[0.04] p-10 lg:p-12 overflow-hidden"
         >
           <div
@@ -236,22 +360,22 @@ export default function Pricing() {
                 className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-4"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Foundation Client Offer — 3 Spots
+                Start Free
               </div>
               <h3
                 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-snug"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                See your homepage before you spend a dollar.
+                Not sure where to start? Get a free website audit.
               </h3>
               <p
                 className="text-[#9A9A9A] text-sm leading-relaxed"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                We&apos;re taking on three foundation clients at founding-client
-                pricing. Tell us about your business and we&apos;ll design a free
-                homepage concept — if you love it, we build the rest. If not,
-                you owe nothing and keep the ideas.
+                Tell us about your business and we&apos;ll review your current
+                website and online presence — or put together a free demo
+                preview of what a new one could look like. No cost, no
+                obligation.
               </p>
             </div>
             <a
@@ -261,7 +385,7 @@ export default function Pricing() {
             >
               <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
               <span className="relative flex items-center gap-2">
-                Claim a Spot
+                Get My Free Audit
                 <ArrowRight
                   size={15}
                   className="group-hover:translate-x-1 transition-transform duration-200"
