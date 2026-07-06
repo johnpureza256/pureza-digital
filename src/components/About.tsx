@@ -103,9 +103,6 @@ export default function About() {
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <p>
-                
-              </p>
-              <p>
                 We&apos;re John Pureza and Hamish Ramsay, the founding team behind Pureza Digital.
               </p>
               <p>
@@ -169,9 +166,9 @@ export default function About() {
               className="mt-10 pt-10 border-t border-white/8 flex gap-12"
             >
               {[
-                { n: "10+", label: "Projects Built" },
+                { n: "5", label: "Sites Designed & Built" },
+                { n: "2", label: "Founders, Hands-On" },
                 { n: "100%", label: "NZ Based" },
-                { n: "∞", label: "Ambition" },
               ].map((s) => (
                 <div key={s.label}>
                   <div

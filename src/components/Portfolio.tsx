@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, ExternalLink } from "lucide-react";
 import SectionGlow from "./SectionGlow";
@@ -16,6 +17,7 @@ const PROJECTS = [
     accent: "#C99A4E",
     bg: "from-[#1A0E06] to-[#0A0A0A]",
     demo: "/triangle-espresso/index.html",
+    thumb: "/portfolio/triangle-espresso.jpg",
     palette: "#241813",
   },
   {
@@ -28,6 +30,7 @@ const PROJECTS = [
     accent: "#17458F",
     bg: "from-[#040D1A] to-[#0A0A0A]",
     demo: "/rotary-ashburton/index.html",
+    thumb: "/portfolio/rotary-ashburton.jpg",
     palette: "#17458F",
   },
   {
@@ -40,6 +43,7 @@ const PROJECTS = [
     accent: "#3B82F6",
     bg: "from-[#040A1A] to-[#0A0A0A]",
     demo: "/pals-plumbing/index.html",
+    thumb: "/portfolio/pals-plumbing.jpg",
     palette: "#1E40AF",
   },
   {
@@ -52,6 +56,7 @@ const PROJECTS = [
     accent: "#CBA15A",
     bg: "from-[#14100E] to-[#0A0A0A]",
     demo: "/monster-chicken/index.html",
+    thumb: "/portfolio/monster-chicken.jpg",
     palette: "#9A7B3A",
   },
 ];
@@ -208,15 +213,25 @@ export default function Portfolio() {
                   style={{ background: `radial-gradient(ellipse at 0% 50%, ${project.accent}08 0%, transparent 60%)` }}
                 />
 
-                <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-                  {/* Left */}
-                  <div className="flex items-start gap-8">
-                    <span
-                      className="text-4xl font-bold text-[#1A1A1A] select-none mt-1 group-hover:text-[#2A2A2A] transition-colors duration-500 hidden md:block"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
-                      {project.number}
-                    </span>
+                <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
+                  {/* Thumbnail — opens the live demo */}
+                  <button
+                    onClick={() => setActiveDemo(project)}
+                    aria-label={`View ${project.title} live demo`}
+                    className="group/img relative w-full lg:w-[340px] shrink-0 aspect-[16/10] overflow-hidden border border-white/10 hover:border-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A96E] transition-colors duration-300 cursor-pointer"
+                  >
+                    <Image
+                      src={project.thumb}
+                      alt={`${project.title} website design`}
+                      fill
+                      sizes="(min-width: 1024px) 340px, 100vw"
+                      className="object-cover object-top transition-transform duration-500 ease-out group-hover/img:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover/img:opacity-25 transition-opacity duration-500" />
+                  </button>
+
+                  {/* Middle: text */}
+                  <div className="flex items-start">
                     <div className="flex-1">
                       <div
                         className="text-xs tracking-[0.2em] uppercase mb-2"

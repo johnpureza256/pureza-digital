@@ -123,7 +123,7 @@ export default function Contact() {
                   icon: Mail,
                   label: "Email",
                   value: "purezadigitalnz@gmail.com",
-                  href: "mailto:hello@purezadigital.com",
+                  href: "mailto:purezadigitalnz@gmail.com",
                 },
                 {
                   icon: MapPin,

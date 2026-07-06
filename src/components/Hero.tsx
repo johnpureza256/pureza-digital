@@ -199,9 +199,9 @@ export default function Hero() {
           className="flex items-center gap-10 mt-20 border-t border-white/8 pt-10"
         >
           {[
-            { value: "100%", label: "Client Satisfaction" },
-            { value: "NZ+", label: "Global Ready" },
             { value: "24h", label: "Response Time" },
+            { value: "2–3 wks", label: "Concept to Launch" },
+            { value: "100%", label: "NZ Owned & Operated" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div

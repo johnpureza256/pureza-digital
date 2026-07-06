@@ -79,9 +79,10 @@ export default function Testimonials() {
                 className="text-[#8A8A8A] text-sm lg:text-base leading-relaxed max-w-xl mx-auto mb-10"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Pureza Digital is taking on a small number of foundation clients —
-                businesses we&rsquo;ll work with closely to deliver results worth
-                talking about.
+                Pureza Digital is taking on three foundation clients at
+                founding-client pricing — businesses we&rsquo;ll work with closely
+                to deliver results worth talking about. It starts with a free
+                homepage concept, before you commit a dollar.
               </p>
               <a
                 href="#contact"
