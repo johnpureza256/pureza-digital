@@ -40,7 +40,7 @@ export default function Footer() {
               Website design, development, hosting & maintenance for local
               businesses.
               <br />
-              Ashburton, Canterbury, New Zealand · Available Worldwide.
+              Ashburton, Canterbury · Serving New Zealand Businesses.
             </p>
           </motion.div>
 

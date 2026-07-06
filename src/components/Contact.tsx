@@ -93,9 +93,9 @@ export default function Contact() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] mb-6"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Let&apos;s Build
+              Get Your Free
               <br />
-              <span className="text-[#C9A96E]">Something Great</span>
+              <span className="text-[#C9A96E]">Website Audit</span>
             </motion.h2>
 
             <motion.p
@@ -106,9 +106,10 @@ export default function Contact() {
               className="text-[#6B6B6B] leading-relaxed text-sm mb-14"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Whether you have a detailed brief or just a rough idea, I&apos;d love to
-              hear about your project. Reach out and I&apos;ll get back to you within
-              24 hours.
+              Tell us about your business and we&apos;ll review your current
+              website, Facebook page, Google profile, or online presence. If
+              there&apos;s a good fit, we&apos;ll show you what a stronger website
+              could look like.
             </motion.p>
 
             <motion.div

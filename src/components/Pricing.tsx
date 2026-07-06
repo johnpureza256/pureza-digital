@@ -7,6 +7,7 @@ import SectionGlow from "./SectionGlow";
 const PACKAGES = [
   {
     name: "Starter Website",
+    subtitle: "For businesses with no proper website yet.",
     price: "$497",
     tagline:
       "A simple one-page website for businesses that need a professional online presence.",
@@ -23,6 +24,8 @@ const PACKAGES = [
   },
   {
     name: "Local Business Website",
+    subtitle:
+      "For businesses that need a stronger online presence and clearer enquiry flow.",
     price: "$997",
     tagline:
       "A complete 4–5 page website for businesses that want stronger trust, clearer services, and better enquiry flow.",
@@ -39,6 +42,8 @@ const PACKAGES = [
   },
   {
     name: "Growth Website",
+    subtitle:
+      "For businesses that want stronger copy, lead tracking, and long-term growth foundations.",
     price: "$1,997",
     tagline:
       "A higher-value website for businesses that want stronger copy, multiple service pages, lead tracking, and long-term growth foundations.",
@@ -182,11 +187,18 @@ export default function Pricing() {
               )}
 
               <h3
-                className="text-xl font-bold text-white mb-6 leading-snug"
+                className="text-xl font-bold text-white mb-2 leading-snug"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 {tier.name}
               </h3>
+
+              <p
+                className="text-[#C9A96E]/80 text-xs leading-relaxed mb-6"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {tier.subtitle}
+              </p>
 
               <div className="flex items-baseline gap-2 mb-6">
                 <span
@@ -337,6 +349,24 @@ export default function Pricing() {
               </motion.div>
             ))}
           </div>
+
+          <motion.a
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            href="#contact"
+            className="mt-8 flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/care w-fit"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <span className="group-hover/care:underline underline-offset-4">
+              Ask About Website Care
+            </span>
+            <ArrowUpRight
+              size={13}
+              className="group-hover/care:translate-x-0.5 group-hover/care:-translate-y-0.5 transition-transform duration-200"
+            />
+          </motion.a>
         </div>
 
         {/* Free audit offer */}
@@ -360,7 +390,7 @@ export default function Pricing() {
                 className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-4"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Start Free
+                Free Website Audit
               </div>
               <h3
                 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-snug"

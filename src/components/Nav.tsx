@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
   { label: "Packages", href: "#pricing" },
+  { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
@@ -65,7 +65,7 @@ export default function Nav() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
           {/* Logo */}
           <a
             href="#"
@@ -82,7 +82,7 @@ export default function Nav() {
               className="w-9 h-9 rounded-[8px] transition-transform duration-300 group-hover:scale-105"
             />
             <span
-              className="text-white/95 text-[15px] tracking-[0.34em] uppercase transition-colors duration-300 group-hover:text-[#E8C98A]"
+              className="inline lg:hidden xl:inline text-white/95 text-[15px] tracking-[0.34em] uppercase whitespace-nowrap transition-colors duration-300 group-hover:text-[#E8C98A]"
               style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
             >
               Pureza Digital
@@ -90,7 +90,7 @@ export default function Nav() {
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-7">
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-6">
             {links.map((link, i) => {
               const isActive = activeSection === link.href;
               return (
@@ -103,7 +103,7 @@ export default function Nav() {
                   >
                     {/* Editorial index */}
                     <span
-                      className={`text-[10px] tabular-nums transition-colors duration-300 ${
+                      className={`hidden xl:inline text-[10px] tabular-nums transition-colors duration-300 ${
                         isActive
                           ? "text-[#C9A96E]"
                           : "text-[#5A5A5A] group-hover:text-[#C9A96E]/70"
@@ -128,28 +128,20 @@ export default function Nav() {
           </ul>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-6">
-            <a
-              href="tel:+64212842008"
-              className="hidden lg:flex items-center gap-2 whitespace-nowrap text-[#A0A0A0] hover:text-[#C9A96E] text-sm tracking-wide transition-colors duration-200"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <Phone size={14} className="text-[#C9A96E]" />
-              021 284 2008
-            </a>
+          <div className="hidden lg:flex items-center gap-6">
             <button
               onClick={() => handleLinkClick("#contact")}
               className="btn-cta btn-cta--outline group relative px-6 py-2.5 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.12em] uppercase overflow-hidden hover:text-[#0A0A0A] cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              <span className="relative whitespace-nowrap">Start a Project</span>
+              <span className="relative whitespace-nowrap">Get a Free Website Audit</span>
             </button>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-white p-2 cursor-pointer"
+            className="lg:hidden text-white p-2 cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -201,7 +193,7 @@ export default function Nav() {
               className="btn-cta btn-cta--outline mt-4 px-10 py-4 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.2em] uppercase cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Start a Project
+              Get a Free Website Audit
             </motion.button>
             <motion.a
               initial={{ opacity: 0, y: 20 }}

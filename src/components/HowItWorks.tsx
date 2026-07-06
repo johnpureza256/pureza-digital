@@ -212,7 +212,7 @@ export default function HowItWorks() {
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span className="group-hover/cta:underline underline-offset-4">
-              Start Your Project
+              Get a Free Website Audit
             </span>
             <ArrowUpRight
               size={14}

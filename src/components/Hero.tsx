@@ -127,7 +127,7 @@ export default function Hero() {
             className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Based in New Zealand · Available Worldwide
+            Ashburton, Canterbury · Serving New Zealand Businesses
           </span>
         </motion.div>
 

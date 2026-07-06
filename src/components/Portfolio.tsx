@@ -192,7 +192,7 @@ export default function Portfolio() {
               className="text-[#6B6B6B] text-sm max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              A selection of websites and digital experiences I&apos;ve designed and developed for businesses and organisations in Mid Canterbury.
+              A selection of websites and digital experiences we&apos;ve designed and developed for businesses and organisations in Mid Canterbury.
             </motion.p>
           </div>
 
@@ -318,7 +318,7 @@ export default function Portfolio() {
             >
               <span className="absolute inset-0 bg-[#C9A96E]/5 translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" />
               <span className="relative flex items-center gap-2">
-                Start Your Project
+                Claim a Free Homepage Concept
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </span>
             </a>

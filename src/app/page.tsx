@@ -17,11 +17,11 @@ export default function Home() {
       <Nav />
       <Hero />
       <NoWebsiteYet />
-      <About />
-      <Services />
       <Pricing />
+      <Services />
       <Portfolio />
       <HowItWorks />
+      <About />
       <Testimonials />
       <FAQ />
       <Contact />
