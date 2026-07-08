@@ -140,15 +140,15 @@ export default function Hero() {
           style={{ fontFamily: "var(--font-playfair)" }}
           aria-hidden="true"
         >
-          Professional Websites
+          Websites That Help
           <br />
-          for{" "}
           <em className="not-italic animate-shimmer glow-gold-text">
             Local Businesses
-          </em>
+          </em>{" "}
+          Get More
           <br />
           <span className="text-white/90">
-            Without a Proper Website
+            Calls, Bookings, and Enquiries
             <em className="not-italic text-[#C9A96E]">.</em>
           </span>
         </motion.div>

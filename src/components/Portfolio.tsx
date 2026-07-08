@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, ExternalLink } from "lucide-react";
 import SectionGlow from "./SectionGlow";
@@ -18,6 +19,7 @@ const PROJECTS = [
     bg: "from-[#1A0E06] to-[#0A0A0A]",
     demo: "/plainsong-espresso/index.html",
     thumb: "/portfolio/plainsong-espresso.jpg",
+    slug: "plainsong-espresso",
     palette: "#241813",
   },
   {
@@ -31,6 +33,7 @@ const PROJECTS = [
     bg: "from-[#040D1A] to-[#0A0A0A]",
     demo: "/rotary-ashburton/index.html",
     thumb: "/portfolio/rotary-ashburton.jpg",
+    slug: "rotary-ashburton",
     palette: "#17458F",
   },
   {
@@ -44,6 +47,7 @@ const PROJECTS = [
     bg: "from-[#040A1A] to-[#0A0A0A]",
     demo: "/mainline-plumbing/index.html",
     thumb: "/portfolio/mainline-plumbing.jpg",
+    slug: "mainline-plumbing",
     palette: "#1E40AF",
   },
   {
@@ -57,6 +61,7 @@ const PROJECTS = [
     bg: "from-[#14100E] to-[#0A0A0A]",
     demo: "/crunch-republic/index.html",
     thumb: "/portfolio/crunch-republic.jpg",
+    slug: "crunch-republic",
     palette: "#9A7B3A",
   },
 ];
@@ -192,7 +197,7 @@ export default function Portfolio() {
               className="text-[#6B6B6B] text-sm max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              A selection of websites and digital experiences we&apos;ve designed and developed for businesses and organisations in Mid Canterbury.
+              A selection of websites and digital experiences we&apos;ve designed and developed for businesses and organisations in Mid Canterbury. Some projects shown are demo concepts, created to demonstrate what a modern website could look like for a local business.
             </motion.p>
           </div>
 
@@ -291,6 +296,20 @@ export default function Portfolio() {
                         className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                       />
                     </button>
+
+                    <Link
+                      href={`/work/${project.slug}`}
+                      className="group/cs inline-flex items-center gap-2 text-[#8A8A8A] hover:text-[#C9A96E] text-xs tracking-[0.15em] uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A96E]"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <span className="group-hover/cs:underline underline-offset-4">
+                        Read Case Study
+                      </span>
+                      <ArrowUpRight
+                        size={12}
+                        className="group-hover/cs:translate-x-0.5 group-hover/cs:-translate-y-0.5 transition-transform duration-200"
+                      />
+                    </Link>
                   </div>
                 </div>
               </motion.div>

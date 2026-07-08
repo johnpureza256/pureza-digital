@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import NoWebsiteYet from "@/components/NoWebsiteYet";
+import WhoThisIsFor from "@/components/WhoThisIsFor";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
@@ -17,6 +18,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <NoWebsiteYet />
+      <WhoThisIsFor />
       <Pricing />
       <Services />
       <Portfolio />

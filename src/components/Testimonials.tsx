@@ -62,7 +62,7 @@ export default function Testimonials() {
               className="text-xl lg:text-2xl text-white leading-[1.5] mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Pureza Digital is currently taking on a small number of
+              Pureza Digital is currently accepting a small number of
               foundation clients at{" "}
               <span className="text-[#C9A96E]">reduced pricing</span>.
             </p>
@@ -70,16 +70,19 @@ export default function Testimonials() {
               className="text-[#8A8A8A] text-sm lg:text-base leading-relaxed max-w-xl mx-auto mb-10"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              In exchange for honest feedback and permission to feature the
-              completed project if you&rsquo;re happy, you&rsquo;ll get a more
-              hands-on website process at a lower entry price.
+              In exchange, we&rsquo;re looking for three things: honest feedback
+              along the way, permission to feature the finished project in our
+              portfolio, and — only if you&rsquo;re happy with the result — a
+              short testimonial. Same design quality, same process, more
+              hands-on attention, lower entry price. Once the spots are filled,
+              pricing moves to standard rates.
             </p>
             <a
               href="#contact"
               className="btn-cta btn-cta--outline group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <span>Become a Foundation Client</span>
+              <span>Apply to Become a Foundation Client</span>
               <ArrowUpRight
                 size={14}
                 className="group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform duration-200"

@@ -225,6 +225,45 @@ export default function About() {
             ))}
           </motion.div>
         </div>
+
+        {/* Trust facts + technology band */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-24 lg:mt-32 pt-12 border-t border-white/8"
+        >
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              "Ashburton based",
+              "100% NZ owned & operated",
+              "You deal directly with the founders",
+              "Custom-built — no templates",
+              "Transparent fixed quotes",
+              "Replies within 24 hours",
+              "Foundation client pricing",
+              "Hosting & care available",
+            ].map((badge) => (
+              <span
+                key={badge}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-white/8 bg-white/[0.02] text-[#9A9A9A] text-xs tracking-wide"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <span className="w-1 h-1 rounded-full bg-[#C9A96E]" aria-hidden />
+                {badge}
+              </span>
+            ))}
+          </div>
+          <p
+            className="text-[#6B6B6B] text-sm leading-relaxed max-w-2xl"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            We use modern web technology to build websites that are fast,
+            mobile-friendly, secure, and easy to maintain — the same tools used
+            by leading companies worldwide, without the jargon.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

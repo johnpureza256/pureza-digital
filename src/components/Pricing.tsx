@@ -428,6 +428,125 @@ export default function Pricing() {
           </motion.a>
         </div>
 
+        {/* Add-ons */}
+        <div className="mt-24 lg:mt-32">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12"
+          >
+            <h3
+              className="text-2xl lg:text-3xl font-bold"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Popular <span className="text-[#C9A96E]">Add-Ons</span>
+            </h3>
+            <p
+              className="text-[#6B6B6B] text-sm max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Extend any package now or later. Every add-on is quoted exactly
+              before work begins — &ldquo;from&rdquo; prices are honest floors,
+              not bait.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
+            {[
+              { name: "Extra page", price: "from $150", note: "Designed and written to match your site" },
+              { name: "Menu page", price: "from $150", note: "Readable on a phone, easy to update" },
+              { name: "Google Business Profile", price: "from $150", note: "Optimised so locals actually find you" },
+              { name: "Blog setup", price: "from $250", note: "Publish updates without touching code" },
+              { name: "Booking system", price: "from $300", note: "Customers book while you work" },
+              { name: "Basic automation", price: "from $300", note: "Auto-replies, follow-ups, reminders" },
+              { name: "Extra update allowance", price: "from $50/mo", note: "More monthly changes on any care plan" },
+              { name: "Website audit report", price: "$99", note: "Free with any project enquiry" },
+            ].map((addon, i) => (
+              <motion.div
+                key={addon.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
+                className="group bg-[#0A0A0A] p-6 lg:p-7 hover:bg-[#0E0D0B] transition-colors duration-300"
+              >
+                <div
+                  className="text-[#C9A96E] text-sm font-semibold mb-2"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {addon.price}
+                </div>
+                <div
+                  className="text-white text-sm font-semibold mb-1.5"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {addon.name}
+                </div>
+                <div
+                  className="text-[#5A5A5A] text-xs leading-relaxed"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {addon.note}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Payment terms + scope fine print */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mt-16 grid md:grid-cols-2 gap-12 lg:gap-20 pt-12 border-t border-white/8"
+        >
+          <div>
+            <h3
+              className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-5"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              How Payment Works
+            </h3>
+            <ul
+              className="space-y-3 text-[#8A8A8A] text-sm leading-relaxed"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <li>Starter Websites ($497) are paid upfront.</li>
+              <li>
+                Larger projects are 50% upfront, 50% before launch — you see
+                and approve the finished site before the final payment.
+              </li>
+              <li>
+                Care plans are billed monthly through Stripe. Cancel anytime
+                with 30 days&rsquo; notice.
+              </li>
+              <li>Every project starts with a fixed written quote.</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-5"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              What Quotes Don&rsquo;t Include
+            </h3>
+            <p
+              className="text-[#8A8A8A] text-sm leading-relaxed"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              So there are no surprises: professional photography, paid
+              advertising, logo design, and advanced custom software are not
+              included unless specifically quoted. Copywriting is included
+              within the agreed scope. Domain names and third-party software
+              costs are billed separately at cost. Revisions are generous but
+              not unlimited — the exact number is in your quote.
+            </p>
+          </div>
+        </motion.div>
+
         {/* Free audit offer */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

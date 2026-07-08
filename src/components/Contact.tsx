@@ -176,6 +176,51 @@ export default function Contact() {
                 </div>
               ))}
             </motion.div>
+
+            {/* What happens next — removes uncertainty at the point of action */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-14 pt-10 border-t border-white/8"
+            >
+              <h3
+                className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-6"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                What Happens Next
+              </h3>
+              <ol className="space-y-0">
+                {[
+                  "You send a message",
+                  "We reply within 24 hours",
+                  "We ask a few simple questions about your business",
+                  "You get a recommendation — often with a demo preview",
+                  "You get a fixed quote. No surprises later",
+                  "If you approve, we build and launch",
+                ].map((step, i, arr) => (
+                  <li key={step} className="relative flex gap-5 pb-5 last:pb-0">
+                    {/* Connector line */}
+                    {i < arr.length - 1 && (
+                      <span className="absolute left-[11px] top-7 bottom-0 w-px bg-white/[0.08]" aria-hidden />
+                    )}
+                    <span
+                      className="relative z-10 w-[23px] h-[23px] shrink-0 border border-[#C9A96E]/30 bg-[#0A0A0A] flex items-center justify-center text-[#C9A96E] text-[10px] font-semibold"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span
+                      className="text-[#8A8A8A] text-sm leading-relaxed pt-0.5"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {step}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </motion.div>
           </div>
 
           {/* Right: Form */}
