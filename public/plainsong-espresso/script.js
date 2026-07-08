@@ -1,5 +1,5 @@
 /* =========================================================
-   Triangle Espresso — interactions
+   Plainsong Espresso — interactions
    Lightweight, dependency-free, reduced-motion aware.
    ========================================================= */
 (function () {

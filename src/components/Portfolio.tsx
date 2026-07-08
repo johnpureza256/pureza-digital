@@ -9,15 +9,15 @@ import SectionGlow from "./SectionGlow";
 const PROJECTS = [
   {
     number: "01",
-    title: "Triangle Espresso",
+    title: "Plainsong Espresso",
     category: "Local Demo Build",
     description:
       "A modern café website designed to showcase quality coffee, local hospitality, and a welcoming customer experience. Featuring custom branding, responsive design, and an elegant menu experience inspired by the craftsmanship behind every cup.",
     tags: ["HTML / CSS / JS", "Brand Design", "Editorial"],
     accent: "#C99A4E",
     bg: "from-[#1A0E06] to-[#0A0A0A]",
-    demo: "/triangle-espresso/index.html",
-    thumb: "/portfolio/triangle-espresso.jpg",
+    demo: "/plainsong-espresso/index.html",
+    thumb: "/portfolio/plainsong-espresso.jpg",
     palette: "#241813",
   },
   {
@@ -35,28 +35,28 @@ const PROJECTS = [
   },
   {
     number: "03",
-    title: "Pals Plumbing",
+    title: "Mainline Plumbing",
     category: "Local Demo Build",
     description:
       "A premium single-page website for a local Ashburton plumbing business, built to turn visitors into phone calls. Featuring smooth scroll-triggered animations, a trust-focused design system, and a mobile-first tap-to-call experience optimised to load fast on any device.",
     tags: ["HTML / CSS / JS", "Animation", "Local Business"],
     accent: "#3B82F6",
     bg: "from-[#040A1A] to-[#0A0A0A]",
-    demo: "/pals-plumbing/index.html",
-    thumb: "/portfolio/pals-plumbing.jpg",
+    demo: "/mainline-plumbing/index.html",
+    thumb: "/portfolio/mainline-plumbing.jpg",
     palette: "#1E40AF",
   },
   {
     number: "04",
-    title: "Monster Chicken",
+    title: "Crunch Republic",
     category: "Local Demo Build",
     description:
       "A bold, appetite-first landing page for a Korean fried chicken spot in Ashburton. Built to make mouths water and drive orders — featuring a rich gold-on-charcoal palette, a flavour-led menu showcase, and a fast, mobile-first layout designed to turn cravings into walk-ins.",
     tags: ["HTML / CSS / JS", "Brand Design", "Food & Hospitality"],
     accent: "#CBA15A",
     bg: "from-[#14100E] to-[#0A0A0A]",
-    demo: "/monster-chicken/index.html",
-    thumb: "/portfolio/monster-chicken.jpg",
+    demo: "/crunch-republic/index.html",
+    thumb: "/portfolio/crunch-republic.jpg",
     palette: "#9A7B3A",
   },
 ];

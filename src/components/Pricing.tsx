@@ -70,6 +70,8 @@ const CARE_PLANS = [
       "Uptime monitoring",
     ],
     featured: false,
+    // Stripe Payment Link for this plan. Leave "" to fall back to the contact link.
+    stripeUrl: "https://buy.stripe.com/dRm28r48YfC7f6H5nj7N604",
   },
   {
     name: "Standard Care",
@@ -82,6 +84,7 @@ const CARE_PLANS = [
     ],
     featured: true,
     tag: "Recommended",
+    stripeUrl: "https://buy.stripe.com/9B6cN58pedtZgaL9Dz7N603",
   },
   {
     name: "Growth Care",
@@ -93,6 +96,7 @@ const CARE_PLANS = [
       "Quarterly improvement review",
     ],
     featured: false,
+    stripeUrl: "https://buy.stripe.com/bJe5kD0WM3Tp2jVcPL7N602",
   },
 ];
 
@@ -334,7 +338,7 @@ export default function Pricing() {
                     /month
                   </span>
                 </div>
-                <ul className="space-y-2.5">
+                <ul className="space-y-2.5 mb-8">
                   {plan.features.map((f) => (
                     <li
                       key={f}
@@ -346,9 +350,64 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+
+                {plan.stripeUrl ? (
+                  <a
+                    href={plan.stripeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group/pay relative inline-flex w-full items-center justify-center gap-2 px-6 py-3 text-xs font-semibold tracking-[0.15em] uppercase overflow-hidden transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] ${
+                      plan.featured
+                        ? "bg-[#C9A96E] text-[#0A0A0A]"
+                        : "border border-[#C9A96E]/40 text-[#C9A96E] hover:border-[#C9A96E]/70"
+                    }`}
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {plan.featured && (
+                      <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover/pay:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                    )}
+                    <span className="relative flex items-center gap-2">
+                      Subscribe
+                      <ArrowUpRight
+                        size={13}
+                        className="group-hover/pay:translate-x-0.5 group-hover/pay:-translate-y-0.5 transition-transform duration-200"
+                      />
+                    </span>
+                  </a>
+                ) : (
+                  <a
+                    href="#contact"
+                    className={`group/pay relative inline-flex w-full items-center justify-center gap-2 px-6 py-3 text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] ${
+                      plan.featured
+                        ? "bg-[#C9A96E] text-[#0A0A0A] hover:bg-[#E8C98A]"
+                        : "border border-[#C9A96E]/40 text-[#C9A96E] hover:border-[#C9A96E]/70"
+                    }`}
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    <span className="flex items-center gap-2">
+                      Get started
+                      <ArrowUpRight
+                        size={13}
+                        className="group-hover/pay:translate-x-0.5 group-hover/pay:-translate-y-0.5 transition-transform duration-200"
+                      />
+                    </span>
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[#6B6B6B] text-xs leading-relaxed mt-6 max-w-xl"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Secure checkout powered by Stripe. Custom website projects are
+            invoiced separately after proposal approval.
+          </motion.p>
 
           <motion.a
             initial={{ opacity: 0 }}

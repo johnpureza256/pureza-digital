@@ -1,5 +1,5 @@
 /* =========================================================
-   Triangle Espresso — Ashburton, NZ
+   Plainsong Espresso — Ashburton, NZ
    Warm boutique-editorial. Playfair Display + Inter.
    Animations: transform/opacity only, reduced-motion aware.
    ========================================================= */
@@ -380,7 +380,7 @@ body.menu-open .mmenu__panel { transform: translateX(0); }
 .story__copy .h2 { margin-bottom: .4rem; }
 .story__copy .link-arrow { margin-top: 1.6rem; }
 
-/* three points */
+/* points of difference */
 .points {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
   margin-top: clamp(3rem, 7vw, 5.5rem);
