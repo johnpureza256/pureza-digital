@@ -103,21 +103,17 @@ export default function About() {
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <p>
-                We&apos;re John Pureza and Hamish Ramsay, the founding team behind Pureza Digital.
+                We&apos;re John Pureza and Hamish Ramsay, the founding team
+                behind Pureza Digital — a small Ashburton studio helping New
+                Zealand businesses compete online with modern, professional
+                websites.
               </p>
               <p>
-                Pureza Digital helps businesses create modern websites that build trust, attract customers, and support long-term growth.
+                Whether you&apos;re a café, tradie, contractor, retailer, or
+                service business, you deal directly with us — and we&apos;re
+                here to <b>help you build a stronger online presence and stand
+                out from the competition.</b>
               </p>
-              <p>
-                Founded in Ashburton, New Zealand, we&apos;re a small team passionate about helping local businesses compete online with professional design, strong branding, and practical digital solutions.
-              </p>
-              <p>
-                We work closely with each client to create websites that not only look great, but help achieve real business goals.
-              </p>
-              <p>
-                Whether you&apos;re a café, tradie, contractor, retailer, or service business, we&apos;re here to <b>help you build a stronger online presence and stand out from the competition.</b>
-              </p>
-
             </motion.div>
 
             {/* Founder photos */}
@@ -188,13 +184,13 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Right: Values cards */}
+          {/* Right: Values cards — desktop only; mobile keeps just the founder cards */}
           <motion.div
             ref={ref}
             variants={container}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
-            className="space-y-4"
+            className="hidden lg:block space-y-4"
           >
             {VALUES.map((v) => (
               <motion.div
@@ -226,44 +222,18 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Trust facts + technology band */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-24 lg:mt-32 pt-12 border-t border-white/8"
+        {/* Technology note — badges now live in the TrustBar under the hero */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16 lg:mt-24 pt-10 border-t border-white/8 text-[#6B6B6B] text-sm leading-relaxed max-w-2xl"
+          style={{ fontFamily: "var(--font-inter)" }}
         >
-          <div className="flex flex-wrap gap-3 mb-8">
-            {[
-              "Ashburton based",
-              "100% NZ owned & operated",
-              "You deal directly with the founders",
-              "Custom-built — no templates",
-              "Transparent fixed quotes",
-              "Replies within 24 hours",
-              "Foundation client pricing",
-              "Hosting & care available",
-            ].map((badge) => (
-              <span
-                key={badge}
-                className="inline-flex items-center gap-2 px-4 py-2 border border-white/8 bg-white/[0.02] text-[#9A9A9A] text-xs tracking-wide"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                <span className="w-1 h-1 rounded-full bg-[#C9A96E]" aria-hidden />
-                {badge}
-              </span>
-            ))}
-          </div>
-          <p
-            className="text-[#6B6B6B] text-sm leading-relaxed max-w-2xl"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            We use modern web technology to build websites that are fast,
-            mobile-friendly, secure, and easy to maintain — the same tools used
-            by leading companies worldwide, without the jargon.
-          </p>
-        </motion.div>
+          We use modern web technology to build websites that are fast,
+          mobile-friendly, secure, and easy to maintain — without the jargon.
+        </motion.p>
       </div>
     </section>
   );

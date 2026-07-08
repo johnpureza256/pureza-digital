@@ -80,8 +80,8 @@ export default function WhatWeNeed() {
           </motion.p>
         </div>
 
-        {/* Checklist grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
+        {/* Checklist grid — sm and up */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
           {ITEMS.map((item, i) => (
             <motion.div
               key={item.label}
@@ -107,6 +107,30 @@ export default function WhatWeNeed() {
             </motion.div>
           ))}
         </div>
+
+        {/* Mobile: compact accordion instead of eight stacked cards */}
+        <details className="sm:hidden group/det border border-white/[0.06] bg-[#0C0C0C]">
+          <summary
+            className="flex items-center justify-between cursor-pointer list-none p-5 text-[#C9A96E] text-xs tracking-[0.15em] uppercase [&::-webkit-details-marker]:hidden"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            See the checklist
+            <span className="text-[#C9A96E] transition-transform duration-200 group-open/det:rotate-45 text-lg leading-none">+</span>
+          </summary>
+          <ul className="px-5 pb-5 space-y-3.5 border-t border-white/[0.06] pt-4">
+            {ITEMS.map((item) => (
+              <li key={item.label} className="flex items-start gap-3.5">
+                <item.icon size={15} className="mt-0.5 shrink-0 text-[#C9A96E]" strokeWidth={1.5} />
+                <span
+                  className="text-[#B8B8B8] text-sm leading-relaxed"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {item.label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
 
         {/* Reassurance */}
         <motion.div

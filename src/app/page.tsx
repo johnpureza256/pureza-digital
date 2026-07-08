@@ -1,15 +1,17 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import TrustBar from "@/components/TrustBar";
 import NoWebsiteYet from "@/components/NoWebsiteYet";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
-import About from "@/components/About";
+import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import Portfolio from "@/components/Portfolio";
-import HowItWorks from "@/components/HowItWorks";
+import FreeAuditCTA from "@/components/FreeAuditCTA";
+import WhatHappensNext from "@/components/WhatHappensNext";
+import WhatWeNeed from "@/components/WhatWeNeed";
+import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
-import WhatWeNeed from "@/components/WhatWeNeed";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -18,16 +20,18 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <TrustBar />
       <NoWebsiteYet />
       <WhoThisIsFor />
-      <Pricing />
-      <Services />
       <Portfolio />
-      <HowItWorks />
+      <Services />
+      <Pricing />
+      <FreeAuditCTA />
+      <WhatHappensNext />
+      <WhatWeNeed />
       <About />
       <Testimonials />
       <FAQ />
-      <WhatWeNeed />
       <Contact />
       <Footer />
     </main>

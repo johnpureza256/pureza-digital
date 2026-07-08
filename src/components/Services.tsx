@@ -168,7 +168,7 @@ export default function Services() {
                 {service.tagline}
               </p>
               <p
-                className="text-[#6B6B6B] text-sm leading-relaxed mb-8"
+                className="hidden lg:block text-[#6B6B6B] text-sm leading-relaxed mb-8"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {service.description}

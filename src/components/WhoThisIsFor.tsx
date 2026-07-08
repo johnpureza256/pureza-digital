@@ -7,19 +7,19 @@ import SectionGlow from "./SectionGlow";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const FOR = [
-  "You rely mostly on Facebook or word-of-mouth to be found",
-  "Your current website looks outdated or embarrasses you a little",
-  "Customers keep calling to ask the same basic questions",
-  "You want more calls, bookings, or enquiries — not just a brochure",
-  "You'd rather someone else handle the technical side entirely",
-  "You want a clean, professional site without agency-level complexity",
+  "You rely mostly on Facebook or word-of-mouth",
+  "Your website is outdated, unclear, or missing",
+  "You want more calls, bookings, orders, or enquiries",
+  "You want someone to handle the technical side",
+  "You value clear communication and fixed quotes",
 ];
 
 const NOT_FOR = [
-  "You want a cheap template thrown up overnight",
-  "You can't provide basic content or photos of your business",
-  "You expect guaranteed leads without doing anything else",
-  "You need a large enterprise software build — we're not there yet",
+  "You want the cheapest possible website",
+  "You are unwilling to provide basic business information",
+  "You expect guaranteed leads from a website alone",
+  "You need large enterprise software",
+  "You want unlimited revisions without clear scope",
 ];
 
 export default function WhoThisIsFor() {
@@ -141,7 +141,7 @@ export default function WhoThisIsFor() {
               className="text-xl lg:text-2xl font-bold text-[#8A8A8A] mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              &hellip;and honestly not for you if
+              We may not be the right fit for everyone.
             </h3>
             <ul className="space-y-4">
               {NOT_FOR.map((line, i) => (

@@ -99,9 +99,9 @@ export async function POST(req: Request) {
     const message = (body.message || "").trim();
     const interest = (body.interest || "").trim();
 
-    if (!name || !email || !message) {
+    if (!name || !businessName || !email || !message) {
       return NextResponse.json(
-        { ok: false, error: "Please fill in your name, email, and a message." },
+        { ok: false, error: "Please fill in your name, business name, email, and a message." },
         { status: 400 }
       );
     }

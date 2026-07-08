@@ -158,12 +158,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="text-[#A0A0A0] text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
+          className="text-[#A0A0A0] text-base md:text-xl leading-relaxed max-w-xl mb-12"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          We help Ashburton and New Zealand businesses create simple, modern
-          websites that make it easier for customers to trust you, understand
-          what you offer, and call, book, order, or enquire.
+          <span className="lg:hidden">
+            Fast, professional websites for Ashburton &amp; NZ businesses —
+            built to win more calls, bookings, and enquiries.
+          </span>
+          <span className="hidden lg:inline">
+            Fast, professional websites for Ashburton and NZ businesses that
+            need more trust, clearer information, and easier ways for customers
+            to enquire.
+          </span>
         </motion.p>
 
         {/* CTAs */}
@@ -171,11 +177,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 items-center"
+          className="flex flex-col items-center gap-3 w-full sm:w-auto"
         >
           <a
             href="#contact"
-            className="btn-cta btn-cta--gold group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
+            className="btn-cta btn-cta--gold group relative inline-flex justify-center w-full sm:w-auto px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
@@ -185,43 +191,21 @@ export default function Hero() {
             </span>
           </a>
 
-          <a
-            href="#pricing"
-            className="btn-cta btn-cta--outline group flex items-center gap-2 px-8 py-4 border border-white/15 text-white/70 text-sm tracking-[0.12em] uppercase hover:border-white/40 hover:text-white"
+          <p
+            className="text-[#6B6B6B] text-xs tracking-wide"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            View Website Packages
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200 opacity-60" />
-          </a>
-        </motion.div>
+            No cost. No obligation.
+          </p>
 
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex items-center gap-10 mt-20 border-t border-white/8 pt-10"
-        >
-          {[
-            { value: "Foundation", label: "Client Pricing" },
-            { value: "Ashburton", label: "Based & Local" },
-            { value: "24h", label: "Response Time" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div
-                className="text-2xl md:text-3xl font-bold text-[#C9A96E] mb-1"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                {stat.value}
-              </div>
-              <div
-                className="text-[#6B6B6B] text-xs tracking-[0.15em] uppercase"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
+          <a
+            href="#pricing"
+            className="group mt-2 inline-flex items-center gap-1.5 text-white/60 text-sm tracking-[0.08em] uppercase hover:text-white/90 transition-colors duration-200"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <span className="group-hover:underline underline-offset-4">View Packages</span>
+            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-200 opacity-60" />
+          </a>
         </motion.div>
       </div>
 

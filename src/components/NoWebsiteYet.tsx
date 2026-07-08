@@ -36,9 +36,9 @@ export default function NoWebsiteYet() {
             className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            No Proper
+            Is Your Website
             <br />
-            <span className="text-[#C9A96E]">Website Yet?</span>
+            <span className="text-[#C9A96E]">Helping Customers Take Action?</span>
           </motion.h2>
 
           <div>
@@ -50,10 +50,9 @@ export default function NoWebsiteYet() {
               className="text-[#A0A0A0] leading-relaxed text-base lg:text-lg mb-10"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Many local businesses already get attention through Google,
-              Facebook, word-of-mouth, referrals, or walk-ins — but when
-              customers look them up, there is no clear website to explain the
-              business, show services, build trust, or make the next step easy.
+              If customers find you through Google or Facebook but there&rsquo;s
+              no clear website behind it, some of them quietly move on. A
+              website should make the next step obvious.
             </motion.p>
 
             <motion.a

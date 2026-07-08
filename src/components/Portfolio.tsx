@@ -251,7 +251,7 @@ export default function Portfolio() {
                         {project.title}
                       </h3>
                       <p
-                        className="text-[#6B6B6B] text-sm leading-relaxed max-w-xl"
+                        className="text-[#6B6B6B] text-sm leading-relaxed max-w-xl line-clamp-3 lg:line-clamp-none"
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
                         {project.description}

@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 
 const links = [
-  { label: "Packages", href: "#pricing" },
-  { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
+  { label: "Packages", href: "#pricing" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },

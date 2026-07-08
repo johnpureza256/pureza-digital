@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SectionGlow from "./SectionGlow";
 
 const PACKAGES = [
@@ -208,7 +208,7 @@ export default function Pricing() {
               </h3>
 
               <p
-                className="text-[#C9A96E]/80 text-xs leading-relaxed mb-6"
+                className="hidden lg:block text-[#C9A96E]/80 text-xs leading-relaxed mb-6"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {tier.subtitle}
@@ -229,14 +229,36 @@ export default function Pricing() {
                 </span>
               </div>
 
+              {/* Best For — near the top so visitors self-select before details */}
+              {tier.bestFor && (
+                <div className="mb-6">
+                  <div
+                    className="text-[#C9A96E] text-[0.6rem] tracking-[0.25em] uppercase mb-2"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Best For
+                  </div>
+                  <p
+                    className="text-[#9A9A9A] text-xs leading-relaxed"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {(() => {
+                      const t = tier.bestFor.replace(/^Best for /, "");
+                      return t.charAt(0).toUpperCase() + t.slice(1);
+                    })()}
+                  </p>
+                </div>
+              )}
+
               <p
-                className="text-[#9A9A9A] text-sm leading-relaxed mb-8"
+                className="hidden lg:block text-[#9A9A9A] text-sm leading-relaxed mb-8"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {tier.tagline}
               </p>
 
-              <ul className="space-y-2.5 mb-8">
+              {/* Inclusions — always visible on desktop, accordion on mobile */}
+              <ul className="hidden lg:block space-y-2.5 mb-8">
                 {tier.features.map((f) => (
                   <li
                     key={f}
@@ -248,35 +270,38 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-
-              {tier.bestFor && (
-                <div className="mb-8 pt-5 border-t border-white/[0.06]">
-                  <div
-                    className="text-[#C9A96E] text-[0.6rem] tracking-[0.25em] uppercase mb-2"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    Best For
-                  </div>
-                  <p
-                    className="text-[#8A8A8A] text-xs leading-relaxed"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {(() => {
-                      const t = tier.bestFor.replace(/^Best for /, "");
-                      return t.charAt(0).toUpperCase() + t.slice(1);
-                    })()}
-                  </p>
-                </div>
-              )}
+              <details className="lg:hidden mb-8 group/det border-t border-white/[0.06] pt-4">
+                <summary
+                  className="flex items-center justify-between cursor-pointer list-none text-[#C9A96E] text-xs tracking-[0.15em] uppercase [&::-webkit-details-marker]:hidden"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  View details
+                  <span className="text-[#C9A96E] transition-transform duration-200 group-open/det:rotate-45 text-base leading-none">+</span>
+                </summary>
+                <ul className="space-y-2.5 mt-4">
+                  {tier.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-center gap-3 text-[#7A7A7A] text-xs tracking-wide"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </details>
 
               <a
                 href="#contact"
-                className="flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/btn w-fit"
+                className={`group/btn inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] ${
+                  tier.featured
+                    ? "bg-[#C9A96E] text-[#0A0A0A] hover:bg-[#E8C98A]"
+                    : "border border-[#C9A96E]/40 text-[#C9A96E] hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06]"
+                }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                <span className="group-hover/btn:underline underline-offset-4">
-                  {tier.cta}
-                </span>
+                {tier.cta}
                 <ArrowUpRight
                   size={13}
                   className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200"
@@ -318,9 +343,7 @@ export default function Pricing() {
             className="text-[#6B6B6B] text-sm leading-relaxed max-w-xl mb-12"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Keep your website fast, secure, and up to date after launch. Care
-            plans cover hosting, minor monthly updates, and support for
-            website-related issues.
+            From $49/month for hosting, updates, support, and peace of mind.
           </motion.p>
 
           <div className="grid sm:grid-cols-3 gap-px bg-white/5">
@@ -368,7 +391,7 @@ export default function Pricing() {
                     /month
                   </span>
                 </div>
-                <ul className="space-y-2.5 mb-8">
+                <ul className="hidden lg:block space-y-2.5 mb-8">
                   {plan.features.map((f) => (
                     <li
                       key={f}
@@ -380,6 +403,27 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <details className="lg:hidden mb-6 group/det">
+                  <summary
+                    className="flex items-center justify-between cursor-pointer list-none text-[#C9A96E] text-xs tracking-[0.15em] uppercase [&::-webkit-details-marker]:hidden"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    What&rsquo;s included
+                    <span className="text-[#C9A96E] transition-transform duration-200 group-open/det:rotate-45 text-base leading-none">+</span>
+                  </summary>
+                  <ul className="space-y-2.5 mt-4">
+                    {plan.features.map((f) => (
+                      <li
+                        key={f}
+                        className="flex items-center gap-3 text-[#7A7A7A] text-xs tracking-wide"
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        <span className="w-3 h-px bg-[#C9A96E]/50 shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
 
                 {plan.stripeUrl ? (
                   <a
@@ -486,13 +530,13 @@ export default function Pricing() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
             {[
               { name: "Extra page", price: "from $150", note: "Designed and written to match your site" },
-              { name: "Menu page", price: "from $150", note: "Readable on a phone, easy to update" },
-              { name: "Google Business Profile", price: "from $150", note: "Optimised so locals actually find you" },
-              { name: "Blog setup", price: "from $250", note: "Publish updates without touching code" },
               { name: "Booking system", price: "from $300", note: "Customers book while you work" },
+              { name: "Google Business Profile", price: "from $150", note: "Optimised so locals actually find you" },
               { name: "Basic automation", price: "from $300", note: "Auto-replies, follow-ups, reminders" },
-              { name: "Extra update allowance", price: "from $50/mo", note: "More monthly changes on any care plan" },
-              { name: "Website audit report", price: "$99", note: "Free with any project enquiry" },
+              { name: "Menu page", price: "from $150", note: "Readable on a phone, easy to update", extra: true },
+              { name: "Blog setup", price: "from $250", note: "Publish updates without touching code", extra: true },
+              { name: "Extra update allowance", price: "from $50/mo", note: "More monthly changes on any care plan", extra: true },
+              { name: "Website audit report", price: "$99", note: "Free with any project enquiry", extra: true },
             ].map((addon, i) => (
               <motion.div
                 key={addon.name}
@@ -500,7 +544,9 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
-                className="group bg-[#0A0A0A] p-6 lg:p-7 hover:bg-[#0E0D0B] transition-colors duration-300"
+                className={`group bg-[#0A0A0A] p-6 lg:p-7 hover:bg-[#0E0D0B] transition-colors duration-300 ${
+                  addon.extra ? "hidden sm:block" : ""
+                }`}
               >
                 <div
                   className="text-[#C9A96E] text-sm font-semibold mb-2"
@@ -523,6 +569,18 @@ export default function Pricing() {
               </motion.div>
             ))}
           </div>
+
+          {/* Mobile: remaining add-ons live behind a conversation */}
+          <a
+            href="#contact"
+            className="sm:hidden group/more mt-6 inline-flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <span className="group-hover/more:underline underline-offset-4">
+              Ask about other add-ons
+            </span>
+            <ArrowUpRight size={13} />
+          </a>
         </div>
 
         {/* Payment terms + scope fine print */}
@@ -531,7 +589,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="mt-16 grid md:grid-cols-2 gap-12 lg:gap-20 pt-12 border-t border-white/8"
+          className="mt-16 hidden md:grid md:grid-cols-2 gap-12 lg:gap-20 pt-12 border-t border-white/8"
         >
           <div>
             <h3
@@ -577,61 +635,6 @@ export default function Pricing() {
           </div>
         </motion.div>
 
-        {/* Free audit offer */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="relative mt-16 border border-[#C9A96E]/30 bg-[#C9A96E]/[0.04] p-10 lg:p-12 overflow-hidden"
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(60% 100% at 0% 50%, rgba(201,169,110,0.08) 0%, transparent 70%)",
-            }}
-          />
-          <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div className="max-w-2xl">
-              <div
-                className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-4"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                Free Website Audit
-              </div>
-              <h3
-                className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-snug"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Not sure where to start? Get a free website audit.
-              </h3>
-              <p
-                className="text-[#9A9A9A] text-sm leading-relaxed"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                Tell us about your business and we&apos;ll review your current
-                website and online presence — or put together a free demo
-                preview of what a new one could look like. No cost, no
-                obligation.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="btn-cta btn-cta--gold group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden shrink-0 self-start lg:self-auto"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              <span className="relative flex items-center gap-2">
-                Get My Free Audit
-                <ArrowRight
-                  size={15}
-                  className="group-hover:translate-x-1 transition-transform duration-200"
-                />
-              </span>
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
