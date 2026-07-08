@@ -7,7 +7,8 @@ import SectionGlow from "./SectionGlow";
 const PACKAGES = [
   {
     name: "Starter Website",
-    subtitle: "For businesses with no proper website yet.",
+    subtitle:
+      "For businesses relying on Facebook, Google, or word-of-mouth without a clear website.",
     price: "$497",
     tagline:
       "A simple one-page website for businesses that need a professional online presence.",
@@ -20,6 +21,9 @@ const PACKAGES = [
       "Click-to-call button",
       "Basic SEO setup",
     ],
+    bestFor:
+      "Best for new businesses, Facebook-only businesses, or small local businesses that need a simple professional online presence.",
+    cta: "Enquire About Starter",
     featured: false,
   },
   {
@@ -37,6 +41,9 @@ const PACKAGES = [
       "Click-to-call buttons",
       "Basic SEO foundations",
     ],
+    bestFor:
+      "Best for cafés, tradies, salons, contractors, and service businesses that need more trust and clearer enquiries.",
+    cta: "Enquire About Local Business",
     featured: true,
     tag: "Most popular",
   },
@@ -55,6 +62,9 @@ const PACKAGES = [
       "CRM / enquiry tracking",
       "Post-launch support",
     ],
+    bestFor:
+      "Best for businesses that want stronger copy, more pages, lead capture, and long-term improvement.",
+    cta: "Enquire About Growth",
     featured: false,
   },
 ];
@@ -226,7 +236,7 @@ export default function Pricing() {
                 {tier.tagline}
               </p>
 
-              <ul className="space-y-2.5 mb-10">
+              <ul className="space-y-2.5 mb-8">
                 {tier.features.map((f) => (
                   <li
                     key={f}
@@ -239,13 +249,33 @@ export default function Pricing() {
                 ))}
               </ul>
 
+              {tier.bestFor && (
+                <div className="mb-8 pt-5 border-t border-white/[0.06]">
+                  <div
+                    className="text-[#C9A96E] text-[0.6rem] tracking-[0.25em] uppercase mb-2"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Best For
+                  </div>
+                  <p
+                    className="text-[#8A8A8A] text-xs leading-relaxed"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {(() => {
+                      const t = tier.bestFor.replace(/^Best for /, "");
+                      return t.charAt(0).toUpperCase() + t.slice(1);
+                    })()}
+                  </p>
+                </div>
+              )}
+
               <a
                 href="#contact"
                 className="flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/btn w-fit"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span className="group-hover/btn:underline underline-offset-4">
-                  Get started
+                  {tier.cta}
                 </span>
                 <ArrowUpRight
                   size={13}

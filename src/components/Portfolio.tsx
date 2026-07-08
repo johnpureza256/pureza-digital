@@ -171,7 +171,7 @@ export default function Portfolio() {
               className="text-[#C9A96E] text-xs tracking-[0.3em] uppercase"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Selected Work
+              Portfolio
             </span>
           </motion.div>
 
@@ -184,9 +184,9 @@ export default function Portfolio() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Recent Projects
+              Demo Projects &amp;
               <br />
-              <span className="text-[#C9A96E]">We&apos;re Proud Of</span>
+              <span className="text-[#C9A96E]">Website Concepts</span>
             </motion.h2>
 
             <motion.p
@@ -197,7 +197,7 @@ export default function Portfolio() {
               className="text-[#6B6B6B] text-sm max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              A selection of websites and digital experiences we&apos;ve designed and developed for businesses and organisations in Mid Canterbury. Some projects shown are demo concepts, created to demonstrate what a modern website could look like for a local business.
+              A selection of demo builds created to show what Pureza Digital can design and develop for local business types. Client projects will be added here as foundation clients launch.
             </motion.p>
           </div>
 
@@ -325,10 +325,17 @@ export default function Portfolio() {
             className="mt-16 text-center"
           >
             <p
-              className="text-[#6B6B6B] text-sm mb-6"
+              className="text-white text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-3"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Want a version like this adapted for your business?
+            </p>
+            <p
+              className="text-[#6B6B6B] text-sm mb-6 max-w-md mx-auto"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Your project could be next.
+              Send us your business name and we&apos;ll show you what it could
+              look like.
             </p>
             <a
               href="#contact"

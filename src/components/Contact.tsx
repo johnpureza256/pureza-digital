@@ -8,7 +8,11 @@ import SectionGlow from "./SectionGlow";
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
+    businessName: "",
     email: "",
+    phone: "",
+    currentPresence: "",
+    preferredContact: "",
     interest: "",
     message: "",
     company: "", // honeypot — hidden from real users
@@ -311,30 +315,118 @@ export default function Contact() {
                   </div>
                 </div>
 
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="businessName"
+                      className={labelClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      Business Name
+                    </label>
+                    <input
+                      id="businessName"
+                      name="businessName"
+                      type="text"
+                      autoComplete="organization"
+                      placeholder="Smith & Co Plumbing"
+                      value={form.businessName}
+                      onChange={handleChange}
+                      className={inputClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className={labelClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      Phone Number (optional)
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="021 234 5678"
+                      value={form.phone}
+                      onChange={handleChange}
+                      className={inputClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label
-                    htmlFor="interest"
+                    htmlFor="currentPresence"
                     className={labelClass}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    What are you interested in?
+                    Current Website / Facebook / Google Profile
                   </label>
-                  <select
-                    id="interest"
-                    name="interest"
-                    value={form.interest}
+                  <input
+                    id="currentPresence"
+                    name="currentPresence"
+                    type="text"
+                    autoComplete="url"
+                    placeholder="A link to your website, Facebook page, or Google listing"
+                    value={form.currentPresence}
                     onChange={handleChange}
-                    className={`${inputClass} cursor-pointer`}
+                    className={inputClass}
                     style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    <option value="" disabled>Select an option</option>
-                    <option value="free-audit">Free Website Audit</option>
-                    <option value="starter">Starter Website from $497</option>
-                    <option value="local-business">Local Business Website from $997</option>
-                    <option value="growth">Growth Website from $1,997</option>
-                    <option value="hosting">Hosting & Maintenance</option>
-                    <option value="not-sure">Not sure yet</option>
-                  </select>
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="interest"
+                      className={labelClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      What are you interested in?
+                    </label>
+                    <select
+                      id="interest"
+                      name="interest"
+                      value={form.interest}
+                      onChange={handleChange}
+                      className={`${inputClass} cursor-pointer`}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <option value="" disabled>Select an option</option>
+                      <option value="free-audit">Free Website Audit</option>
+                      <option value="starter">Starter Website from $497</option>
+                      <option value="local-business">Local Business Website from $997</option>
+                      <option value="growth">Growth Website from $1,997</option>
+                      <option value="hosting">Hosting & Maintenance</option>
+                      <option value="not-sure">Not sure yet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="preferredContact"
+                      className={labelClass}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      Preferred Contact Method
+                    </label>
+                    <select
+                      id="preferredContact"
+                      name="preferredContact"
+                      value={form.preferredContact}
+                      onChange={handleChange}
+                      className={`${inputClass} cursor-pointer`}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <option value="" disabled>Select an option</option>
+                      <option value="email">Email</option>
+                      <option value="phone">Phone call</option>
+                      <option value="text">Text message</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
@@ -343,14 +435,14 @@ export default function Contact() {
                     className={labelClass}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Tell Me About Your Project *
+                    Tell us about your business or what you want improved *
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={5}
-                    placeholder="What are you looking to build? Any existing brand assets, deadline, or special requirements?"
+                    placeholder="Example: We're a local café and need a simple website with our menu, opening hours, location, and contact details."
                     value={form.message}
                     onChange={handleChange}
                     className={`${inputClass} resize-none`}
@@ -392,6 +484,19 @@ export default function Contact() {
                     )}
                   </span>
                 </button>
+
+                <div className="border border-[#C9A96E]/20 bg-[#C9A96E]/[0.04] px-5 py-4">
+                  <p
+                    className="text-[#B8B8B8] text-sm leading-relaxed"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    <span className="text-[#C9A96E] font-semibold">
+                      Not sure what to write?
+                    </span>{" "}
+                    Just send your business name and website or Facebook page.
+                    We&apos;ll take it from there.
+                  </p>
+                </div>
 
                 <p
                   className="text-[#3A3A3A] text-xs text-center"

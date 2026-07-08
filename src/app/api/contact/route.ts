@@ -16,9 +16,19 @@ const INTEREST_LABELS: Record<string, string> = {
   "not-sure": "Not sure yet",
 };
 
+const CONTACT_METHOD_LABELS: Record<string, string> = {
+  email: "Email",
+  phone: "Phone call",
+  text: "Text message",
+};
+
 type Payload = {
   name?: string;
+  businessName?: string;
   email?: string;
+  phone?: string;
+  currentPresence?: string;
+  preferredContact?: string;
   interest?: string;
   message?: string;
   company?: string; // honeypot — real users never fill this
@@ -81,7 +91,11 @@ export async function POST(req: Request) {
     }
 
     const name = (body.name || "").trim();
+    const businessName = (body.businessName || "").trim();
     const email = (body.email || "").trim();
+    const phone = (body.phone || "").trim();
+    const currentPresence = (body.currentPresence || "").trim();
+    const preferredContact = (body.preferredContact || "").trim();
     const message = (body.message || "").trim();
     const interest = (body.interest || "").trim();
 
@@ -102,9 +116,24 @@ export async function POST(req: Request) {
     }
 
     const interestLabel = INTEREST_LABELS[interest] || "Not specified";
+    const contactMethodLabel = CONTACT_METHOD_LABELS[preferredContact] || "Not specified";
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
+
+    // Optional business fields — only render rows that were actually provided.
+    const optionalRows: { label: string; value: string }[] = [];
+    if (businessName) optionalRows.push({ label: "Business", value: businessName });
+    if (phone) optionalRows.push({ label: "Phone", value: phone });
+    if (currentPresence) optionalRows.push({ label: "Current site", value: currentPresence });
+    if (preferredContact) optionalRows.push({ label: "Prefers", value: contactMethodLabel });
+    const optionalRowsHtml = optionalRows
+      .map(
+        (r) =>
+          `<tr><td style="padding:6px 0;color:#666">${escapeHtml(r.label)}</td><td style="padding:6px 0">${escapeHtml(r.value)}</td></tr>`
+      )
+      .join("");
+    const optionalRowsText = optionalRows.map((r) => `${r.label}: ${r.value}`).join("\n");
 
     // 1) Notification to you
     const notify = await sendEmail({
@@ -114,13 +143,16 @@ export async function POST(req: Request) {
       subject: `New enquiry from ${name}`,
       text:
         `New contact form submission\n\n` +
-        `Name: ${name}\nEmail: ${email}\nInterested in: ${interestLabel}\n\nMessage:\n${message}\n`,
+        `Name: ${name}\nEmail: ${email}\n` +
+        (optionalRowsText ? `${optionalRowsText}\n` : "") +
+        `Interested in: ${interestLabel}\n\nMessage:\n${message}\n`,
       html: `
         <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#111">
           <h2 style="margin:0 0 16px">New enquiry from your website</h2>
           <table style="width:100%;border-collapse:collapse;font-size:14px">
             <tr><td style="padding:6px 0;color:#666;width:90px">Name</td><td style="padding:6px 0"><strong>${safeName}</strong></td></tr>
             <tr><td style="padding:6px 0;color:#666">Email</td><td style="padding:6px 0"><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
+            ${optionalRowsHtml}
             <tr><td style="padding:6px 0;color:#666">Interested in</td><td style="padding:6px 0">${escapeHtml(interestLabel)}</td></tr>
           </table>
           <div style="margin-top:16px;padding:16px;background:#f6f6f6;border-radius:8px;font-size:14px;line-height:1.6">${safeMessage}</div>
