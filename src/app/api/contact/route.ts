@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 // Where enquiry notifications are delivered, and what address mail is sent from.
 // Override via env vars in production if you ever change these.
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "purezadigitalnz@gmail.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "hello@purezadigital.com";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Pureza Digital <hello@purezadigital.com>";
 
 const INTEREST_LABELS: Record<string, string> = {
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     if (!apiKey) {
       console.error("RESEND_API_KEY is not set");
       return NextResponse.json(
-        { ok: false, error: "Email service isn't configured yet. Please email purezadigitalnz@gmail.com directly." },
+        { ok: false, error: "Email service isn't configured yet. Please email hello@purezadigital.com directly." },
         { status: 500 }
       );
     }
@@ -163,7 +163,7 @@ export async function POST(req: Request) {
     if (!notify.ok) {
       console.error("Resend notify failed:", notify.status, notify.data);
       return NextResponse.json(
-        { ok: false, error: "We couldn't send your message right now. Please email purezadigitalnz@gmail.com directly." },
+        { ok: false, error: "We couldn't send your message right now. Please email hello@purezadigital.com directly." },
         { status: 502 }
       );
     }
@@ -177,7 +177,7 @@ export async function POST(req: Request) {
         text:
           `Hi ${name},\n\nThanks for getting in touch with Pureza Digital. ` +
           `I've received your message and will get back to you within 24 hours.\n\n` +
-          `Here's a copy of what you sent:\n"${message}"\n\n— John, Pureza Digital\npurezadigitalnz@gmail.com`,
+          `Here's a copy of what you sent:\n"${message}"\n\n— John, Pureza Digital\nhello@purezadigital.com`,
         html: `
           <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#111">
             <h2 style="margin:0 0 12px">Thanks for reaching out 👋</h2>
@@ -185,7 +185,7 @@ export async function POST(req: Request) {
             <p style="font-size:14px;line-height:1.6">Thanks for getting in touch with <strong>Pureza Digital</strong>. I've received your message and will get back to you within <strong>24 hours</strong>.</p>
             <p style="font-size:14px;line-height:1.6;color:#666">Here's a copy of what you sent:</p>
             <div style="padding:14px;background:#f6f6f6;border-radius:8px;font-size:14px;line-height:1.6;color:#333">${safeMessage}</div>
-            <p style="font-size:14px;line-height:1.6;margin-top:16px">— John, Pureza Digital<br><a href="mailto:purezadigitalnz@gmail.com">purezadigitalnz@gmail.com</a></p>
+            <p style="font-size:14px;line-height:1.6;margin-top:16px">— John, Pureza Digital<br><a href="mailto:hello@purezadigital.com">hello@purezadigital.com</a></p>
           </div>`,
       });
     } catch (e) {

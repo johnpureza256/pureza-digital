@@ -133,8 +133,8 @@ export default function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "purezadigitalnz@gmail.com",
-                  href: "mailto:purezadigitalnz@gmail.com",
+                  value: "hello@purezadigital.com",
+                  href: "mailto:hello@purezadigital.com",
                 },
                 {
                   icon: MapPin,

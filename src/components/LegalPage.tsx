@@ -32,7 +32,7 @@ export interface LegalPageProps {
 }
 
 const CONTACT = {
-  email: "purezadigitalnz@gmail.com",
+  email: "hello@purezadigital.com",
   phone: "+64 21 284 2008",
   location: "Ashburton, Canterbury, New Zealand",
 };
