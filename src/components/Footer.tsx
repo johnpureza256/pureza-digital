@@ -53,7 +53,6 @@ export default function Footer() {
             className="flex flex-wrap gap-8"
           >
             {[
-              ["About", "/#about"],
               ["Services", "/#services"],
               ["Work", "/#work"],
               ["Packages", "/#pricing"],

@@ -9,7 +9,6 @@ import Pricing from "@/components/Pricing";
 import FreeAuditCTA from "@/components/FreeAuditCTA";
 import WhatHappensNext from "@/components/WhatHappensNext";
 import WhatWeNeed from "@/components/WhatWeNeed";
-import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -29,7 +28,6 @@ export default function Home() {
       <FreeAuditCTA />
       <WhatHappensNext />
       <WhatWeNeed />
-      <About />
       <Testimonials />
       <FAQ />
       <Contact />
