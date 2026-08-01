@@ -115,7 +115,7 @@ export default function WhoThisIsFor() {
             </ul>
 
             <a
-              href="#contact"
+              href="/contact"
               className="group/fit mt-10 inline-flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A96E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >

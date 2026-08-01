@@ -152,7 +152,7 @@ export default function WhatHappensNext() {
             Ready when you are — it starts with one message.
           </p>
           <a
-            href="#contact"
+            href="/contact"
             className="group/cta inline-flex items-center gap-2 self-start sm:self-auto text-[#C9A96E] text-xs tracking-[0.15em] uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >

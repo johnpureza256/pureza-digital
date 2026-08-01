@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 
+// Honest, concrete signals a studio with no clients yet can still stand
+// behind — each is a promise about how we work, not a claim we can't back.
 const ITEMS = [
-  "Ashburton Based",
-  "NZ Owned",
-  "Fixed Quotes",
-  "Website Care Available",
+  "Ashburton based · NZ owned",
+  "A free concept before you commit",
+  "Fixed quotes — no surprises",
+  "Every enquiry answered in 24 hours",
 ];
 
 export default function TrustBar() {

@@ -190,7 +190,7 @@ export default function Services() {
 
               {/* CTA */}
               <a
-                href="#contact"
+                href="/contact"
                 className="flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/btn w-fit"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
@@ -214,7 +214,7 @@ export default function Services() {
           style={{ fontFamily: "var(--font-inter)" }}
         >
           Need something more custom — a portal, dashboard, or web app?{" "}
-          <a href="#contact" className="text-[#C9A96E] hover:underline underline-offset-4">
+          <a href="/contact" className="text-[#C9A96E] hover:underline underline-offset-4">
             Get in touch
           </a>{" "}
           and we&apos;ll scope it with you.

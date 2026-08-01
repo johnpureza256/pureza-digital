@@ -60,7 +60,7 @@ export default function NoWebsiteYet() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.25 }}
-              href="#contact"
+              href="/free-audit"
               className="btn-cta btn-cta--gold group relative inline-flex justify-center px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             >

@@ -53,10 +53,11 @@ export default function Footer() {
             className="flex flex-wrap gap-8"
           >
             {[
-              ["Services", "/#services"],
-              ["Work", "/#work"],
-              ["Packages", "/#pricing"],
-              ["Contact", "/#contact"],
+              ["Work", "/work"],
+              ["Services", "/services"],
+              ["Packages", "/pricing"],
+              ["About", "/about"],
+              ["Contact", "/contact"],
             ].map(([label, href]) => (
               <Link
                 key={label}

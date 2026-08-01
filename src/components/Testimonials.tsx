@@ -78,7 +78,7 @@ export default function Testimonials() {
               pricing moves to standard rates.
             </p>
             <a
-              href="#contact"
+              href="/free-audit"
               className="btn-cta btn-cta--outline group/cta inline-flex items-center gap-3 px-7 py-3.5 border border-[#C9A96E]/30 text-[#C9A96E] text-xs tracking-[0.18em] uppercase hover:border-[#C9A96E]/70 hover:bg-[#C9A96E]/[0.06]"
               style={{ fontFamily: "var(--font-inter)" }}
             >

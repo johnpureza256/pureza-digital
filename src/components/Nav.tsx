@@ -2,55 +2,35 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Packages", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Packages", href: "/pricing" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the nav link for the section currently in view
-  useEffect(() => {
-    const sections = links
-      .map((l) => document.querySelector(l.href))
-      .filter((el): el is Element => el !== null);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target.id) {
-          setActiveSection(`#${visible[0].target.id}`);
-        }
-      },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
-    );
-
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleLinkClick = (href: string) => {
-    setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  // A link is active on its own page and on any nested route beneath it,
+  // so "Work" stays lit while reading a /work/[slug] case study.
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
@@ -66,11 +46,10 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
           {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          <Link
+            href="/"
             className="group cursor-pointer flex items-center gap-3"
-            aria-label="Pureza Digital — back to top"
+            aria-label="Pureza Digital — home"
           >
             <Image
               src="/pureza-logo-mark.png"
@@ -86,41 +65,38 @@ export default function Nav() {
             >
               Pureza Digital
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <ul className="hidden lg:flex items-center gap-5 xl:gap-6">
             {links.map((link, i) => {
-              const isActive = activeSection === link.href;
+              const active = isActive(link.href);
               return (
                 <li key={link.label}>
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    aria-current={isActive ? "true" : undefined}
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
                     className="group relative flex items-baseline gap-1.5 text-sm tracking-[0.12em] uppercase cursor-pointer"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {/* Editorial index */}
                     <span
                       className={`hidden xl:inline text-[10px] tabular-nums transition-colors duration-300 ${
-                        isActive
+                        active
                           ? "text-[#C9A96E]"
                           : "text-[#5A5A5A] group-hover:text-[#C9A96E]/70"
                       }`}
                     >
                       0{i + 1}
                     </span>
-                    {/* Label — color shift only, no underline (minimal) */}
                     <span
                       className={`transition-colors duration-200 ${
-                        isActive
-                          ? "text-white"
-                          : "text-[#A0A0A0] group-hover:text-white"
+                        active ? "text-white" : "text-[#A0A0A0] group-hover:text-white"
                       }`}
                     >
                       {link.label}
                     </span>
-                  </button>
+                  </Link>
                 </li>
               );
             })}
@@ -128,14 +104,14 @@ export default function Nav() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-6">
-            <button
-              onClick={() => handleLinkClick("#contact")}
+            <Link
+              href="/free-audit"
               className="btn-cta btn-cta--outline group relative px-6 py-2.5 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.12em] uppercase overflow-hidden hover:text-[#0A0A0A] cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="absolute inset-0 bg-[#C9A96E] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
               <span className="relative whitespace-nowrap">Get a Free Website Audit</span>
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -143,6 +119,7 @@ export default function Nav() {
             className="lg:hidden text-white p-2 cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -160,40 +137,48 @@ export default function Nav() {
             className="fixed inset-0 z-40 bg-[#0A0A0A]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-10"
           >
             {links.map((link, i) => {
-              const isActive = activeSection === link.href;
+              const active = isActive(link.href);
               return (
-                <motion.button
+                <motion.div
                   key={link.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08, duration: 0.4 }}
-                  onClick={() => handleLinkClick(link.href)}
-                  aria-current={isActive ? "true" : undefined}
-                  className={`flex items-baseline gap-3 text-3xl font-light tracking-[0.15em] uppercase transition-colors cursor-pointer ${
-                    isActive ? "text-[#C9A96E]" : "text-white/80 hover:text-[#C9A96E]"
-                  }`}
-                  style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  <span
-                    className="text-sm tabular-nums text-[#C9A96E]/60"
-                    style={{ fontFamily: "var(--font-inter)" }}
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-baseline gap-3 text-3xl font-light tracking-[0.15em] uppercase transition-colors cursor-pointer ${
+                      active ? "text-[#C9A96E]" : "text-white/80 hover:text-[#C9A96E]"
+                    }`}
+                    style={{ fontFamily: "var(--font-playfair)" }}
                   >
-                    0{i + 1}
-                  </span>
-                  {link.label}
-                </motion.button>
+                    <span
+                      className="text-sm tabular-nums text-[#C9A96E]/60"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      0{i + 1}
+                    </span>
+                    {link.label}
+                  </Link>
+                </motion.div>
               );
             })}
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.4 }}
-              onClick={() => handleLinkClick("#contact")}
-              className="btn-cta btn-cta--outline mt-4 px-10 py-4 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.2em] uppercase cursor-pointer"
-              style={{ fontFamily: "var(--font-inter)" }}
+              transition={{ delay: 0.4, duration: 0.4 }}
             >
-              Get a Free Website Audit
-            </motion.button>
+              <Link
+                href="/free-audit"
+                onClick={() => setMenuOpen(false)}
+                className="btn-cta btn-cta--outline mt-4 inline-block px-10 py-4 border border-[#C9A96E] text-[#C9A96E] text-sm tracking-[0.2em] uppercase cursor-pointer"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Get a Free Website Audit
+              </Link>
+            </motion.div>
             <motion.a
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

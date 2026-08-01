@@ -293,7 +293,7 @@ export default function Pricing() {
               </details>
 
               <a
-                href="#contact"
+                href="/contact"
                 className={`group/btn inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] ${
                   tier.featured
                     ? "bg-[#C9A96E] text-[#0A0A0A] hover:bg-[#E8C98A]"
@@ -450,7 +450,7 @@ export default function Pricing() {
                   </a>
                 ) : (
                   <a
-                    href="#contact"
+                    href="/contact"
                     className={`group/pay relative inline-flex w-full items-center justify-center gap-2 px-6 py-3 text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] ${
                       plan.featured
                         ? "bg-[#C9A96E] text-[#0A0A0A] hover:bg-[#E8C98A]"
@@ -488,7 +488,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            href="#contact"
+            href="/contact"
             className="mt-8 flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase group/care w-fit"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -572,7 +572,7 @@ export default function Pricing() {
 
           {/* Mobile: remaining add-ons live behind a conversation */}
           <a
-            href="#contact"
+            href="/contact"
             className="sm:hidden group/more mt-6 inline-flex items-center gap-2 text-[#C9A96E] text-xs tracking-[0.15em] uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >

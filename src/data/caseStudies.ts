@@ -1,13 +1,21 @@
 // Case study content for portfolio demo projects.
 // These are demo concepts — copy stays honest about that throughout.
+//
+// This file is the single source of truth for case-study/portfolio data.
+// The /work hub, the home-page featured teaser, and each /work/[slug] page
+// all read from here — nothing should re-declare project data elsewhere.
 
 export type CaseStudy = {
   slug: string;
   title: string;
   category: string;
   businessType: string;
+  niche: Niche; // filter bucket for the /work hub
   summary: string;
-  accent: string;
+  accent: string; // bright brand colour — gradients, links, headings
+  palette: string; // solid marker colour — demo-modal dot, card accent dot
+  bg: string; // gradient utility classes for the card background
+  tags: string[]; // short chips shown on cards
   demo: string;
   thumb: string;
   problem: string;
@@ -19,15 +27,32 @@ export type CaseStudy = {
   couldImprove: string[];
 };
 
+// Filter buckets for the /work hub. Keep this list short and human —
+// these are the words a local business owner would use for their own trade.
+export const NICHES = [
+  "Hospitality",
+  "Trades",
+  "Community",
+  "Retail",
+  "Health & Beauty",
+  "Professional",
+] as const;
+
+export type Niche = (typeof NICHES)[number];
+
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "plainsong-espresso",
     title: "Plainsong Espresso",
     category: "Café & Hospitality",
     businessType: "Independent café",
+    niche: "Hospitality",
     summary:
       "A warm, editorial café website designed to turn 'where should we get coffee?' into a decided visit — menu, atmosphere, and location answered in one scroll.",
     accent: "#C99A4E",
+    palette: "#241813",
+    bg: "from-[#1A0E06] to-[#0A0A0A]",
+    tags: ["HTML / CSS / JS", "Brand Design", "Editorial"],
     demo: "/plainsong-espresso/index.html",
     thumb: "/portfolio/plainsong-espresso.jpg",
     problem:
@@ -62,9 +87,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Rotary Club of Ashburton",
     category: "Community Organisation",
     businessType: "Community service club",
+    niche: "Community",
     summary:
       "A modern digital presence for one of Mid Canterbury's most established community organisations — built to make joining, donating, and attending feel approachable.",
     accent: "#17458F",
+    palette: "#17458F",
+    bg: "from-[#040D1A] to-[#0A0A0A]",
+    tags: ["React", "Tailwind CSS", "Multi-page"],
     demo: "/rotary-ashburton/index.html",
     thumb: "/portfolio/rotary-ashburton.jpg",
     problem:
@@ -97,9 +126,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Mainline Plumbing",
     category: "Trades & Services",
     businessType: "Local plumbing business",
+    niche: "Trades",
     summary:
       "A single-page trades website engineered around one outcome: turning an urgent visitor into a phone call in under ten seconds.",
     accent: "#3B82F6",
+    palette: "#1E40AF",
+    bg: "from-[#040A1A] to-[#0A0A0A]",
+    tags: ["HTML / CSS / JS", "Animation", "Local Business"],
     demo: "/mainline-plumbing/index.html",
     thumb: "/portfolio/mainline-plumbing.jpg",
     problem:
@@ -128,42 +161,133 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   {
-    slug: "crunch-republic",
-    title: "Crunch Republic",
-    category: "Food & Hospitality",
-    businessType: "Korean fried chicken restaurant",
+    slug: "styles-and-smiles",
+    title: "Styles & Smiles",
+    category: "Hair & Beauty",
+    businessType: "Independent hair salon",
+    niche: "Health & Beauty",
     summary:
-      "An appetite-first landing page built to do one thing: make you hungry enough to order — flavours front and centre, friction nowhere.",
-    accent: "#CBA15A",
-    demo: "/crunch-republic/index.html",
-    thumb: "/portfolio/crunch-republic.jpg",
+      "A booking-first site for a one-chair Ashburton salon — service menu, real gallery, and the stylist's own story, built so a scroll ends in an appointment.",
+    accent: "#2564C7",
+    palette: "#2564C7",
+    bg: "from-[#060C18] to-[#0A0A0A]",
+    tags: ["HTML / CSS / JS", "Booking-first", "Brand Design"],
+    demo: "/styles-and-smiles/index.html",
+    thumb: "/portfolio/styles-and-smiles.jpg",
     problem:
-      "Takeaway decisions are impulse decisions. A restaurant whose online presence is a text-only listing or an out-of-date menu photo loses the moment — the customer's craving gets captured by whichever competitor shows them the food.",
+      "A great local stylist often lives entirely inside a Facebook page and a full appointment book. New clients can't see the price of a cut, what the work actually looks like, or how to book without sending a message and waiting. Every bit of friction is a booking that goes to the salon down the road.",
     goal:
-      "Lead with the food. Every flavour photographed and named, the menu structured for fast scanning, and the path from 'that looks good' to ordering kept as short as possible.",
+      "Turn a personal, referral-driven salon into something a stranger can trust in one visit — a clear service menu with prices, a gallery of real work, and a booking path that takes a tap, not a DM.",
     designDirection:
-      "Rich gold-on-charcoal that makes the food photography glow. Bold display type with the energy of the brand, a flavour-led menu showcase rather than a price list, and pacing designed like an appetite: hook, build, order.",
+      "Fresh, bright, and personal. A soft blue palette that feels clean rather than clinical, generous photography of finished cuts, and the stylist front-and-centre so the site feels like the person, not a franchise. The service menu reads like a price list you'd actually trust.",
     features: [
-      "Flavour-first menu showcase with dedicated photography per item",
-      "Gold-on-charcoal palette that flatters food imagery",
-      "Fast, mobile-first build for hungry-right-now visitors",
-      "Clear ordering and location details at every decision point",
-      "Brand personality carried through every section — not a template with photos dropped in",
+      "Service menu with plain prices — cut, restyle, blow wave, men's and kids'",
+      "Gallery of real finished work, not stock",
+      "A 'your stylist' section that builds personal trust",
+      "One-tap booking and Facebook link",
+      "Opening hours (Wed–Sun) visible up front",
+      "Mobile-first — most salon browsing happens on a phone",
     ],
     journey: [
-      { step: "Craving strikes", detail: "They're deciding what's for dinner and someone mentions Korean fried chicken." },
-      { step: "Sees the flavours", detail: "Six glistening options with names and heat levels. The decision stops being 'if' and becomes 'which'." },
-      { step: "Orders", detail: "Location, hours, and ordering info right where the appetite peaks." },
+      { step: "Hears the name", detail: "A friend recommends the salon or they spot it on Facebook and look for more." },
+      { step: "Sizes it up", detail: "Prices, real photos, and the stylist's face answer 'is this for me?' in seconds." },
+      { step: "Books", detail: "One tap to request an appointment — no message-and-wait, no phone tag." },
     ],
-    tech: ["Hand-coded HTML / CSS / JS", "Optimised food photography (WebP)", "Mobile-first single page"],
+    tech: ["Hand-coded HTML / CSS / JS", "Booking-oriented single page", "Responsive, mobile-first layout"],
     couldImprove: [
-      "More walk-ins and orders captured at the moment of craving",
-      "A menu that can grow with new flavours without a redesign",
-      "A brand presence that matches the quality of the food",
+      "Fewer back-and-forth booking messages eating into chair time",
+      "New clients who arrive already knowing the prices and the style",
+      "A professional home base that outlasts any one social platform",
+    ],
+  },
+  {
+    slug: "monster-chicken",
+    title: "Seoul Fire",
+    category: "Food & Hospitality",
+    businessType: "Korean fried chicken shop",
+    niche: "Hospitality",
+    summary:
+      "A loud, order-now take on Korean fried chicken — siren red, a heat scale, and delivery-app buttons dropped exactly where the appetite peaks.",
+    accent: "#FF3D14",
+    palette: "#FF3D14",
+    bg: "from-[#1A0604] to-[#0A0A0A]",
+    tags: ["HTML / CSS / JS", "Delivery-first", "Bold Brand"],
+    demo: "/monster-chicken-2/index.html",
+    thumb: "/portfolio/monster-chicken.jpg",
+    problem:
+      "For a fast, order-now food brand, a tasteful menu isn't enough — the site has to shout, and it has to hand the customer straight to whatever ordering app they already use. A quiet page loses the impulse order to whoever's louder and one tap closer to checkout.",
+    goal:
+      "Make the crave undeniable and the order effortless. Lead with heat, crunch, and colour; name every glaze; and put Uber Eats and Bopple buttons exactly where the decision gets made.",
+    designDirection:
+      "The opposite end of the spectrum from an editorial, restrained take — proof that a fast, order-now food brand needs a site that shouts. Siren red and high-energy: a 'pick your Seoul heat' scale, six named glazes shot up close, and ordering buttons that never make you hunt.",
+    features: [
+      "High-energy red identity built to interrupt a scroll",
+      "'Pick your heat' scale that turns browsing into choosing",
+      "Six glazes, each photographed and named",
+      "Delivery-app ordering (Uber Eats, Bopple) at the decision point",
+      "Find-us and hours for walk-in and pickup",
+      "Fast, image-optimised, mobile-first build",
+    ],
+    journey: [
+      { step: "Gets hit by it", detail: "The red and the crunch stop the scroll — this isn't a quiet menu listing." },
+      { step: "Picks a heat", detail: "The glaze lineup and heat scale turn 'should we?' into 'which one?'" },
+      { step: "Orders in a tap", detail: "Delivery-app buttons are right there — no searching, no drop-off." },
+    ],
+    tech: ["Hand-coded HTML / CSS / JS", "Optimised food photography (WebP)", "Delivery-app integration links"],
+    couldImprove: [
+      "More impulse orders captured before the craving cools",
+      "A brand that stands out in a crowded delivery-app list",
+      "Menu and glazes that update without a rebuild",
+    ],
+  },
+  {
+    slug: "thicket",
+    title: "Thicket",
+    category: "Retail",
+    businessType: "Plant & garden shop",
+    niche: "Retail",
+    summary:
+      "An independent plant shop that needed to feel like more than a market stall — a warm, editorial site that turns 'is it worth the trip across town?' into a planned visit.",
+    accent: "#5FA574",
+    palette: "#274B38",
+    bg: "from-[#0A1710] to-[#0A0A0A]",
+    tags: ["HTML / CSS / JS", "Brand Design", "Retail"],
+    demo: "/thicket/index.html",
+    thumb: "/portfolio/thicket.jpg",
+    problem:
+      "A small independent shop competes with big-box garden centres and online sellers on convenience it can't match — but wins on range, advice, and character it has no way to show. Without a site, a first-time or younger plant buyer can't tell what's stocked, whether the shop is even open, or why it beats driving to the chain store, so they don't make the trip.",
+    goal:
+      "Give an independent plant shop a home that does what the chain stores can't: show the character, make the in-store help (the free potting bar) a reason to visit, and turn a curious browser into someone who plans a trip across town.",
+    designDirection:
+      "Warm, editorial, and unmistakably independent — the opposite of a fluorescent-lit big-box aisle. A deep-forest-and-clay palette on warm paper, a characterful serif, a greenhouse-arch hero, and nursery-tag section labels drawn from the shop's own world. Product categories are labelled by the light and water they actually want, so the site gives advice before you arrive.",
+    features: [
+      "'What's in store' categories, each labelled by real light & water needs",
+      "The free potting bar made a signature reason to visit",
+      "Opening hours and East Street location impossible to miss",
+      "Gift angle for the non-plant-person buying a present",
+      "Hand-illustrated, fully self-contained — loads fast, never renders broken",
+      "Mobile-first for the 'plant shop near me' search",
+    ],
+    journey: [
+      { step: "Gets curious", detail: "New to plants, or new to town — they want somewhere local that isn't the big-box store." },
+      { step: "Sees the character", detail: "Range, honest care labels, and the free potting bar make it feel worth the trip." },
+      { step: "Plans the visit", detail: "Hours and location are right there; the decision to go becomes a plan, not a maybe." },
+    ],
+    tech: ["Hand-coded HTML / CSS / JS", "Custom SVG illustration — no stock photography", "Self-contained, mobile-first single page"],
+    couldImprove: [
+      "More planned visits from buyers who'd otherwise default to the chain store",
+      "A home for the shop that outlasts an Instagram feed",
+      "Fewer 'are you open / do you have…' messages to answer",
     ],
   },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return CASE_STUDIES.find((c) => c.slug === slug);
+}
+
+// Niches that actually have at least one study — used to build filter chips
+// so the hub never shows an empty category.
+export function activeNiches(): Niche[] {
+  return NICHES.filter((n) => CASE_STUDIES.some((c) => c.niche === n));
 }

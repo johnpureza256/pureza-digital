@@ -148,7 +148,7 @@ export default function WhatWeNeed() {
             <span className="text-[#C9A96E]">we&rsquo;ll help you work through it.</span>
           </p>
           <a
-            href="#contact"
+            href="/contact"
             className="group/cta inline-flex items-center gap-2 self-start sm:self-auto text-[#C9A96E] text-xs tracking-[0.15em] uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A96E]"
             style={{ fontFamily: "var(--font-inter)" }}
           >

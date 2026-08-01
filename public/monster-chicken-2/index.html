@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Seoul Fire — Korean Fried Chicken · Ashburton</title>
+<meta name="description" content="Twice-fried Korean chicken tossed to order in six house glazes. Dine in, take away, or order now on Uber Eats and Bopple. 212 East Street, Ashburton." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        coal:  '#0D0907',
+        soot:  '#181009',
+        crust: '#22150D',
+        fire:  '#FF3D14',
+        ember: '#FF8A3D',
+        bone:  '#F6EADB',
+        smoke: '#A68F80',
+      },
+      fontFamily: {
+        display: ['Anton','sans-serif'],
+        sans: ['"Schibsted Grotesk"','sans-serif'],
+        mono: ['"Space Mono"','monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+:root{
+  --fire:#FF3D14; --ember:#FF8A3D; --bone:#F6EADB;
+  --ease-spring:cubic-bezier(.22,1,.36,1);
+}
+html{background:#0D0907}
+body{
+  background:
+    radial-gradient(1100px 700px at 85% -10%, rgba(255,61,20,.13), transparent 60%),
+    radial-gradient(900px 600px at -15% 30%, rgba(255,138,61,.07), transparent 55%),
+    radial-gradient(1200px 900px at 50% 115%, rgba(255,61,20,.08), transparent 60%),
+    #0D0907;
+  color:var(--bone);
+  -webkit-font-smoothing:antialiased;
+}
+/* grain */
+.grain{position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");}
+
+.display{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.92;letter-spacing:.005em;font-weight:400}
+.firetext{background:linear-gradient(97deg,#FF3D14 10%,#FF8A3D 65%,#FFC46B 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ember)}
+.firetext-live{background:linear-gradient(97deg,#FF3D14 0%,#FF8A3D 30%,#FFC46B 50%,#FF8A3D 70%,#FF3D14 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:firepan 7s ease-in-out infinite alternate}
+@keyframes firepan{from{background-position:0% 50%}to{background-position:100% 50%}}
+.float-slow{animation:heroFloat 9s ease-in-out infinite alternate}
+@keyframes heroFloat{from{transform:scale(1.35) translateY(0)}to{transform:scale(1.35) translateY(-12px)}}
+/* ember drift */
+.embers{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.embers i{position:absolute;bottom:-2%;left:var(--x,50%);width:5px;height:5px;border-radius:50%;
+  background:radial-gradient(circle,#FFC46B,#FF3D14 60%,transparent 75%);filter:blur(.4px);opacity:0;
+  animation:rise var(--t,12s) linear infinite;animation-delay:var(--d,0s)}
+@keyframes rise{
+  0%{transform:translate3d(0,0,0) scale(var(--s,1));opacity:0}
+  10%{opacity:.55}
+  55%{opacity:.3}
+  100%{transform:translate3d(var(--dx,24px),-80vh,0) scale(calc(var(--s,1)*.6));opacity:0}}
+.hero-par{transition:transform 1.1s var(--ease-spring);will-change:transform}
+.body-copy{line-height:1.7}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:.95rem;
+  padding:.95rem 1.7rem;border-radius:.15rem;text-transform:uppercase;letter-spacing:.06em;
+  transition:transform .35s var(--ease-spring),opacity .25s ease,box-shadow .35s var(--ease-spring);will-change:transform}
+.btn:active{transform:scale(.97) translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.btn-fire{color:#160702;background:linear-gradient(97deg,#FF3D14,#FF7A2F);
+  box-shadow:0 1px 0 rgba(255,196,107,.55) inset,0 10px 30px -8px rgba(255,61,20,.55),0 4px 12px -4px rgba(255,61,20,.4)}
+.btn-fire:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,196,107,.6) inset,0 18px 44px -10px rgba(255,61,20,.65),0 6px 16px -4px rgba(255,61,20,.45)}
+.btn-ghost{color:var(--bone);background:rgba(246,234,219,.05);border:1px solid rgba(246,234,219,.22);
+  box-shadow:0 8px 24px -12px rgba(0,0,0,.7)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(255,138,61,.55);background:rgba(255,61,20,.09)}
+.navlink{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);opacity:.72;
+  transition:opacity .25s ease,transform .3s var(--ease-spring);display:inline-block;padding:.4rem .1rem}
+.navlink:hover{opacity:1;transform:translateY(-1px)}
+.navlink:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+/* surfaces / depth */
+.surface{background:linear-gradient(180deg,#181009,#130C07);border:1px solid rgba(255,120,50,.12);
+  box-shadow:0 20px 50px -24px rgba(0,0,0,.85),0 6px 18px -10px rgba(255,61,20,.12)}
+.surface-hi{background:linear-gradient(180deg,#22150D,#180F09);border:1px solid rgba(255,138,61,.18);
+  box-shadow:0 30px 70px -28px rgba(0,0,0,.9),0 10px 26px -14px rgba(255,61,20,.2)}
+
+/* dish cards */
+.dish{border-radius:.2rem;overflow:hidden;transition:transform .5s var(--ease-spring),box-shadow .5s var(--ease-spring)}
+.dish:hover{transform:translateY(-6px);box-shadow:0 34px 70px -26px rgba(0,0,0,.9),0 14px 34px -14px rgba(255,61,20,.32)}
+.dish__img{position:relative;overflow:hidden}
+.dish__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-spring);will-change:transform}
+.dish:hover .dish__img img{transform:scale(1.06)}
+.dish__img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,9,7,.62),transparent 45%)}
+.dish__tone{position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,61,20,.16),rgba(34,16,8,.32));mix-blend-mode:multiply;pointer-events:none}
+
+/* heat gauge */
+.heat{display:flex;align-items:center;gap:.55rem;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.18em;color:var(--smoke)}
+.heat__ticks{display:flex;gap:4px}
+.heat__ticks i{width:14px;height:4px;border-radius:1px;background:rgba(246,234,219,.14)}
+.heat__ticks i.on{background:linear-gradient(90deg,#FF3D14,#FF8A3D);box-shadow:0 0 8px rgba(255,61,20,.7)}
+
+.tag{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:#FFD9A8;background:rgba(13,9,7,.72);border:1px solid rgba(255,138,61,.35);padding:.35rem .7rem;border-radius:.1rem;backdrop-filter:blur(6px)}
+
+/* marquee */
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,120,50,.18);border-bottom:1px solid rgba(255,120,50,.18);
+  background:linear-gradient(90deg,rgba(255,61,20,.08),rgba(255,138,61,.04),rgba(255,61,20,.08))}
+.marquee__track{display:inline-flex;animation:slide 26s linear infinite;will-change:transform}
+.marquee__item{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(1.1rem,2.4vw,1.7rem);letter-spacing:.06em;
+  color:rgba(246,234,219,.85);padding:.9rem 0}
+.marquee__item .dot{color:var(--fire);margin:0 1.4rem}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* reveals */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .9s var(--ease-spring)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.12s}
+.reveal[data-delay="2"]{transition-delay:.24s}
+.reveal[data-delay="3"]{transition-delay:.36s}
+
+/* hero load sequence */
+.hero-seq{opacity:0;transform:translateY(34px)}
+.loaded .hero-seq{opacity:1;transform:none;transition:opacity .9s ease,transform 1s var(--ease-spring)}
+.loaded .hero-seq[data-seq="1"]{transition-delay:.08s}
+.loaded .hero-seq[data-seq="2"]{transition-delay:.2s}
+.loaded .hero-seq[data-seq="3"]{transition-delay:.34s}
+.loaded .hero-seq[data-seq="4"]{transition-delay:.48s}
+.hero-img-wrap{opacity:0;transform:scale(.94) rotate(1.5deg)}
+.loaded .hero-img-wrap{opacity:1;transform:scale(1) rotate(1.5deg);transition:opacity 1.1s ease .3s,transform 1.3s var(--ease-spring) .3s}
+
+/* hero image treatment */
+.frame-fire{position:relative;border-radius:.2rem;overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 18px 50px -18px rgba(255,61,20,.38)}
+.frame-fire::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(13,9,7,.55),transparent 50%);pointer-events:none}
+.frame-fire::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(150deg,rgba(255,61,20,.18),rgba(30,12,6,.3));mix-blend-mode:multiply;pointer-events:none}
+
+/* nav scroll state */
+#nav{transition:transform .4s var(--ease-spring),background-color .35s ease,border-color .35s ease}
+#nav.scrolled{background:rgba(13,9,7,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,120,50,.14)}
+
+/* mobile order dock */
+#dock{transform:translateY(120%);transition:transform .5s var(--ease-spring)}
+#dock.show{transform:translateY(0)}
+
+/* menu rows */
+.menurow{border-bottom:1px solid rgba(255,138,61,.13);transition:transform .35s var(--ease-spring),background-color .3s ease}
+.menurow:hover{background:rgba(255,61,20,.05)}
+
+.map-frame{filter:grayscale(1) invert(.9) contrast(.88) sepia(.3) hue-rotate(-16deg)}
+
+.hangul-vert{writing-mode:vertical-rl;font-family:'Space Mono',monospace;letter-spacing:.5em;font-size:.7rem;color:rgba(255,138,61,.55)}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee__track,.firetext-live,.float-slow,.embers i{animation:none}
+  .embers{display:none}
+  .reveal,.hero-seq,.hero-img-wrap{opacity:1 !important;transform:none !important;transition:none !important}
+  .dish,.dish__img img,.btn,.hero-par{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="font-sans overflow-x-hidden">
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 h-16 lg:h-20 flex items-center justify-between">
+    <a href="#top" class="display text-lg lg:text-xl tracking-wide text-bone focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember" aria-label="Seoul Fire home">
+      SEOUL <span class="firetext">FIRE</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+      <a href="#flavours" class="navlink">Flavours</a>
+      <a href="#menu" class="navlink">Menu</a>
+      <a href="#story" class="navlink">Story</a>
+      <a href="#findus" class="navlink">Find us</a>
+    </nav>
+    <a href="#" target="_blank" rel="noopener noreferrer"
+       class="btn btn-fire !py-2.5 !px-5 text-sm" aria-label="Order now on Uber Eats (opens in new tab)">Order now</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="top" class="relative min-h-[100svh] flex items-center pt-24 pb-16 lg:pt-28">
+  <div class="embers" aria-hidden="true">
+    <i style="--x:8%;--d:0s;--t:13s;--dx:30px;--s:.8"></i>
+    <i style="--x:22%;--d:3.5s;--t:11s;--dx:-24px;--s:1.1"></i>
+    <i style="--x:38%;--d:7s;--t:14s;--dx:18px;--s:.7"></i>
+    <i style="--x:55%;--d:1.5s;--t:12s;--dx:-30px;--s:.9"></i>
+    <i style="--x:68%;--d:5s;--t:10s;--dx:26px;--s:1.2"></i>
+    <i style="--x:82%;--d:8.5s;--t:13s;--dx:-18px;--s:.8"></i>
+    <i style="--x:93%;--d:2.5s;--t:15s;--dx:22px;--s:1"></i>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 w-full grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+    <div class="lg:col-span-7 relative z-10">
+      <p class="hero-seq eyebrow mb-5" data-seq="1">서울 파이어 · Ashburton<span class="hidden sm:inline"> · Korean Fried Chicken</span></p>
+      <h1 class="display text-[clamp(3.4rem,10.5vw,7.8rem)] text-bone">
+        <span class="hero-seq block" data-seq="1">Korean</span>
+        <span class="hero-seq block" data-seq="2">fried.</span>
+        <span class="hero-seq block firetext-live" data-seq="3">Louder crunch.</span>
+      </h1>
+      <p class="hero-seq body-copy mt-6 max-w-md text-smoke text-base lg:text-lg" data-seq="4">
+        Brined, hand-coated and twice-fried until it shatters — then tossed to order in one of six house glazes. Dine in, take away, or get it delivered.
+      </p>
+      <div class="hero-seq mt-9 flex flex-col sm:flex-row gap-3" data-seq="4" id="hero-ctas">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-fire justify-center" aria-label="Order delivery on Uber Eats (opens in new tab)">
+          Order on Uber&nbsp;Eats
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost justify-center" aria-label="Order pickup on Bopple (opens in new tab)">
+          Pickup via Bopple
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="hero-seq mt-5 font-mono text-[.68rem] tracking-[.22em] uppercase text-smoke/80" data-seq="4">Open Tue–Sun from 11am · 212 East St · Bookings &amp; phone orders <a href="tel:+6435550199" class="text-ember hover:text-bone transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember">03&nbsp;555&nbsp;0199</a></p>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <span class="hangul-vert absolute -left-8 top-6 hidden xl:block select-none" aria-hidden="true">바삭바삭 · 서울 파이어</span>
+      <div class="hero-par">
+        <div class="hero-img-wrap frame-fire aspect-[4/5] max-w-[420px] mx-auto lg:max-w-none">
+          <img src="https://placehold.co/800x1000/1A0604/FF3D14/png?text=Seoul+Fire" alt="Twice-fried Korean fried chicken with a golden shattering crust" class="w-full h-full object-cover scale-[1.35] float-slow" style="object-position:center 72%" fetchpriority="high" />
+          <div class="absolute bottom-4 left-4 z-10 tag">Twice-fried · tossed to order</div>
+        </div>
+      </div>
+      <div class="absolute -inset-10 -z-10 opacity-70 pointer-events-none" aria-hidden="true"
+           style="background:radial-gradient(closest-side,rgba(255,61,20,.28),transparent 70%)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee relative z-10" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Twice-fried<span class="dot">●</span>Tossed to order<span class="dot">●</span>서울 파이어<span class="dot">●</span>Six glazes<span class="dot">●</span>Loud crunch<span class="dot">●</span></span>
+    <span class="marquee__item">Twice-fried<span class="dot">●</span>Tossed to order<span class="dot">●</span>서울 파이어<span class="dot">●</span>Six glazes<span class="dot">●</span>Loud crunch<span class="dot">●</span></span>
+  </div>
+</div>
+
+<!-- ================= FLAVOURS ================= -->
+<section id="flavours" class="relative z-10 py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 lg:mb-16">
+      <div class="reveal">
+        <p class="eyebrow mb-4">The six glazes</p>
+        <h2 class="display text-[clamp(2.6rem,6vw,4.6rem)] text-bone">Pick your <span class="firetext">heat</span></h2>
+      </div>
+      <p class="reveal body-copy max-w-sm text-smoke" data-delay="1">
+        One method, six finishes. Every piece is twice-fried for the crunch, then tossed to order in a glaze we make in-house.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+      <!-- Original Crispy -->
+      <article class="dish surface reveal">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FF3D14/png?text=Original+Crispy" alt="Original Crispy Korean fried chicken with pickled radish" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Signature</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl text-bone">Original Crispy</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">Twice-fried to a shattering crunch, served plain with house pickled radish. The one that started it all.</p>
+        </div>
+      </article>
+
+      <!-- Sweet Chili -->
+      <article class="dish surface reveal" data-delay="1">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FF8A3D/png?text=Sweet+Chili" alt="Sweet Chili glazed Korean fried chicken with toasted sesame" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Sweet heat</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl text-bone">Sweet Chili</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">A glossy sweet-chili glaze with toasted sesame and seeds. Sticky, moreish, a gentle kick.</p>
+        </div>
+      </article>
+
+      <!-- Chili Bang -->
+      <article class="dish surface reveal" data-delay="2">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FF3D14/png?text=Chili+Bang" alt="Chili Bang — the spiciest Seoul Fire glaze" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Fiery</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl firetext">Chili Bang</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">Our boldest glaze — deep, dark and seriously spicy. For the brave only.</p>
+        </div>
+      </article>
+
+      <!-- Galbi BBQ -->
+      <article class="dish surface reveal">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FF8A3D/png?text=Galbi+BBQ" alt="Galbi BBQ glazed Korean fried chicken with spring onion" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Savoury</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl text-bone">Galbi BBQ</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">Korean BBQ glaze with spring onion and sesame. Rich, sweet-savoury and dangerously addictive.</p>
+        </div>
+      </article>
+
+      <!-- Soy Teri -->
+      <article class="dish surface reveal" data-delay="1">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FF8A3D/png?text=Soy+Teri" alt="Soy Teri glazed Korean fried chicken with creamy drizzle" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Umami</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl text-bone">Soy Teri</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">Soy-teriyaki glaze finished with a creamy house drizzle. Balanced, savoury, hard to put down.</p>
+        </div>
+      </article>
+
+      <!-- Lemonkist -->
+      <article class="dish surface reveal" data-delay="2">
+        <div class="dish__img aspect-[4/3]">
+          <img src="https://placehold.co/600x450/1A0604/FFC46B/png?text=Lemonkist" alt="Lemonkist citrus glazed Korean fried chicken with fresh lemon" loading="lazy" />
+          <div class="dish__tone"></div>
+          <span class="tag absolute top-4 left-4 z-10">Zesty</span>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="display text-2xl text-bone">Lemonkist</h3>
+            <div class="heat pt-1.5"><span>Heat</span><span class="heat__ticks"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+          </div>
+          <p class="body-copy mt-3 text-sm text-smoke">A bright citrus glaze with fresh lemon. Light, tangy and refreshing against the crunch.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="reveal mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-fire justify-center w-full sm:w-auto" aria-label="Order these flavours on Uber Eats (opens in new tab)">Get it delivered</a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost justify-center w-full sm:w-auto" aria-label="Order pickup on Bopple (opens in new tab)">Skip the queue — pickup</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FULL-BLEED BREAK ================= -->
+<section class="relative z-10 overflow-hidden">
+  <div class="relative min-h-[70vh] lg:min-h-[80vh] flex items-end">
+    <img src="https://placehold.co/1600x1000/1A0604/FF3D14/png?text=Seoul+Fire+%C2%B7+Storefront" alt="Seoul Fire storefront glowing at night on East Street, Ashburton" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 bg-gradient-to-t from-coal via-coal/15 to-coal/45"></div>
+    <div class="absolute inset-0 mix-blend-multiply" style="background:linear-gradient(140deg,rgba(255,61,20,.16),rgba(20,8,4,.2))"></div>
+    <div class="relative max-w-7xl mx-auto px-5 lg:px-10 pb-16 lg:pb-24 w-full">
+      <p class="reveal eyebrow mb-4">Dine in · East Street, after dark</p>
+      <h2 class="reveal display text-[clamp(2.8rem,8vw,6.5rem)] text-bone max-w-4xl" data-delay="1">Seoul heat,<br /><span class="firetext">Ashburton street.</span></h2>
+      <p class="reveal body-copy mt-5 max-w-md text-bone/85" data-delay="2">The dining room's open — walk in off the street, or call ahead and we'll hold you a table.</p>
+      <div class="reveal mt-7 flex flex-col sm:flex-row gap-3" data-delay="2">
+        <a href="tel:+6435550199" class="btn btn-fire justify-center" aria-label="Call 03 555 0199 to book a table">
+          Call to book a table
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3.3 1.5h2l1 2.7-1.4 1a8.6 8.6 0 003.9 3.9l1-1.4 2.7 1v2a1.3 1.3 0 01-1.4 1.3A11.5 11.5 0 012 2.9 1.3 1.3 0 013.3 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#findus" class="btn btn-ghost justify-center">Hours &amp; directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section id="menu" class="relative z-10 py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="lg:col-span-7">
+        <p class="reveal eyebrow mb-4">The menu</p>
+        <h2 class="reveal display text-[clamp(2.6rem,6vw,4.6rem)] text-bone mb-10">Order it <span class="firetext">your way</span></h2>
+
+        <div class="reveal">
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl text-bone">Original Crispy</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Plain crunch, house pickled radish</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-ember whitespace-nowrap">HEAT 1/5</span>
+          </div>
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl text-bone">Sweet Chili</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Glossy sweet-chili, toasted sesame</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-ember whitespace-nowrap">HEAT 3/5</span>
+          </div>
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl firetext">Chili Bang</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Deep, dark, seriously spicy</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-fire whitespace-nowrap">HEAT 5/5</span>
+          </div>
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl text-bone">Galbi BBQ</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Korean BBQ glaze, spring onion, sesame</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-ember whitespace-nowrap">HEAT 2/5</span>
+          </div>
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl text-bone">Soy Teri</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Soy-teriyaki, creamy house drizzle</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-ember whitespace-nowrap">HEAT 2/5</span>
+          </div>
+          <div class="menurow py-5 px-3 -mx-3 flex items-baseline justify-between gap-6">
+            <div>
+              <h3 class="display text-xl text-bone">Lemonkist</h3>
+              <p class="body-copy text-sm text-smoke mt-1">Bright citrus glaze, fresh lemon</p>
+            </div>
+            <span class="font-mono text-[.66rem] tracking-[.2em] text-ember whitespace-nowrap">HEAT 1/5</span>
+          </div>
+        </div>
+        <p class="reveal body-copy mt-8 text-sm text-smoke">Every glaze comes boneless or on the bone — solo, share, or the Seoul Fire platter. Full sizes and live pricing are on the ordering apps.</p>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col gap-5 lg:sticky lg:top-28 self-start">
+        <div class="reveal surface-hi rounded-sm p-7">
+          <p class="eyebrow mb-3">Delivery</p>
+          <h3 class="display text-2xl text-bone mb-2">Couch. Crunch. Done.</h3>
+          <p class="body-copy text-sm text-smoke mb-6">Hot to your door across Ashburton via Uber Eats.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-fire w-full justify-center" aria-label="Order delivery on Uber Eats (opens in new tab)">Order on Uber&nbsp;Eats</a>
+        </div>
+        <div class="reveal surface rounded-sm p-7" data-delay="1">
+          <p class="eyebrow mb-3">Pickup</p>
+          <h3 class="display text-2xl text-bone mb-2">Order ahead, walk past the queue</h3>
+          <p class="body-copy text-sm text-smoke mb-6">Order on Bopple and we'll have it ready when you arrive — no service fees on pickup.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full justify-center" aria-label="Order pickup on Bopple (opens in new tab)">Order on Bopple</a>
+        </div>
+        <div class="reveal surface rounded-sm p-7" data-delay="2">
+          <p class="eyebrow mb-3">Dine in &amp; phone</p>
+          <h3 class="display text-2xl text-bone mb-2">Walk in, or call ahead</h3>
+          <p class="body-copy text-sm text-smoke mb-6">Tables Tue–Sun from 11am — no booking needed. Or call us to reserve a table or place a phone order.</p>
+          <a href="tel:+6435550199" class="btn btn-ghost w-full justify-center" aria-label="Call 03 555 0199 for table bookings and phone orders">Call 03 555 0199</a>
+        </div>
+        <p class="reveal font-mono text-[.66rem] tracking-[.2em] uppercase text-smoke/70 text-center" data-delay="3">212 East Street · Tue–Sun from 11am</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section id="story" class="relative z-10 py-24 lg:py-32 border-t border-ember/10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <div class="relative order-2 lg:order-1">
+      <div class="reveal frame-fire aspect-[4/3] rounded-sm overflow-hidden">
+        <img src="https://placehold.co/800x600/1A0604/FF8A3D/png?text=Dining+Room" alt="Inside the Seoul Fire dining room in Ashburton" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="reveal frame-fire absolute -bottom-8 -right-2 sm:-right-6 w-[45%] aspect-square rounded-sm overflow-hidden hidden sm:block" data-delay="1" style="transform:rotate(2deg)">
+        <img src="https://placehold.co/600x600/1A0604/FF3D14/png?text=Kitchen+Pass" alt="The Seoul Fire kitchen pass" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+    </div>
+    <div class="order-1 lg:order-2">
+      <p class="reveal eyebrow mb-4">The story</p>
+      <h2 class="reveal display text-[clamp(2.6rem,6vw,4.4rem)] text-bone mb-6" data-delay="1">Made in Ashburton.<br /><span class="firetext">Loud on purpose.</span></h2>
+      <p class="reveal body-copy text-smoke mb-4" data-delay="2">
+        Seoul Fire started with one obsession: Korean fried chicken done properly. Brined overnight, hand-coated, twice-fried, and tossed in glazes we make ourselves.
+      </p>
+      <p class="reveal body-copy text-smoke mb-8" data-delay="2">
+        You'll find us on East Street, feeding the Ashburton community the same way — whether you're dining in with us, grabbing takeaway, or ordering to the couch.
+      </p>
+      <a href="#findus" class="reveal navlink !opacity-100 text-ember" data-delay="3">Come say hi ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIND US ================= -->
+<section id="findus" class="relative z-10 py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+      <div class="reveal surface-hi rounded-sm p-8 lg:p-10 flex flex-col justify-between gap-10">
+        <div>
+          <p class="eyebrow mb-4">Find us</p>
+          <h2 class="display text-[clamp(2.4rem,5vw,3.8rem)] text-bone mb-6">212 East Street</h2>
+          <p class="body-copy text-smoke max-w-sm">Ashburton 7700, Canterbury. Street parking out front, and we're an easy walk from the town centre. Walk-ins always welcome — or call to book a table. We take phone orders too.</p>
+        </div>
+        <div>
+          <dl class="text-sm mb-8">
+            <div class="flex items-center justify-between py-3 border-b border-ember/15"><dt class="text-smoke">Tuesday — Thursday</dt><dd class="text-bone font-mono tabular-nums">11:00 — 20:30</dd></div>
+            <div class="flex items-center justify-between py-3 border-b border-ember/15"><dt class="text-smoke">Friday — Saturday</dt><dd class="text-bone font-mono tabular-nums">11:00 — 21:00</dd></div>
+            <div class="flex items-center justify-between py-3 border-b border-ember/15"><dt class="text-smoke">Sunday</dt><dd class="text-bone font-mono tabular-nums">11:00 — 20:30</dd></div>
+            <div class="flex items-center justify-between py-3 border-b border-ember/15"><dt class="text-smoke">Monday</dt><dd class="text-ember/80 font-mono">Closed</dd></div>
+            <div class="flex items-center justify-between py-3"><dt class="text-smoke">Bookings &amp; phone orders</dt><dd><a href="tel:+6435550199" class="text-bone font-mono hover:text-ember transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember">03 555 0199</a></dd></div>
+          </dl>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="tel:+6435550199" class="btn btn-fire justify-center" aria-label="Call 03 555 0199 to book a table or order by phone">Call to book</a>
+            <a href="https://maps.google.com/?q=East+Street,+Ashburton+7700" target="_blank" rel="noopener noreferrer" class="btn btn-ghost justify-center" aria-label="Get directions on Google Maps (opens in new tab)">Get directions</a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal surface relative rounded-sm overflow-hidden min-h-[340px] lg:min-h-0" data-delay="1">
+        <iframe
+          title="Map to Seoul Fire, East Street, Ashburton"
+          class="map-frame absolute inset-0 w-full h-full"
+          style="border:0"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=East+Street,+Ashburton,+New+Zealand&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="relative z-10 py-28 lg:py-40 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+       style="background:radial-gradient(700px 420px at 50% 100%,rgba(255,61,20,.22),transparent 70%)"></div>
+  <div class="relative max-w-4xl mx-auto px-5 text-center">
+    <p class="reveal eyebrow mb-5">Hungry now?</p>
+    <h2 class="reveal display text-[clamp(3.4rem,11vw,8rem)] text-bone" data-delay="1">It's <span class="firetext">crunch</span> time.</h2>
+    <div class="reveal mt-10 flex flex-col sm:flex-row gap-3 justify-center" data-delay="2">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-fire justify-center" aria-label="Order delivery on Uber Eats (opens in new tab)">Order on Uber&nbsp;Eats</a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost justify-center" aria-label="Order pickup on Bopple (opens in new tab)">Order on Bopple</a>
+    </div>
+    <p class="reveal mt-7 font-mono text-[.68rem] tracking-[.2em] uppercase text-smoke" data-delay="3">Dining in? Table bookings &amp; phone orders — <a href="tel:+6435550199" class="text-ember hover:text-bone transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember">call 03 555 0199</a></p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative z-10 border-t border-ember/10 py-10 pb-28 lg:pb-10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <p class="display text-lg text-bone">SEOUL <span class="firetext">FIRE</span></p>
+    <nav class="flex items-center gap-6" aria-label="Footer">
+      <a href="#flavours" class="navlink">Flavours</a>
+      <a href="#menu" class="navlink">Menu</a>
+      <a href="#findus" class="navlink">Find us</a>
+    </nav>
+    <p class="font-mono text-[.64rem] tracking-[.18em] uppercase text-smoke/60 text-center">Seoul Fire Ashburton · 212 East St · <a href="tel:+6435550199" class="hover:text-ember transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember">03 555 0199</a></p>
+  </div>
+</footer>
+
+<!-- ================= MOBILE ORDER DOCK ================= -->
+<div id="dock" class="fixed bottom-0 inset-x-0 z-50 lg:hidden px-3 pb-[max(env(safe-area-inset-bottom),.75rem)] pt-2"
+     style="background:linear-gradient(to top,rgba(13,9,7,.96) 60%,transparent)">
+  <div class="flex gap-2">
+    <a href="tel:+6435550199" class="btn btn-ghost justify-center !py-3.5 !px-4 !bg-soot" aria-label="Call 03 555 0199 to book a table or order by phone">
+      <svg width="17" height="17" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3.3 1.5h2l1 2.7-1.4 1a8.6 8.6 0 003.9 3.9l1-1.4 2.7 1v2a1.3 1.3 0 01-1.4 1.3A11.5 11.5 0 012 2.9 1.3 1.3 0 013.3 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-fire flex-1 justify-center !py-3.5 text-sm" aria-label="Order delivery on Uber Eats (opens in new tab)">Uber&nbsp;Eats</a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost flex-1 justify-center !py-3.5 text-sm !bg-soot" aria-label="Order pickup on Bopple (opens in new tab)">Bopple</a>
+  </div>
+</div>
+
+<script>
+// hero load sequence
+window.addEventListener('load',()=>document.documentElement.classList.add('loaded'));
+setTimeout(()=>document.documentElement.classList.add('loaded'),1200); // fallback
+
+// scroll reveals
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// nav state
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>24),{passive:true});
+
+// mobile dock: show once hero CTAs scroll out of view
+const dock=document.getElementById('dock');
+const ctas=document.getElementById('hero-ctas');
+new IntersectionObserver(([e])=>dock.classList.toggle('show',!e.isIntersecting&&scrollY>200),{threshold:0}).observe(ctas);
+
+// hero pointer parallax (fine pointers only, respects reduced motion)
+const par=document.querySelector('.hero-par');
+const hero=document.getElementById('top');
+if(par&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  let raf;
+  hero.addEventListener('mousemove',e=>{
+    const r=hero.getBoundingClientRect();
+    const x=e.clientX/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{par.style.transform=`translate3d(${x*-14}px,${y*-10}px,0)`});
+  });
+  hero.addEventListener('mouseleave',()=>{par.style.transform='translate3d(0,0,0)'});
+}
+</script>
+</body>
+</html>

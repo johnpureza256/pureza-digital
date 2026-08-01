@@ -17,8 +17,14 @@ export default function Contact() {
     message: "",
     company: "", // honeypot — hidden from real users
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  // idle → sending → code (awaiting the emailed code) → verifying → sent
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "code" | "verifying" | "sent" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [token, setToken] = useState("");
+  const [code, setCode] = useState("");
+  const [codeError, setCodeError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -26,26 +32,78 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // Step 1 — send the details; the server emails a 6-digit code.
+  const submitDetails = async () => {
+    setErrorMsg("");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.ok) {
+      throw new Error(data.error || "Something went wrong. Please try again.");
+    }
+    setToken(data.token || "");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setErrorMsg("");
     try {
-      const res = await fetch("/api/contact", {
+      await submitDetails();
+      setCode("");
+      setCodeError("");
+      setStatus("code");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
+  };
+
+  // Step 2 — verify the emailed code; only now is the enquiry delivered.
+  const handleVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (code.replace(/\D/g, "").length !== 6) {
+      setCodeError("Enter the 6-digit code from your email.");
+      return;
+    }
+    setStatus("verifying");
+    setCodeError("");
+    try {
+      const res = await fetch("/api/contact/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ token, code }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        // Expired token → send them back to the form for a fresh code.
+        if (data.expired) {
+          setStatus("error");
+          setErrorMsg(data.error || "That code has expired. Please send the form again.");
+          return;
+        }
+        setStatus("code");
+        setCodeError(data.error || "That code doesn't match. Try again.");
+        return;
       }
       setStatus("sent");
+    } catch {
+      setStatus("code");
+      setCodeError("Something went wrong. Please try again.");
+    }
+  };
+
+  // Re-send: re-submit the same details to get a fresh code.
+  const handleResend = async () => {
+    setCodeError("");
+    setCode("");
+    try {
+      await submitDetails();
+      setCodeError("");
     } catch (err) {
-      setStatus("error");
-      setErrorMsg(
-        err instanceof Error ? err.message : "Something went wrong. Please try again."
-      );
+      setCodeError(err instanceof Error ? err.message : "Couldn't resend. Try again.");
     }
   };
 
@@ -201,15 +259,118 @@ export default function Contact() {
                   className="text-2xl font-bold text-white"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  Message Received
+                  Enquiry confirmed
                 </h3>
                 <p
-                  className="text-[#6B6B6B] text-sm leading-relaxed"
+                  className="text-[#8A8A8A] text-sm leading-relaxed"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Thanks for reaching out. I&apos;ll be in touch within 24 hours.
+                  Thanks — that&apos;s everything we needed. Your message is with
+                  us and we&apos;ll reply within 24 hours.
                 </p>
               </div>
+            ) : status === "code" || status === "verifying" ? (
+              <form onSubmit={handleVerify} className="flex flex-col items-start gap-6">
+                <div className="w-14 h-14 border border-[#C9A96E]/50 flex items-center justify-center">
+                  <Mail size={22} className="text-[#C9A96E]" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h3
+                    className="text-2xl font-bold text-white mb-3"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    Check your email
+                  </h3>
+                  <p
+                    className="text-[#8A8A8A] text-sm leading-relaxed"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    We sent a 6-digit code to{" "}
+                    <span className="text-[#C9A96E]">{form.email}</span>. Enter it
+                    below to send your enquiry.
+                  </p>
+                </div>
+
+                <div className="w-full">
+                  <label htmlFor="code" className={labelClass} style={{ fontFamily: "var(--font-inter)" }}>
+                    Confirmation code
+                  </label>
+                  <input
+                    id="code"
+                    name="code"
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    maxLength={6}
+                    pattern="[0-9]*"
+                    placeholder="••••••"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                    autoFocus
+                    className={`${inputClass} text-center text-2xl tracking-[0.5em] font-semibold`}
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  />
+                </div>
+
+                {codeError && (
+                  <div
+                    role="alert"
+                    className="w-full border border-red-500/30 bg-red-500/10 text-red-300 text-sm px-5 py-3.5"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {codeError}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "verifying"}
+                  className="btn-cta btn-cta--gold group relative w-full py-5 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.2em] uppercase overflow-hidden disabled:opacity-60 cursor-pointer"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <span className="absolute inset-0 bg-[#E8C98A] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                  <span className="relative flex items-center justify-center gap-2">
+                    {status === "verifying" ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-[#0A0A0A]/30 border-t-[#0A0A0A] rounded-full animate-spin" />
+                        Confirming...
+                      </>
+                    ) : (
+                      <>
+                        Confirm &amp; Send
+                        <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
+                      </>
+                    )}
+                  </span>
+                </button>
+
+                <div
+                  className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <button
+                    type="button"
+                    onClick={handleResend}
+                    className="text-[#C9A96E] hover:underline underline-offset-4 cursor-pointer"
+                  >
+                    Resend code
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setStatus("idle");
+                      setCode("");
+                      setCodeError("");
+                    }}
+                    className="text-[#6B6B6B] hover:text-white transition-colors cursor-pointer"
+                  >
+                    Wrong email? Edit details
+                  </button>
+                </div>
+                <p className="text-[#3A3A3A] text-xs" style={{ fontFamily: "var(--font-inter)" }}>
+                  Can&apos;t find it? Check spam. The code expires in 30 minutes.
+                </p>
+              </form>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Honeypot: hidden from humans, bots tend to fill it */}

@@ -180,7 +180,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-3 w-full sm:w-auto"
         >
           <a
-            href="#contact"
+            href="/free-audit"
             className="btn-cta btn-cta--gold group relative inline-flex justify-center w-full sm:w-auto px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -199,7 +199,7 @@ export default function Hero() {
           </p>
 
           <a
-            href="#pricing"
+            href="/pricing"
             className="group mt-2 inline-flex items-center gap-1.5 text-white/60 text-sm tracking-[0.08em] uppercase hover:text-white/90 transition-colors duration-200"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -211,7 +211,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#no-website"
+        href="#work"
         aria-label="Scroll to next section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

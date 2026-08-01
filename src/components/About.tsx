@@ -1,27 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Sparkles, Globe, Zap } from "lucide-react";
 import SectionGlow from "./SectionGlow";
-
-const TEAM = [
-  {
-    name: "John Pureza",
-    role: "Founder",
-    photo: "/team/john-pureza.jpg",
-    // Crop focal point within the source image (object-position)
-    objectPosition: "center",
-  },
-  {
-    name: "Hamish Ramsay",
-    role: "Founding Partner",
-    photo: "/team/hamish-ramsay.jpg",
-    // Tall portrait — anchor higher up the photo so the head sits lower/centered in the circle
-    objectPosition: "center 8%",
-  },
-];
 
 const VALUES = [
   {
@@ -89,9 +71,9 @@ export default function About() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] mb-8"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Meet
+              A studio,
               <br />
-              <span className="text-[#C9A96E]">The Team</span>
+              <span className="text-[#C9A96E]">not a template factory.</span>
             </motion.h2>
 
             <motion.div
@@ -103,55 +85,17 @@ export default function About() {
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <p>
-                We&apos;re John Pureza and Hamish Ramsay, the founding team
-                behind Pureza Digital — a small Ashburton studio helping New
-                Zealand businesses compete online with modern, professional
-                websites.
+                Pureza Digital is a small Ashburton studio helping New Zealand
+                businesses compete online with modern, professional websites —
+                each one designed around the business behind it, never pulled
+                from a template.
               </p>
               <p>
-                Whether you&apos;re a café, tradie, contractor, retailer, or
-                service business, you deal directly with us — and we&apos;re
-                here to <b>help you build a stronger online presence and stand
-                out from the competition.</b>
+                Whether it&apos;s a café, tradie, contractor, retailer, or
+                service business, the goal is the same: <b>a stronger online
+                presence that builds trust and stands out from the
+                competition.</b>
               </p>
-            </motion.div>
-
-            {/* Founder photos */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-12 flex gap-8 sm:gap-12"
-            >
-              {TEAM.map((member) => (
-                <div key={member.name} className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-[#C9A96E]/30 flex-shrink-0">
-                    <Image
-                      src={member.photo}
-                      alt={member.name}
-                      fill
-                      sizes="80px"
-                      className="object-cover"
-                      style={{ objectPosition: member.objectPosition }}
-                    />
-                  </div>
-                  <div>
-                    <div
-                      className="text-white font-semibold text-sm"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      {member.name}
-                    </div>
-                    <div
-                      className="text-[#C9A96E] text-xs tracking-[0.15em] uppercase mt-0.5"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      {member.role}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </motion.div>
 
             <motion.div
@@ -162,7 +106,7 @@ export default function About() {
               className="mt-10 pt-10 border-t border-white/8 flex gap-12"
             >
               {[
-                { n: "5", label: "Sites Designed & Built" },
+                { n: "8", label: "Sites Designed & Built" },
                 { n: "2", label: "Founders, Hands-On" },
                 { n: "100%", label: "NZ Based" },
               ].map((s) => (

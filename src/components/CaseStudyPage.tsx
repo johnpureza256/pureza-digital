@@ -33,7 +33,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#0A0A0A]/90 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
           <Link
-            href="/#work"
+            href="/work"
             className="group inline-flex items-center gap-2 text-[#9A9A9A] hover:text-white text-xs tracking-[0.15em] uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A96E]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -393,7 +393,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             transition={{ duration: 0.6, delay: 0.25 }}
           >
             <Link
-              href="/#contact"
+              href="/contact"
               className="btn-cta btn-cta--gold group relative inline-flex items-center gap-3 px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A96E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >

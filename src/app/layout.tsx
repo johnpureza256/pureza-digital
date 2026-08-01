@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import {
+  SITE_URL,
+  TITLE,
+  DESCRIPTION,
+  organizationSchema,
+  websiteSchema,
+  graph,
+  jsonLd,
+} from "@/lib/schema";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -15,11 +24,6 @@ const inter = Inter({
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
-
-const SITE_URL = "https://purezadigital.com";
-const TITLE = "Pureza Digital | Web Design & Development in Ashburton NZ";
-const DESCRIPTION =
-  "Pureza Digital helps local businesses in Ashburton, New Zealand build modern websites, landing pages, hosting, maintenance, and digital solutions that create trust and attract customers.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -59,6 +63,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
@@ -91,25 +96,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Pureza Digital",
-    url: SITE_URL,
-    logo: `${SITE_URL}/pureza-logo-mark.png`,
-    image: `${SITE_URL}/pureza-logo-mark.png`,
-    description: DESCRIPTION,
-    telephone: "+64-21-284-2008",
-    email: "hello@purezadigital.com",
-  };
-
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en-NZ" className={`${playfair.variable} ${inter.variable}`}>
       <body className="grain-overlay antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: jsonLd(graph(organizationSchema, websiteSchema)),
           }}
         />
         {children}

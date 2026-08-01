@@ -15,7 +15,13 @@ const AUDIT_INCLUDES = [
   "A recommended next step",
 ];
 
-export default function FreeAuditCTA() {
+export default function FreeAuditCTA({
+  ctaHref = "/free-audit",
+}: {
+  /** Where the button points. On the /free-audit page pass "#contact" to
+   *  scroll to the on-page form; elsewhere it links to the lead page. */
+  ctaHref?: string;
+}) {
   return (
     <section
       id="free-audit"
@@ -65,7 +71,7 @@ export default function FreeAuditCTA() {
               </p>
 
               <a
-                href="#contact"
+                href={ctaHref}
                 className="btn-cta btn-cta--gold group relative inline-flex justify-center w-full sm:w-auto px-10 py-4 bg-[#C9A96E] text-[#0A0A0A] text-sm font-semibold tracking-[0.15em] uppercase overflow-hidden"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
