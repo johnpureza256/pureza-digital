@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 @next
 temporary screenshots/
+
+# impeccable: review captures and decision-page state are local evidence only
+/.impeccable/review/
+/.impeccable/questions/
+/.impeccable/mocks/

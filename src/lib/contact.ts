@@ -19,15 +19,6 @@ export const SIGNING_SECRET =
 
 export const TOKEN_TTL_MS = 30 * 60 * 1000; // 30 minutes
 
-export const INTEREST_LABELS: Record<string, string> = {
-  "free-audit": "Free Website Audit",
-  starter: "Starter Website from $497",
-  "local-business": "Local Business Website from $997",
-  growth: "Growth Website from $1,997",
-  hosting: "Hosting & Maintenance",
-  "not-sure": "Not sure yet",
-};
-
 export const CONTACT_METHOD_LABELS: Record<string, string> = {
   email: "Email",
   phone: "Phone call",
@@ -154,30 +145,29 @@ export function sendCodeEmail(sub: Submission, code: string) {
       `Your confirmation code is: ${code}\n\n` +
       `Enter it on the form to send your enquiry. The code expires in 30 minutes. ` +
       `If you didn't fill in our form, you can ignore this email.\n\n` +
-      `— Pureza Digital`,
+      `Pureza Digital`,
     html: `
       <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;color:#111">
-        <h2 style="margin:0 0 12px">One quick step 👋</h2>
+        <h2 style="margin:0 0 12px;font-weight:400">One more step</h2>
         <p style="font-size:14px;line-height:1.6">Hi ${safeName},</p>
         <p style="font-size:14px;line-height:1.6">Enter this code back on the form to send your enquiry to <strong>Pureza Digital</strong>:</p>
         <div style="margin:22px 0;text-align:center">
           <div style="display:inline-block;background:#faf7f0;border:1px solid #e6ddc7;border-radius:10px;padding:16px 26px;font-size:30px;font-weight:700;letter-spacing:0.35em;color:#0A0A0A">${spaced}</div>
         </div>
-        <p style="font-size:12px;line-height:1.6;color:#888">This code expires in 30 minutes. If you didn&rsquo;t fill in our form, you can safely ignore this email — nothing will be sent.</p>
+        <p style="font-size:12px;line-height:1.6;color:#888">This code expires in 30 minutes. If you didn&rsquo;t fill in our form, you can ignore this email and nothing will be sent.</p>
       </div>`,
   });
 }
 
 /** Sent to Pureza Digital once the enquiry is confirmed. */
 export function sendNotificationEmail(sub: Submission) {
-  const interestLabel = INTEREST_LABELS[sub.interest || ""] || "Not specified";
   const contactMethodLabel = CONTACT_METHOD_LABELS[sub.preferredContact || ""] || "Not specified";
   const safeName = escapeHtml(sub.name);
   const safeEmail = escapeHtml(sub.email);
   const safeMessage = escapeHtml(sub.message).replace(/\n/g, "<br>");
 
   const rows: { label: string; value: string }[] = [];
-  if (sub.businessName) rows.push({ label: "Business", value: sub.businessName });
+  if (sub.businessName) rows.push({ label: "Company", value: sub.businessName });
   if (sub.phone) rows.push({ label: "Phone", value: sub.phone });
   if (sub.currentPresence) rows.push({ label: "Current site", value: sub.currentPresence });
   if (sub.preferredContact) rows.push({ label: "Prefers", value: contactMethodLabel });
@@ -192,21 +182,20 @@ export function sendNotificationEmail(sub: Submission) {
   return sendEmail({
     to: TO_EMAIL,
     replyTo: sub.email,
-    subject: `New (confirmed) enquiry from ${sub.name}`,
+    subject: `Enquiry from ${sub.name}${sub.businessName ? `, ${sub.businessName}` : ""}`,
     text:
       `Confirmed contact form submission\n\n` +
       `Name: ${sub.name}\nEmail: ${sub.email}\n` +
       (rowsText ? `${rowsText}\n` : "") +
-      `Interested in: ${interestLabel}\n\nMessage:\n${sub.message}\n`,
+      `\nMessage:\n${sub.message}\n`,
     html: `
       <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#111">
-        <h2 style="margin:0 0 4px">New enquiry from your website</h2>
-        <p style="margin:0 0 16px;font-size:12px;color:#2e7d32">✓ Email address confirmed by the sender</p>
+        <h2 style="margin:0 0 4px">New enquiry from purezadigital.com</h2>
+        <p style="margin:0 0 16px;font-size:12px;color:#555">The sender confirmed this email address.</p>
         <table style="width:100%;border-collapse:collapse;font-size:14px">
           <tr><td style="padding:6px 0;color:#666;width:90px">Name</td><td style="padding:6px 0"><strong>${safeName}</strong></td></tr>
           <tr><td style="padding:6px 0;color:#666">Email</td><td style="padding:6px 0"><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
           ${rowsHtml}
-          <tr><td style="padding:6px 0;color:#666">Interested in</td><td style="padding:6px 0">${escapeHtml(interestLabel)}</td></tr>
         </table>
         <div style="margin-top:16px;padding:16px;background:#f6f6f6;border-radius:8px;font-size:14px;line-height:1.6">${safeMessage}</div>
         <p style="margin-top:16px;font-size:12px;color:#999">Reply directly to this email to respond to ${safeName}.</p>
@@ -220,18 +209,18 @@ export function sendAutoReplyEmail(sub: Submission) {
   const safeMessage = escapeHtml(sub.message).replace(/\n/g, "<br>");
   return sendEmail({
     to: sub.email,
-    subject: "Thanks — your enquiry is confirmed (Pureza Digital)",
+    subject: "Your message to Pureza Digital",
     text:
-      `Hi ${sub.name},\n\nThanks for confirming. Your enquiry is now with us and we'll get back to you within 24 hours.\n\n` +
-      `Here's a copy of what you sent:\n"${sub.message}"\n\n— John, Pureza Digital\nhello@purezadigital.com`,
+      `Hi ${sub.name},\n\nThanks for confirming. Your enquiry is now with us and we'll reply within two working days.\n\n` +
+      `Here's a copy of what you sent:\n"${sub.message}"\n\nPureza Digital\nhello@purezadigital.com`,
     html: `
       <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#111">
-        <h2 style="margin:0 0 12px">You&rsquo;re all set ✓</h2>
+        <h2 style="margin:0 0 12px;font-weight:400">Thank you</h2>
         <p style="font-size:14px;line-height:1.6">Hi ${safeName},</p>
-        <p style="font-size:14px;line-height:1.6">Thanks for confirming. Your enquiry is now with us and we&rsquo;ll get back to you within <strong>24 hours</strong>.</p>
+        <p style="font-size:14px;line-height:1.6">Thanks for confirming. Your enquiry is now with us and we&rsquo;ll reply within two working days.</p>
         <p style="font-size:14px;line-height:1.6;color:#666">Here&rsquo;s a copy of what you sent:</p>
         <div style="padding:14px;background:#f6f6f6;border-radius:8px;font-size:14px;line-height:1.6;color:#333">${safeMessage}</div>
-        <p style="font-size:14px;line-height:1.6;margin-top:16px">— John, Pureza Digital<br><a href="mailto:hello@purezadigital.com">hello@purezadigital.com</a></p>
+        <p style="font-size:14px;line-height:1.6;margin-top:16px">Pureza Digital<br><a href="mailto:hello@purezadigital.com">hello@purezadigital.com</a></p>
       </div>`,
   });
 }

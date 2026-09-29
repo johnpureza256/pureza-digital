@@ -1,78 +1,73 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CASE_STUDIES, getCaseStudy } from "@/data/caseStudies";
-import CaseStudyPage from "@/components/CaseStudyPage";
+import { PROJECTS, getProject } from "@/data/projects";
+import CaseStudy from "@/components/work/CaseStudy";
+import SiteFooter from "@/components/frame/SiteFooter";
 import { SITE_URL, breadcrumbSchema, graph, jsonLd } from "@/lib/schema";
 
 type Props = { params: { slug: string } };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return CASE_STUDIES.map((c) => ({ slug: c.slug }));
+  return PROJECTS.map((p) => ({ slug: p.slug }));
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const study = getCaseStudy(params.slug);
-  if (!study) return {};
-  const title = `${study.title} — Case Study`;
-  const url = `${SITE_URL}/work/${study.slug}`;
+  const p = getProject(params.slug);
+  if (!p) return {};
+  const url = `${SITE_URL}/work/${p.slug}`;
+  const description = `${p.line} A ${p.industry.toLowerCase()} concept designed and built by Pureza Digital.`;
   return {
-    title,
-    description: study.summary,
+    title: p.title,
+    description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | Pureza Digital`,
-      description: study.summary,
+      title: `${p.title} | Pureza Digital`,
+      description,
       url,
       type: "article",
-      images: [{ url: study.thumb }],
+      images: [{ url: p.desktop[0].src, width: p.desktop[0].w, height: p.desktop[0].h }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Pureza Digital`,
-      description: study.summary,
-      images: [study.thumb],
+      title: `${p.title} | Pureza Digital`,
+      description,
+      images: [p.desktop[0].src],
     },
   };
 }
 
 export default function Page({ params }: Props) {
-  const study = getCaseStudy(params.slug);
-  if (!study) notFound();
+  const p = getProject(params.slug);
+  if (!p) notFound();
 
-  const url = `${SITE_URL}/work/${study.slug}`;
-
-  // These are demo concepts rather than delivered client work, so they are
-  // marked up as CreativeWork — not as a Review or a client testimonial.
-  const caseStudySchema = {
+  const url = `${SITE_URL}/work/${p.slug}`;
+  // Concept work, so it is marked up as a CreativeWork by the studio: never as
+  // client work, a review or a testimonial.
+  const work = {
     "@type": "CreativeWork",
-    "@id": `${url}#case-study`,
+    "@id": `${url}#work`,
     url,
-    name: study.title,
-    headline: `${study.title} — Case Study`,
-    abstract: study.summary,
-    description: study.problem,
-    image: `${SITE_URL}${study.thumb}`,
-    genre: study.category,
+    name: p.title,
+    abstract: p.line,
+    description: p.brief,
+    image: `${SITE_URL}${p.desktop[0].src}`,
+    genre: p.industry,
     creator: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-NZ",
-    keywords: [study.category, study.businessType, ...study.tech].join(", "),
   };
-
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", url: SITE_URL },
-    { name: "Work", url: `${SITE_URL}/#work` },
-    { name: study.title, url },
+    { name: "Work", url: `${SITE_URL}/work` },
+    { name: p.title, url },
   ]);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd(graph(caseStudySchema, breadcrumbs)),
-        }}
-      />
-      <CaseStudyPage study={study} />
-    </>
+    <main id="main">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph(work, breadcrumbs)) }} />
+      <CaseStudy project={p} />
+      <SiteFooter />
+    </main>
   );
 }

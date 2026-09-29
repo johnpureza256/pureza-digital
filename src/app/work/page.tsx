@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import WorkHub from "@/components/WorkHub";
-import { CASE_STUDIES } from "@/data/caseStudies";
+import WorkIndex from "@/components/work/WorkIndex";
+import SiteFooter from "@/components/frame/SiteFooter";
+import { PROJECTS } from "@/data/projects";
 import { SITE_URL, breadcrumbSchema, graph, jsonLd } from "@/lib/schema";
 
-const SITE_URL_WORK = `${SITE_URL}/work`;
+const URL = `${SITE_URL}/work`;
+const PAPER = { ground: "#F3F0EA", ink: "#151413", muted: "#6E6960" };
 
 export const metadata: Metadata = {
-  title: "Our Work — Demo Website Builds by Niche",
+  title: "Work",
   description:
-    "Real, working demo websites Pureza Digital has built for cafés, tradies, community groups, and more — one per kind of local business. Preview each live.",
-  alternates: { canonical: SITE_URL_WORK },
+    "Selected work by Pureza Digital: Oriel, Halden, Yèxíng and Baga. Websites and digital experiences designed and built by the studio.",
+  alternates: { canonical: URL },
   openGraph: {
-    title: "Our Work | Pureza Digital",
-    description:
-      "Demo website builds for local businesses across hospitality, trades, community, and more — preview each one live.",
-    url: SITE_URL_WORK,
+    title: "Work | Pureza Digital",
+    description: "Selected work by Pureza Digital, an independent design and development studio.",
+    url: URL,
     type: "website",
   },
 };
@@ -24,37 +23,43 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   const collection = {
     "@type": "CollectionPage",
-    "@id": `${SITE_URL_WORK}#collection`,
-    url: SITE_URL_WORK,
-    name: "Our Work — Pureza Digital",
-    description:
-      "Demo website builds for local businesses, one per kind of business.",
-    hasPart: CASE_STUDIES.map((c) => ({
+    "@id": `${URL}#collection`,
+    url: URL,
+    name: "Work | Pureza Digital",
+    hasPart: PROJECTS.map((p) => ({
       "@type": "CreativeWork",
-      name: c.title,
-      url: `${SITE_URL}/work/${c.slug}`,
-      genre: c.category,
+      name: p.title,
+      url: `${SITE_URL}/work/${p.slug}`,
+      genre: p.industry,
     })),
   };
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", url: SITE_URL },
-    { name: "Work", url: SITE_URL_WORK },
+    { name: "Work", url: URL },
   ]);
 
   return (
-    <main>
+    <main id="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(graph(collection, breadcrumbs)) }}
       />
-      <Nav />
-      <h1 className="sr-only">
-        Our work — demo website builds for local businesses across New Zealand
-      </h1>
-      <div className="pt-16 lg:pt-20">
-        <WorkHub />
-      </div>
-      <Footer />
+      <section
+        data-ground={PAPER.ground}
+        data-ink={PAPER.ink}
+        data-muted={PAPER.muted}
+        className="frame pb-[20vh]"
+        style={{ paddingTop: "calc(var(--nav-h) + 18vh)" }}
+      >
+        <div className="grid-12 mb-[10vh] items-end gap-y-6">
+          <h1 className="display col-span-12 text-[clamp(64px,11vw,176px)] leading-[0.9] md:col-span-7">Work</h1>
+          <p className="muted col-span-12 max-w-[36ch] text-[17px] leading-[1.6] md:col-span-4 md:col-start-7">
+            Four self-initiated concepts, each designed and built in full by the studio.
+          </p>
+        </div>
+        <WorkIndex />
+      </section>
+      <SiteFooter />
     </main>
   );
 }

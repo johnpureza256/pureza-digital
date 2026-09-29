@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Pureza Digital",
+  title: "Terms of Service",
   description:
     "The terms that govern your use of the Pureza Digital website and the digital services we provide, including project, payment, hosting, and liability terms.",
 };

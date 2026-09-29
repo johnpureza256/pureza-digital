@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Bodoni_Moda, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import {
   SITE_URL,
@@ -10,19 +10,27 @@ import {
   graph,
   jsonLd,
 } from "@/lib/schema";
+import SmoothScroll from "@/components/frame/SmoothScroll";
+import GroundController from "@/components/frame/GroundController";
+import CursorLabel from "@/components/frame/CursorLabel";
+import SiteNav from "@/components/frame/SiteNav";
+import { RouteWipeProvider } from "@/components/frame/RouteWipe";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+// Display: a Didone with an optical-size axis, so it stays crisp at 13px
+// metadata sizes and hair-fine at 110px. Body: a quiet grotesk for everything
+// that has to be read rather than looked at.
+const bodoni = Bodoni_Moda({
+  subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-bodoni",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const hanken = Hanken_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-hanken",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,17 +42,12 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: [
     "Pureza Digital",
-    "website design",
-    "website development",
-    "web design Ashburton",
-    "web development Ashburton",
-    "web design Canterbury",
+    "independent digital studio",
+    "design studio Christchurch",
     "web design New Zealand",
-    "landing pages",
-    "website hosting",
-    "website maintenance",
-    "websites for local businesses",
-    "digital solutions Ashburton",
+    "web development",
+    "interactive experiences",
+    "digital products",
   ],
   authors: [{ name: "Pureza Digital", url: SITE_URL }],
   creator: "Pureza Digital",
@@ -88,7 +91,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  category: "Web Design & Development",
+  category: "Design studio",
 };
 
 export default function RootLayout({
@@ -97,15 +100,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-NZ" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="grain-overlay antialiased">
+    <html lang="en-NZ" className={`${bodoni.variable} ${hanken.variable}`}>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: jsonLd(graph(organizationSchema, websiteSchema)),
           }}
         />
-        {children}
+        <SmoothScroll />
+        <GroundController />
+        <RouteWipeProvider>
+          <SiteNav />
+          {children}
+        </RouteWipeProvider>
+        <CursorLabel />
       </body>
     </html>
   );

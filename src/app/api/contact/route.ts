@@ -52,9 +52,9 @@ export async function POST(req: Request) {
       message: (body.message || "").trim(),
     };
 
-    if (!sub.name || !sub.businessName || !sub.email || !sub.message) {
+    if (!sub.name || !sub.email || !sub.message) {
       return NextResponse.json(
-        { ok: false, error: "Please fill in your name, business name, email, and a message." },
+        { ok: false, error: "Please add your name, email and a message." },
         { status: 400 }
       );
     }

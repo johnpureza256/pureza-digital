@@ -1,190 +1,167 @@
 @import "tailwindcss";
 
+/*
+ * Pureza Digital: the house frame.
+ * Warm paper and ink, no house accent. Colour arrives only with the work:
+ * GroundController swaps --ground / --ink / --muted to the project in view.
+ */
 @theme {
-  --color-gold: #C9A96E;
-  --color-gold-light: #E8C98A;
-  --color-gold-dark: #A07840;
-  --color-onyx: #0A0A0A;
-  --color-surface: #111111;
-  --color-surface-2: #1A1A1A;
-  --color-surface-3: #222222;
-  --color-muted: #6B6B6B;
-  --color-muted-2: #3A3A3A;
+  --color-paper: #F3F0EA;
+  --color-ink: #151413;
 
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
+  --font-body: var(--font-hanken), "Helvetica Neue", Arial, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+:root {
+  --ground: #F3F0EA;
+  --ink: #151413;
+  --muted: #6E6960;
+  --nav-h: 64px;
+  --margin: 20px;
+  --gutter: 16px;
+  color-scheme: light;
+}
+
+@media (min-width: 768px) {
+  :root { --margin: 40px; --gutter: 20px; --nav-h: 72px; }
+}
+@media (min-width: 1280px) {
+  :root { --margin: 64px; }
 }
 
 html {
-  scroll-behavior: smooth;
-  background-color: #0A0A0A;
+  background-color: var(--ground);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #0A0A0A;
-  color: #FFFFFF;
+  background-color: var(--ground);
+  color: var(--ink);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* The only non-transform transition on the site: the ground following the work. */
+  transition: background-color 700ms var(--ease-out-expo), color 700ms var(--ease-out-expo);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
-::-webkit-scrollbar-thumb {
-  background: #C9A96E;
-  border-radius: 2px;
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
-/* Gold shimmer animation */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
+::selection { background: var(--ink); color: var(--ground); }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes pulse-gold {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-2%, -3%); }
-  20% { transform: translate(3%, 2%); }
-  30% { transform: translate(-3%, 1%); }
-  40% { transform: translate(2%, -2%); }
-  50% { transform: translate(-1%, 3%); }
-  60% { transform: translate(3%, -1%); }
-  70% { transform: translate(-2%, 2%); }
-  80% { transform: translate(1%, -3%); }
-  90% { transform: translate(-3%, 1%); }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    #C9A96E 0%,
-    #E8C98A 30%,
-    #C9A96E 60%,
-    #A07840 80%,
-    #C9A96E 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-gold {
-  animation: pulse-gold 3s ease-in-out infinite;
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-/* Film grain overlay */
-.grain-overlay::after {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 9999;
-  animation: grain 8s steps(10) infinite;
-}
-
-/* ── CTA buttons: smooth edges, hover lift, gold glow (consistent site-wide) ── */
-.btn-cta {
-  border-radius: 10px;
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-.btn-cta:hover {
-  transform: translateY(-3px);
-}
-.btn-cta:active {
-  transform: translateY(-1px);
-}
-
-/* Solid gold CTA — strong, warm glow */
-.btn-cta--gold {
-  box-shadow: 0 10px 28px -8px rgba(201, 169, 110, 0.5);
-}
-.btn-cta--gold:hover {
-  box-shadow:
-    0 12px 32px -12px rgba(232, 201, 138, 0.4),
-    0 0 20px rgba(201, 169, 110, 0.2);
-}
-
-/* Outlined CTA — glow blooms on hover */
-.btn-cta--outline:hover {
-  box-shadow:
-    0 12px 36px -12px rgba(201, 169, 110, 0.45),
-    0 0 24px rgba(201, 169, 110, 0.18);
-}
-
-/* Glow effects */
-.glow-gold {
-  box-shadow: 0 0 30px rgba(201, 169, 110, 0.15), 0 0 60px rgba(201, 169, 110, 0.05);
-}
-
-.glow-gold-text {
-  text-shadow: 0 0 40px rgba(201, 169, 110, 0.3);
-}
-
-/* Selection */
-::selection {
-  background: rgba(201, 169, 110, 0.25);
-  color: #E8C98A;
-}
-
-/* Smooth transitions */
-* {
-  transition-property: color, background-color, border-color, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-/* Focus rings */
 :focus-visible {
-  outline: 2px solid #C9A96E;
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline: 1.5px solid currentColor;
+  outline-offset: 4px;
 }
+
+/* ── Grid ───────────────────────────────────────────────────────────── */
+.frame {
+  padding-inline: var(--margin);
+}
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+/* ── Type ───────────────────────────────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.display em { font-style: italic; letter-spacing: -0.02em; }
+
+.meta {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+}
+
+.muted { color: var(--muted); }
+
+/* A link that is only type: the underline draws in from the left. */
+.line-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  padding-bottom: 2px;
+}
+.line-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 600ms var(--ease-out-expo);
+}
+.line-link:hover::after,
+.line-link:focus-visible::after,
+.line-link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.line-link:active { opacity: 0.6; }
+
+/* Resting underline, for links that must read as links in running text. */
+.line-link--rest::after { transform: scaleX(1); opacity: 0.35; }
+.line-link--rest:hover::after { opacity: 1; }
+
+/* ── Hero line rise: the one moment type moves ─────────────────────── */
+.rise {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.rise > span {
+  display: block;
+  animation: rise 1100ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 110ms + 120ms);
+}
+@keyframes rise {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+
+/* ── Counter roll in the identity band ─────────────────────────────── */
+.digit-roll {
+  display: inline-block;
+  height: 1.45em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.digit-roll > span {
+  display: block;
+  transition: transform 700ms var(--ease-out-expo);
+}
+
+/* Browser surfaces */
+input, textarea, button { font: inherit; color: inherit; }
+textarea { resize: vertical; }
+::placeholder { color: var(--muted); opacity: 1; }
+input, textarea { caret-color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
   }
-  html { scroll-behavior: auto; }
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Pureza Digital",
+  title: "Privacy Policy",
   description:
     "How Pureza Digital collects, uses, and protects the personal information you provide when you visit our website or enquire about our services.",
 };
