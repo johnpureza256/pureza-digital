@@ -18,9 +18,10 @@ export type GroundDetail = { index: string | null };
  * is under the band, the band follows the page line instead of the section's
  * nominal colour, fading at the body's pace.
  *
- * When the page line reaches an element marked data-close (the footer),
- * :root gets data-closing, so sections that opt in (the studio note) fade
- * to ink with the page instead of meeting the footer at a hard edge.
+ * An element marked data-close (the footer) has its own trigger: once its
+ * top climbs past ~78% of the viewport, :root gets data-closing and the
+ * footer fades from paper to ink. The trigger sits low so a short footer at
+ * the end of a page still reaches it.
  *
  * Candidates are elements with data-ground / data-ink / data-muted. Where
  * they nest (a next-project panel inside a case study), the innermost one
@@ -52,7 +53,6 @@ export default function GroundController() {
       }
       pageEl = el;
       paint("", el);
-      root.toggleAttribute("data-closing", el.dataset.close !== undefined);
       if (bandOnWall) paint("band-", el);
       window.dispatchEvent(
         new CustomEvent<GroundDetail>("pd:ground", { detail: { index: el.dataset.index ?? null } })
@@ -104,6 +104,18 @@ export default function GroundController() {
       return { observe, disconnect: () => io?.disconnect() };
     };
 
+    // The close: independent of the two colour lines.
+    const closers = els.filter((el) => el.dataset.close !== undefined);
+    const closeIo = new IntersectionObserver(
+      (entries) => {
+        const on = entries.some((e) => e.isIntersecting) ||
+          closers.some((el) => el.getBoundingClientRect().top < window.innerHeight * 0.78);
+        root.toggleAttribute("data-closing", on);
+      },
+      { rootMargin: "0px 0px -22% 0px", threshold: 0 }
+    );
+    closers.forEach((el) => closeIo.observe(el));
+
     const navH = () =>
       parseInt(getComputedStyle(root).getPropertyValue("--nav-h"), 10) || 64;
     const page = watch("", () => window.innerHeight / 2);
@@ -124,6 +136,8 @@ export default function GroundController() {
       window.clearTimeout(t);
       page.disconnect();
       band.disconnect();
+      closeIo.disconnect();
+      root.removeAttribute("data-closing");
     };
   }, [pathname]);
 

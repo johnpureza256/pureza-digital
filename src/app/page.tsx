@@ -49,9 +49,8 @@ export default function Home() {
         data-ground={PAPER.ground}
         data-ink={PAPER.ink}
         data-muted={PAPER.muted}
-        data-wall
-        data-studio
         className="frame relative py-[18vh] md:py-[22vh]"
+        style={{ backgroundColor: PAPER.ground, color: PAPER.ink }}
       >
         <h2 id="studio-title" className="sr-only">
           Studio
@@ -70,7 +69,7 @@ export default function Home() {
               <li key={c}>{c}</li>
             ))}
           </ul>
-          <p className="studio-muted col-span-12 max-w-[36ch] md:col-span-5 md:col-start-7">
+          <p className="col-span-12 max-w-[36ch] md:col-span-5 md:col-start-7" style={{ color: PAPER.muted }}>
             We take on a few projects at a time, for businesses in New Zealand and further afield.
           </p>
         </div>

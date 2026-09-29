@@ -66,24 +66,23 @@ html.lenis, html.lenis body { height: auto; }
   outline-offset: 4px;
 }
 
-/* ── Studio sheet ───────────────────────────────────────────────────
- * Paper, so it meets the last project with a clean edge; once the page
- * reaches the footer it fades to ink with the page, closing on black. */
-[data-studio] {
-  --studio-muted: #6E6960;
+/* ── Footer close ───────────────────────────────────────────────────
+ * The footer arrives on paper, then fades to ink once GroundController sets
+ * data-closing (the footer's top has climbed past ~78% of the viewport). */
+[data-footer] {
+  --footer-ink: #151413;
+  --footer-muted: #6E6960;
   background-color: #F3F0EA;
-  color: #151413;
-  transition: background-color 700ms var(--ease-out-expo), color 700ms var(--ease-out-expo);
+  color: var(--footer-ink);
+  transition: background-color 900ms var(--ease-out-expo), color 900ms var(--ease-out-expo);
 }
-html[data-closing] [data-studio] {
-  --studio-muted: var(--muted);
-  background-color: var(--ground);
-  color: var(--ink);
+html[data-closing] [data-footer] {
+  --footer-ink: #F3F0EA;
+  --footer-muted: #A39E95;
+  background-color: #151413;
 }
-.studio-muted {
-  color: var(--studio-muted);
-  transition: color 700ms var(--ease-out-expo);
-}
+.footer-muted { color: var(--footer-muted); transition: color 900ms var(--ease-out-expo); }
+.footer-ink { color: var(--footer-ink); transition: color 900ms var(--ease-out-expo); }
 
 /* ── Grid ───────────────────────────────────────────────────────────── */
 .frame {

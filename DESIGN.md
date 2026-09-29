@@ -302,7 +302,7 @@ Motion is part of the frame, so it is documented with the components rather than
 - **Do** put `data-ground`, `data-ink` and `data-muted` on every new full-width section.
 - **Do** anchor text to column 1 or column 7 of the 12-column grid, inside the 20/40/64px margins and 16/20px gutters.
 - **Do** give every opaque full-width section its own background (sheets meet with physical edges); mark see-through sections `data-wall`.
-- **Do** keep the close: the footer carries `data-close`, and the Studio sheet (`data-studio`) starts on paper against the last project, then fades to ink with the page as the footer reaches the middle of the viewport, so the page ends on black.
+- **Do** keep the close: the footer (`data-close`, `data-footer`) arrives on paper and fades to ink (900ms) once its top climbs past ~78% of the viewport, so every page ends on black. Studio stays a plain paper sheet.
 - **Do** keep the identity band fixed, band-painted and non-reflowing; roll the counter digits by `translateY` in `em`.
 - **Do** set emphasis in the display face as an italic turn.
 - **Do** keep metadata rows on or below the title baseline.

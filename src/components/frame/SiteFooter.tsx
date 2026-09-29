@@ -4,7 +4,11 @@ import { Lockup } from "./Logo";
 
 const INK = { ground: "#151413", ink: "#F3F0EA", muted: "#A39E95" };
 
-/** The close: the page ends on ink, with the address as the last word. */
+/**
+ * The close. The footer arrives on paper and fades to ink once it is well into
+ * view (see data-close in GroundController and [data-footer] in globals.css),
+ * so the page ends on black with the address as the last word.
+ */
 export default function SiteFooter({ address = true }: { address?: boolean }) {
   return (
     <footer
@@ -12,8 +16,8 @@ export default function SiteFooter({ address = true }: { address?: boolean }) {
       data-ink={INK.ink}
       data-muted={INK.muted}
       data-close
+      data-footer
       className={`frame relative pb-10 md:pb-12 ${address ? "pt-[18vh]" : "pt-[10vh]"}`}
-      style={{ backgroundColor: INK.ground, color: INK.ink }}
     >
       {address && (
         <>
@@ -26,9 +30,9 @@ export default function SiteFooter({ address = true }: { address?: boolean }) {
         </>
       )}
 
-      <div className={`grid-12 meta gap-y-8 ${address ? "mt-[16vh]" : ""}`} style={{ color: INK.muted }}>
+      <div className={`footer-muted grid-12 meta gap-y-8 ${address ? "mt-[16vh]" : ""}`}>
         <div className="col-span-12 md:col-span-4">
-          <Lockup title="Pureza Digital" className="mb-6 text-[13px] text-[#F3F0EA]" />
+          <Lockup title="Pureza Digital" className="footer-ink mb-6 text-[13px]" />
           <p>
             Christchurch, New Zealand
             <br />
@@ -42,7 +46,7 @@ export default function SiteFooter({ address = true }: { address?: boolean }) {
             ["Contact", "/contact"],
           ].map(([label, href]) => (
             <li key={href}>
-              <Link href={href} className="line-link hover:text-[#F3F0EA] focus-visible:text-[#F3F0EA]">
+              <Link href={href} className="line-link hover:text-[var(--footer-ink)] focus-visible:text-[var(--footer-ink)]">
                 {label}
               </Link>
             </li>
@@ -51,12 +55,12 @@ export default function SiteFooter({ address = true }: { address?: boolean }) {
         <ul className="col-span-6 md:col-span-3 md:col-start-10 md:text-right">
           <li>&copy; {new Date().getFullYear()} Pureza Digital</li>
           <li>
-            <Link href="/privacy" className="line-link hover:text-[#F3F0EA] focus-visible:text-[#F3F0EA]">
+            <Link href="/privacy" className="line-link hover:text-[var(--footer-ink)] focus-visible:text-[var(--footer-ink)]">
               Privacy
             </Link>
           </li>
           <li>
-            <Link href="/terms" className="line-link hover:text-[#F3F0EA] focus-visible:text-[#F3F0EA]">
+            <Link href="/terms" className="line-link hover:text-[var(--footer-ink)] focus-visible:text-[var(--footer-ink)]">
               Terms
             </Link>
           </li>
