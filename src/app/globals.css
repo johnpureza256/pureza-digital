@@ -20,6 +20,10 @@
   --ground: #F3F0EA;
   --ink: #151413;
   --muted: #6E6960;
+  /* The identity band follows whatever is directly beneath it. */
+  --band-ground: #F3F0EA;
+  --band-ink: #151413;
+  --band-muted: #6E6960;
   --nav-h: 64px;
   --margin: 20px;
   --gutter: 16px;

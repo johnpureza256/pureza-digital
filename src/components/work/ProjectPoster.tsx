@@ -81,8 +81,9 @@ export default function ProjectPoster({ project, total }: { project: Project; to
       <div ref={hold} aria-hidden style={{ height: holdHeight }} />
 
       {/* The second sheet, laid over the pinned poster */}
-      {/* Painted with the live ground, so its tail follows the page back to paper. */}
-      <div className="relative z-20 pb-24 pt-[14vh] md:pb-[20vh]" style={{ backgroundColor: "var(--ground)" }}>
+      {/* A physical sheet in the project's own colour: the next section is laid
+          over it with a clean edge rather than the whole screen changing colour. */}
+      <div className="relative z-20 pb-24 pt-[14vh] md:pb-[20vh]" style={{ backgroundColor: project.ground }}>
         <div className="frame grid-12 gap-y-8">
           <p className="display col-span-12 text-[clamp(28px,3.9vw,60px)] leading-[1.08] md:col-span-9">
             {project.line}

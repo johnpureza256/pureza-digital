@@ -21,6 +21,7 @@ export default function Home() {
         data-ground={PAPER.ground}
         data-ink={PAPER.ink}
         data-muted={PAPER.muted}
+        data-wall
         className="frame grid-12 content-end pb-[7svh]"
         style={{ minHeight: "calc(88svh)", paddingTop: "calc(var(--nav-h) + 8svh)" }}
       >
@@ -48,7 +49,8 @@ export default function Home() {
         data-ground={PAPER.ground}
         data-ink={PAPER.ink}
         data-muted={PAPER.muted}
-        className="frame grid-12 gap-y-14 py-[22vh]"
+        className="frame grid-12 relative gap-y-14 py-[22vh]"
+        style={{ backgroundColor: PAPER.ground, color: PAPER.ink }}
       >
         <h2 id="studio-title" className="sr-only">
           Studio
@@ -63,7 +65,7 @@ export default function Home() {
               <li key={c}>{c}</li>
             ))}
           </ul>
-          <p className="muted max-w-[34ch] text-[17px] leading-[1.6]">
+          <p className="max-w-[34ch] text-[17px] leading-[1.6]" style={{ color: PAPER.muted }}>
             We take on a few projects at a time, for businesses in New Zealand and further afield.
           </p>
         </div>

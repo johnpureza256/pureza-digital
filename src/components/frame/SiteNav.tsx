@@ -31,16 +31,19 @@ export default function SiteNav() {
 
   return (
     <header
-      className="frame fixed inset-x-0 top-0 z-[60] text-[var(--ink)]"
+      className="frame fixed inset-x-0 top-0 z-[60] text-[var(--band-ink)]"
       style={{
         height: "var(--nav-h)",
-        backgroundColor: "var(--ground)",
-        transition: "background-color 700ms var(--ease-out-expo), color 700ms var(--ease-out-expo)",
+        backgroundColor: "var(--band-ground)",
+        // The band tracks a physical edge, so it switches almost with it; a long
+        // fade would lag behind the sheet and show a grey band.
+        transition:
+          "background-color var(--band-fade, 180ms) var(--ease-out-expo), color var(--band-fade, 180ms) var(--ease-out-expo)",
       }}
     >
       <a
         href="#main"
-        className="meta absolute left-[var(--margin)] top-3 -translate-y-24 bg-[var(--ink)] px-3 py-2 text-[var(--ground)] focus-visible:translate-y-0"
+        className="meta absolute left-[var(--margin)] top-3 -translate-y-24 bg-[var(--band-ink)] px-3 py-2 text-[var(--band-ground)] focus-visible:translate-y-0"
       >
         Skip to content
       </a>
@@ -67,7 +70,7 @@ export default function SiteNav() {
               ))}
             </span>
           </span>
-          <span className="muted"> / {total}</span>
+          <span className="text-[var(--band-muted)]"> / {total}</span>
         </p>
 
         <ul className="meta col-span-6 flex justify-end gap-5 md:col-span-3 md:col-start-10 md:gap-8">

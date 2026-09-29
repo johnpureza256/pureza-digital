@@ -95,7 +95,7 @@ spacing:
   band-y-md: "20px"
 components:
   identity-band:
-    backgroundColor: "var(--ground)"
+    backgroundColor: "var(--band-ground)"
     textColor: "var(--ink)"
     typography: "{typography.label-nav}"
     rounded: "{rounded.none}"
@@ -145,7 +145,7 @@ components:
 
 **Creative North Star: "The Kunsthalle"**
 
-Pureza Digital is built as a small public gallery with a fixed house identity and a changing programme. The house is warm paper, near-black ink, a Didone wordmark and a thin band of metadata. It has no colour of its own. Each project is a show: it arrives as a full-bleed poster with its own ground, rises from the bottom edge with its label band already visible, opens from an inset sheet to full bleed, and is pasted over the last. While a show holds the viewport, the whole page, including the identity band, takes that show's ground, ink and muted colour. When the programme ends, the house paper returns and the close is an email address set in the display face on ink.
+Pureza Digital is built as a small public gallery with a fixed house identity and a changing programme. The house is warm paper, near-black ink, a Didone wordmark and a thin band of metadata. It has no colour of its own. Each project is a show: it arrives as a full-bleed poster with its own ground, rises from the bottom edge with its label band already visible, opens from an inset sheet to full bleed, and is pasted over the last. While a show holds the viewport, the wall behind it takes that show's ground, ink and muted colour, and each sheet meets the next with a clean physical edge. When the programme ends, the house paper returns and the close is an email address set in the display face on ink.
 
 Density is low and deliberate. A viewport usually holds one idea: one sentence, one poster, one passage. Type is either large and looked at (Bodoni Moda, upright with italic turns) or small and read (Hanken Grotesk metadata at 13px). There is almost nothing in between, and there are no cards, chips, icons, glows or gradients. Motion lands once and holds: a line rises, a clip opens, a ground changes, a sheet wipes. Nothing loops in the frame; only the work's own recordings move, and those can always be paused.
 
@@ -154,7 +154,7 @@ The build rejects the category default of a white page with a vertical stack of 
 **Key Characteristics:**
 - No house accent: paper, ink and muted only; colour comes from the work.
 - The page ground follows the project crossing the viewport middle.
-- A fixed identity band that never reflows, painted with the live ground.
+- A fixed identity band that never reflows, painted with the colour of whatever sits directly beneath it.
 - Asymmetric 12-column grid; text anchors to column 1 or column 7; nothing is centred.
 - Bodoni Moda display with optical sizing, Hanken Grotesk metadata.
 - Radius 0 everywhere except phone screens and the Send pill.
@@ -178,7 +178,7 @@ A warm-neutral house of three values; every other colour on the page belongs to 
 Each project in `src/data/projects.ts` carries its own `ground`, `ink` and `muted`. At the time of writing: Oriel blue-hour night, Halden catalogue grey, Yèxíng lamplit black with parchment ink, Baga charcoal orange with ember-brown ink. `projects.ts` is canonical; these are not reusable tokens and must not be referenced outside their own project. Each project's `muted` is checked at 4.5:1 or better against its ground.
 
 ### Named Rules
-**The No House Accent Rule.** The house frame is paper, ink and muted, and nothing else. Colour enters only from the work, via each project's `ground`/`ink`/`muted`, written to `:root` by GroundController when an element carrying `data-ground` crosses the middle of the viewport. Do not introduce a brand accent, a link colour, or a highlight hue.
+**The No House Accent Rule.** The house frame is paper, ink and muted, and nothing else. Colour enters only from the work, via each project's `ground`/`ink`/`muted`, written to `:root` by GroundController on two lines: the page line (viewport middle) sets `--ground`/`--ink`/`--muted` for the body, and the band line (the identity band's bottom edge) sets `--band-*` for the band. A see-through section marked `data-wall` (the hero) hands the band the page colour instead of its own. Do not introduce a brand accent, a link colour, or a highlight hue.
 
 **The Every Section Declares Its Ground Rule.** Every new full-width section must carry `data-ground`, `data-ink` and `data-muted` (house sections use the paper triple; the footer uses the ink triple). A section without them inherits whatever the last one set, and the page will show the wrong world.
 
@@ -242,10 +242,10 @@ Hard rectangles. Desktop screens are shown flat, with no browser chrome, frame o
 ## Components
 
 ### Identity Band (SiteNav)
-The house identity, fixed across the top. The wordmark sits at column 1, the programme counter at column 7 (768px and up), and Work · Studio · Contact end at column 12. It is painted with `var(--ground)` and `var(--ink)`, so it changes colour with the page over the same 700ms, and it never reflows: nothing in it changes width, wraps, or collapses into a menu. The counter appears only while a project holds the page; its digits roll vertically by `translateY` in `em` (one 1.45em row per project), next to a muted "/ 04" total. Links use the line-link underline; the current route holds its underline via `aria-current="page"`. A skip link slides in on focus.
+The house identity, fixed across the top. The wordmark sits at column 1, the programme counter at column 7 (768px and up), and Work · Studio · Contact end at column 12. It is painted with `var(--band-ground)` and `var(--band-ink)`, which follow whatever is directly beneath its bottom edge, switching over 180ms (700ms while a see-through wall is under it, to match the body). So the band never sits on a different colour from the sheet under it. It never reflows: nothing in it changes width, wraps, or collapses into a menu. The counter appears only while a project holds the page; its digits roll vertically by `translateY` in `em` (one 1.45em row per project), next to a muted "/ 04" total. Links use the line-link underline; the current route holds its underline via `aria-current="page"`. A skip link slides in on focus.
 
 ### Poster (ProjectPoster)
-The signature component. A sticky full-height sheet under the band, with the label band on top and the project's media beneath. As it enters, its clip scrubs from `inset(0 6% 0 6%)` to full bleed and the label band's padding tracks the clip so its ends are never cut. While pinned, the media scales from 1.08 to 1. The whole poster is a single link to the case study, with the cursor label "View". Then the second sheet, painted with `var(--ground)`, is laid over it: the project's line in the display face (cols 1–9), a "View project" link (col 7), and a composition chosen by `variant`:
+The signature component. A sticky full-height sheet under the band, with the label band on top and the project's media beneath. As it enters, its clip scrubs from `inset(0 6% 0 6%)` to full bleed and the label band's padding tracks the clip so its ends are never cut. While pinned, the media scales from 1.08 to 1. The whole poster is a single link to the case study, with the cursor label "View". Then the second sheet, painted with the project's own ground (a physical sheet, never the live page colour, so the next section meets it with a clean edge rather than the whole screen changing colour), is laid over it: the project's line in the display face (cols 1–9), a "View project" link (col 7), and a composition chosen by `variant`:
 - **flight**: a scroll-scrubbed film (Oriel), a large screen with two phones beside it.
 - **strip**: a catalogue strip of alternating screens and phones that drifts horizontally against the scroll (6% to -42%).
 - **night**: three staggered phones, then a screen offset to column 4.
@@ -287,7 +287,7 @@ Motion is part of the frame, so it is documented with the components rather than
 - **Easing:** `--ease-out-expo` `cubic-bezier(0.16, 1, 0.3, 1)` for arrivals and state changes; `--ease-in-out-quart` `cubic-bezier(0.76, 0, 0.24, 1)` for the route wipe.
 - **Hero line rise:** each line translates up from 105% over 1100ms, staggered 110ms after a 120ms delay. This is the only entrance motion on type.
 - **Poster paste:** clip-path inset and media scale, scrubbed by scroll position, not by time.
-- **Ground change:** body and identity band transition `background-color` and `color` over 700ms. This is the only transition on a property other than transform, opacity or clip.
+- **Ground change:** the body transitions `background-color` and `color` over 700ms; the identity band over 180ms (700ms over a wall), because it tracks a physical edge. This is the only transition on a property other than transform, opacity or clip.
 - **Route wipe:** a sheet in the destination's ground translates from 100% to 0% over 700ms, the route changes beneath it, then it lifts to -100%. The case study opens on the same colour.
 - **Smooth scroll:** Lenis at lerp 0.09 on wheel input; touch keeps native scrolling.
 
@@ -301,7 +301,8 @@ Motion is part of the frame, so it is documented with the components rather than
 - **Do** keep the house frame to paper (#F3F0EA), ink (#151413) and muted (#6E6960), and let colour arrive only through a project's `ground`/`ink`/`muted`.
 - **Do** put `data-ground`, `data-ink` and `data-muted` on every new full-width section.
 - **Do** anchor text to column 1 or column 7 of the 12-column grid, inside the 20/40/64px margins and 16/20px gutters.
-- **Do** keep the identity band fixed, ground-painted and non-reflowing; roll the counter digits by `translateY` in `em`.
+- **Do** give every opaque full-width section its own background (sheets meet with physical edges); mark see-through sections `data-wall`.
+- **Do** keep the identity band fixed, band-painted and non-reflowing; roll the counter digits by `translateY` in `em`.
 - **Do** set emphasis in the display face as an italic turn.
 - **Do** keep metadata rows on or below the title baseline.
 - **Do** show a visible "Concept" tag on every project until it is genuinely commissioned.
