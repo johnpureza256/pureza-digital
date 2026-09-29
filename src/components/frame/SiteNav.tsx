@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { GroundDetail } from "./GroundController";
 import { PROJECTS } from "@/data/projects";
+import { Monogram } from "./Logo";
 
 const LINKS = [
   { label: "Work", href: "/work" },
@@ -50,9 +51,10 @@ export default function SiteNav() {
       <nav aria-label="Primary" className="grid-12 h-full items-center">
         <Link
           href="/"
-          className="line-link display col-span-6 justify-self-start text-[19px] leading-none tracking-[-0.01em] md:col-span-4 md:text-[21px]"
+          aria-label="Pureza Digital, home"
+          className="col-span-6 justify-self-start py-2 transition-opacity duration-300 hover:opacity-70 active:opacity-50 md:col-span-4"
         >
-          Pureza Digital
+          <Monogram className="block h-[26px] w-auto md:h-[30px]" />
         </Link>
 
         {/* Programme counter: only while a project holds the page. */}

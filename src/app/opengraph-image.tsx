@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { MONO } from "@/components/frame/Logo";
 
 export const alt = "Pureza Digital, an independent design and development studio in Christchurch, New Zealand.";
 export const size = { width: 1200, height: 630 };
@@ -18,6 +19,10 @@ async function bodoni(italic: boolean): Promise<ArrayBuffer | null> {
     return null;
   }
 }
+
+const monogram = `data:image/svg+xml;base64,${Buffer.from(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 437 355"><path fill="#151413" fill-rule="evenodd" d="${MONO}"/></svg>`
+).toString("base64")}`;
 
 export default async function OpengraphImage() {
   const [roman, italic] = await Promise.all([bodoni(false), bodoni(true)]);
@@ -41,7 +46,8 @@ export default async function OpengraphImage() {
           fontFamily: fonts.length ? "Bodoni" : "serif",
         }}
       >
-        <div style={{ fontSize: 30, letterSpacing: "-0.01em" }}>Pureza Digital</div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img alt="Pureza Digital" width={74} height={60} src={monogram} />
         <div style={{ display: "flex", flexDirection: "column", fontSize: 70, lineHeight: 1.04, letterSpacing: "-0.03em" }}>
           <span>An independent design and</span>
           <span>development studio</span>

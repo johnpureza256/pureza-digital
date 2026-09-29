@@ -18,6 +18,10 @@ export type GroundDetail = { index: string | null };
  * is under the band, the band follows the page line instead of the section's
  * nominal colour, fading at the body's pace.
  *
+ * When the page line reaches an element marked data-close (the footer),
+ * :root gets data-closing, so sections that opt in (the studio note) fade
+ * to ink with the page instead of meeting the footer at a hard edge.
+ *
  * Candidates are elements with data-ground / data-ink / data-muted. Where
  * they nest (a next-project panel inside a case study), the innermost one
  * that crosses the line wins, which is the last one in document order.
@@ -48,6 +52,7 @@ export default function GroundController() {
       }
       pageEl = el;
       paint("", el);
+      root.toggleAttribute("data-closing", el.dataset.close !== undefined);
       if (bandOnWall) paint("band-", el);
       window.dispatchEvent(
         new CustomEvent<GroundDetail>("pd:ground", { detail: { index: el.dataset.index ?? null } })

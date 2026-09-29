@@ -50,8 +50,11 @@ lets each project be its own world.
 - Location: **Christchurch, New Zealand**, working internationally. The site no longer mentions
   Ashburton.
 - Studio voice ("we"). No founder names, bios or portraits on the site.
-- The brand-asset gold PD logo and its "Digital solutions. Real results." tagline belong to the
-  old world and are not used.
+- The brand mark is the Didone **PD monogram** (a P with the D laid over it, offset down and right)
+  and the spaced-capitals **PUREZA DIGITAL** wordmark, supplied by John on 2026-09-30. The source
+  board and traced SVGs live in `resources/brand_assets/pureza_digital/` (`pd-brand-board.webp`,
+  `pd-monogram.svg`, `pd-wordmark.svg`, `pd-lockup.svg`). The older gold PD logo and its
+  "Digital solutions. Real results." tagline are retired.
 
 ## Evidence on Hand
 

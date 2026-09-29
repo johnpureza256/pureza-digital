@@ -49,23 +49,28 @@ export default function Home() {
         data-ground={PAPER.ground}
         data-ink={PAPER.ink}
         data-muted={PAPER.muted}
-        className="frame grid-12 relative gap-y-14 py-[22vh]"
-        style={{ backgroundColor: PAPER.ground, color: PAPER.ink }}
+        data-wall
+        data-studio
+        className="frame relative py-[18vh] md:py-[22vh]"
       >
         <h2 id="studio-title" className="sr-only">
           Studio
         </h2>
-        <p className="display col-span-12 text-[clamp(28px,3.6vw,56px)] leading-[1.12] md:col-span-9">
-          We&rsquo;re a small, independent studio. We design and build websites, digital products and
-          interactive experiences, <em>from the first strategy conversation to the last line of code.</em>
-        </p>
-        <div className="col-span-12 grid grid-cols-1 gap-y-10 md:col-span-6 md:col-start-7 md:grid-cols-2 md:gap-x-[var(--gutter)]">
-          <ul className="text-[17px] leading-[1.6]">
+        {/* Two anchors only: the statement and the capabilities hang from
+            column 1, the note from column 7, and the second row shares one top. */}
+        <div className="grid-12">
+          <p className="display col-span-12 text-[clamp(28px,3.6vw,56px)] leading-[1.12] md:col-span-10">
+            We&rsquo;re a small, independent studio. We design and build websites, digital products and
+            interactive experiences, <em>from the first strategy conversation to the last line of code.</em>
+          </p>
+        </div>
+        <div className="grid-12 mt-12 items-start gap-y-8 text-[17px] leading-[1.6] md:mt-[12vh]">
+          <ul className="col-span-12 md:col-span-5">
             {CAPABILITIES.map((c) => (
               <li key={c}>{c}</li>
             ))}
           </ul>
-          <p className="max-w-[34ch] text-[17px] leading-[1.6]" style={{ color: PAPER.muted }}>
+          <p className="studio-muted col-span-12 max-w-[36ch] md:col-span-5 md:col-start-7">
             We take on a few projects at a time, for businesses in New Zealand and further afield.
           </p>
         </div>

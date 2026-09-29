@@ -66,6 +66,25 @@ html.lenis, html.lenis body { height: auto; }
   outline-offset: 4px;
 }
 
+/* ── Studio sheet ───────────────────────────────────────────────────
+ * Paper, so it meets the last project with a clean edge; once the page
+ * reaches the footer it fades to ink with the page, closing on black. */
+[data-studio] {
+  --studio-muted: #6E6960;
+  background-color: #F3F0EA;
+  color: #151413;
+  transition: background-color 700ms var(--ease-out-expo), color 700ms var(--ease-out-expo);
+}
+html[data-closing] [data-studio] {
+  --studio-muted: var(--muted);
+  background-color: var(--ground);
+  color: var(--ink);
+}
+.studio-muted {
+  color: var(--studio-muted);
+  transition: color 700ms var(--ease-out-expo);
+}
+
 /* ── Grid ───────────────────────────────────────────────────────────── */
 .frame {
   padding-inline: var(--margin);
